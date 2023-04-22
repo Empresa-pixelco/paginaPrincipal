@@ -1,0 +1,41 @@
+<!-- Componente de la barra de navegación -->
+<header class="navbar-container">
+  <div class="navbar-left">
+    <!-- Logo y título -->
+    <div class="logo-container">
+      <img src="assets/logo.jpg" alt="Logo de la veterinaria" class="logo-img" >
+      <h1 class="title" href="/main">UltraVetShop</h1>
+    </div>
+  </div>
+  <div class="navbar-right">
+    <!-- Botones adicionales -->
+    <a href="/main#veterinarios" class="nav-link">Sobre Nosotros</a>
+    <a href="/main#footer" class="nav-link">Contacto</a>
+    <a href="#" class="nav-link btn-agendar">Agendar</a>
+  </div>
+</header>
+
+<router-outlet></router-outlet>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="assets/logo.jpg" alt="Logo de la veterinaria">
+    </div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/" target="_blank">
+        <img src="assets/inst.jpg" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/" target="_blank">
+        <img src="assets/face.jpg" alt="Facebook">
+      </a>
+      <a href="https://www.whatsapp.com/" target="_blank">
+        <img src="assets/what.jpg" alt="Whatsapp">
+      </a>
+    </div>
+  </div>
+  <div class="footer-contact" id="footer">
+    <p>Contacto: <a href="UltraVetShop@veterinaria.com">info@veterinaria.com</a></p>
+    <p>Dirección: Calle Doce de Febrero #123, Chillan</p>
+  </div>
+</footer>
