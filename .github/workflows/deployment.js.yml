@@ -20,7 +20,7 @@ jobs:
         ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
     - name: deploy 
       run: |
-        shh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
         cd ${{ secrets.WORK_DIR }} && 
         git checkout main &&
         git pull &&
