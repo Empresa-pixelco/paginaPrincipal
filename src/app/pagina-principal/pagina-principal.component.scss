@@ -23,28 +23,50 @@
 }
 
 .titulo-portada {
-  font-size: 4rem; /* Ajuste: tamaño de letra reducido */
+  font-size: 4rem;
+  /* Ajuste: tamaño de letra reducido */
   font-weight: bold;
   color: #ffffff;
   text-align: center;
   margin-top: -560px;
   border-radius: 70px;
   padding: 1rem 4rem;
-  background-color: rgba(212, 176, 122, 0.7); /* Ajuste: opacidad de fondo */
-  transition: background-color 4s ease-in-out; /* Transición para el cambio de opacidad */
+  background-color: rgba(212, 176, 122, 0.7);
+  /* Ajuste: opacidad de fondo */
+  transition: background-color 4s ease-in-out;
+  /* Transición para el cambio de opacidad */
 }
 
+@media (max-width: 767px) {
 
+  /* Estilos para dispositivos pequeños */
+  .titulo-portada {
+    font-size: 4rem;
+    /* Ajuste: tamaño de letra reducido */
+    margin-top: 4;
+    /* Ajuste: margen superior eliminado */
+    padding: 0.5rem 2rem;
+    /* Ajuste: padding reducido */
+  }
+}
 
+@media (max-width: 576px) {
 
-
+  /* Estilos para dispositivos extra-pequeños */
+  .titulo-portada {
+    font-size: 2rem;
+    /* Ajuste: tamaño de letra reducido */
+    padding: 0.5rem 1rem;
+    /* Ajuste: padding reducido */
+  }
+}
 
 
 
 
 /* Estilos para la sección servicios*/
 .seccion-animales {
-  background-color: #a8dadc;
+  background-color: #42cfd4;
   padding: 50px;
   text-align: center;
 }
@@ -56,156 +78,163 @@
 
 .slices-container {
   display: flex;
-  animation: desplazamiento-slices 11s infinite; /* Animación de desplazamiento automático */
+  animation: desplazamiento-slices 11s infinite;
+  /* Animación de desplazamiento automático */
 }
 
 @keyframes desplazamiento-slices {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-80%);
   }
 }
 
 .slice {
-  flex: 0 0 20%; /* Ajusta el ancho de los slices según tu preferencia */
+  flex: 0 0 20%;
+  /* Ajusta el ancho de los slices según tu preferencia */
   text-align: center;
   padding: 20px;
-  background-color: #ffffff; /* Color calipso */
+  background-color: #ffffff;
+  /* Color calipso */
   margin-right: 10px;
-  border-radius: 10px; /* Añade el border-radius para hacer los cards más redondos */
+  border-radius: 10px;
+  /* Añade el border-radius para hacer los cards más redondos */
 }
 
 .slice img {
   width: 100%;
-  max-height: 200px; /* Ajusta la altura de las imágenes según tu preferencia */
+  max-height: 200px;
+  /* Ajusta la altura de las imágenes según tu preferencia */
   object-fit: cover;
   margin-bottom: 10px;
 }
 
+// seccion nosotros
+/* Estilos para hacer que el contenido sea responsive */
+.nosotros-container {
+  max-width: 100%;
+  padding: 0 20px;
+}
 
-/* Estilos para la sección de Nosotros*/
-.seccion-servicios{
-  background-color: #a8dadc;
-  padding: 50px;
+.seccion-veterinarios {
+  display: flex;
+  justify-content: center;
+}
+/* Estilos para el título de los veterinarios */
+.titulo-veterinarios {
+  text-align: center; /* Centra el texto */
+  background-color: #42cfd4; /* Color de fondo calipso */
+  padding: 20px; /* Agrega un relleno para espaciado */
+}
+
+.titulo-veterinarios h2 {
+  margin: 0; /* Elimina el margen del título */
+  color: #000000; /* Cambia el color del texto a blanco */
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+// 42cfd4
+.card {
+  flex-basis: calc(33.33% - 20px);
+  max-width: 300px;
+  padding: 20px;
+  background-color: #42cfd4;
   text-align: center;
 }
-.card-container {
-display: flex;
-justify-content: center;
-align-items: center;
+
+/* Estilos adicionales para dispositivos móviles */
+@media (max-width: 768px) {
+  .card {
+    flex-basis: calc(50% - 20px);
+  }
 }
 
-.card {
-background-color: #08bec8; /* Color naranja */
-margin: 10px;
-padding: 20px;
-width: 200px;
-border: 3px solid #a8dadc;
-border-radius: 10px;
-text-align: center;
-transition: transform 0.3s ease-in-out;
-}
-
-.card:hover {
-transform: scale(1.1);
-}
-
-.card img {
-width: 100%;
-height: 150px;
-object-fit: cover;
-border-radius: 10px;
-}
-
-.card h3 {
-margin-top: 1px;
-font-size: 10px;
-font-weight: bold;
-}
-
-.card p {
-margin-top: 5px;
-}
 
 
 /* Estilos para la sección de animalitos*/
-  .seccion-veterinarios {
-    background-color: #a8dadc;
-    padding: 50px;
-    text-align: center;
-  }
-  
-  .container {
-    overflow: hidden;
-    margin-top: 100px;
-  }
-  
-  .titulo-nosotros {
-    background-color: #a8dadc;
-    padding: 1px;
-    font-size: 1.5rem;
-    text-align: center;
-    margin-top: 0;
+.seccion-veterinarios {
+  background-color: #42cfd4;
+  padding: 50px;
+  text-align: center;
+}
 
-  }
-  
-  .card-container {
-    background-color: #a8dadc;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap; /* Permitir que los cards se envuelvan en una nueva línea */
-    gap: 10px; /* Espacio entre los cards */
-  }
-  
-  .card {
-    flex: 0 0 calc(25% - 20px); /* Ajusta el ancho de los cards según tu preferencia */
-    text-align: center;
-    padding: 20px;
-    background-color: #42cfd4; /* Color naranja */
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s; /* Transición de transform para el efecto de zoom */
-  }
-  
-  .card img {
-    width: 100%;
-    max-height: 200px; /* Ajusta la altura de las imágenes según tu preferencia */
-    object-fit: cover;
-    margin-bottom: 10px;
-  }
-  
-  .card:hover {
-    transform: scale(1.05); /* Efecto de zoom al pasar el cursor sobre el card */
-  }
-  
-  .card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3); /* Overlay negro con transparencia */
-    opacity: 0;
-    transition: opacity 0.3s; /* Transición de opacidad para el overlay */
-  }
-  
-  .card:hover::before {
-    opacity: 1; /* Mostrar overlay al pasar el cursor sobre el card */
-  }
+.container {
+  overflow: hidden;
+  margin-top: 100px;
+}
 
-  
-  // /* Estilos generales */
-  // .container {
-  //   margin: 0 auto;
-  //   padding: 0 20px;
-  // }
-  
-  // h2 {
-  //   text-align: center;
-  //   margin-bottom: 10px;
-  // }
-  
+.card-container {
+  background-color: #42cfd4;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* Permitir que los cards se envuelvan en una nueva línea */
+  gap: 10px;
+  /* Espacio entre los cards */
+}
+
+.card {
+  flex: 0 0 calc(25% - 20px);
+  /* Ajusta el ancho de los cards según tu preferencia */
+  text-align: center;
+  padding: 20px;
+  background-color: #e08700;
+  /* Color naranja */
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s;
+  /* Transición de transform para el efecto de zoom */
+}
+
+.card img {
+  width: 100%;
+  max-height: 200px;
+  /* Ajusta la altura de las imágenes según tu preferencia */
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  /* Efecto de zoom al pasar el cursor sobre el card */
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  /* Overlay negro con transparencia */
+  opacity: 0;
+  transition: opacity 0.3s;
+  /* Transición de opacidad para el overlay */
+}
+
+.card:hover::before {
+  opacity: 1;
+  /* Mostrar overlay al pasar el cursor sobre el card */
+}
+
+
+// /* Estilos generales */
+// .container {
+//   margin: 0 auto;
+//   padding: 0 20px;
+// }
+
+// h2 {
+//   text-align: center;
+//   margin-bottom: 10px;
+// }
