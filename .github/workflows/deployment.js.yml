@@ -9,10 +9,8 @@ on:
 
 jobs:
   build:
-
+    name: deploy
     runs-on: ubuntu-latest
-
-    strategy:
 
     steps:
     - name: install ssh keys
