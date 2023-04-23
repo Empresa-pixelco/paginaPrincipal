@@ -25,7 +25,5 @@ jobs:
         git checkout main &&
         git pull &&
         npm i &&
-        npm run build &&
-        nohup npm run start &&
-        exit
+        npm run build
         "
