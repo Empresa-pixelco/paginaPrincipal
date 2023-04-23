@@ -24,6 +24,7 @@ jobs:
         cd ${{ secrets.WORK_DIR }} && 
         git checkout main &&
         git pull &&
+        npm i &&
         npm run build &&
         nohup npm run start &&
         exit
