@@ -21,9 +21,15 @@ jobs:
     - name: deploy 
       run: |
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
-        cd ${{ secrets.WORK_DIR }} && 
-        git checkout main &&
+        cd ${{ secrets.WORK_DIR }} &&
+        git checkout develop &&
         git pull &&
         npm i &&
-        npm run build
-        "
+        npm run build &&
+        rm -r /var/www/html &&
+        cp -r dist/calendario-horarios/ /var/www/html &&
+        cp -r /var/www/.htaccess /var/www/html &&
+        service apache2 restart
+        exit"
+    - run: exit
+         
