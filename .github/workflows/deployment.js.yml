@@ -26,10 +26,10 @@ jobs:
         git pull &&
         npm i &&
         npm run build &&
-        rm -r ${{secret.PATH_SERVER}} &&
-        cp -r ${{secret.PATH_BUILD}} ${{secret.PATH_SERVER}} &&
-        cp -r ${{secret.CONFIG_SERVER_ACCESS}} ${{secret.PATH_SERVER}} &&
-        ${{secret.CMD_RESTART_SERVER}} &&
+        rm -r ${{secrets.PATH_SERVER}} &&
+        cp -r ${{secrets.PATH_BUILD}} ${{secrets.PATH_SERVER}} &&
+        cp -r ${{secrets.CONFIG_SERVER_ACCESS}} ${{secrets.PATH_SERVER}} &&
+        ${{secrets.CMD_RESTART_SERVER}} &&
         exit"
     - run: exit
          
