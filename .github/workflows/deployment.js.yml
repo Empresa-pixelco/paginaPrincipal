@@ -1,0 +1,35 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: deployment
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    name: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: install ssh keys
+      run: |
+        install -m 600 -D /dev/null ~/.ssh/id_rsa
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+    - name: deploy 
+      run: |
+        ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
+        cd ${{ secrets.WORK_DIR }} &&
+        git checkout ${{ secrets.BRANCH }} &&
+        git pull &&
+        npm i &&
+        npm run build &&
+        rm -r ${{secret.PATH_SERVER}} &&
+        cp -r ${{secret.PATH_BUILD}} ${{secret.PATH_SERVER}} &&
+        cp -r ${{secret.CONFIG_SERVER_ACCESS}} ${{secret.PATH_SERVER}} &&
+        ${{secret.CMD_RESTART_SERVER}} &&
+        exit"
+    - run: exit
+         
