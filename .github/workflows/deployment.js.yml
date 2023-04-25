@@ -5,7 +5,7 @@ name: deployment
 
 on:
   push:
-    branches: [ "main" , "develop"]
+    branches: ["main"]
 
 jobs:
   build:
@@ -22,14 +22,14 @@ jobs:
       run: |
         ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "
         cd ${{ secrets.WORK_DIR }} &&
-        git checkout develop &&
+        git checkout ${{ secrets.BRANCH }} &&
         git pull &&
         npm i &&
         npm run build &&
-        rm -r /var/www/html &&
-        cp -r dist/calendario-horarios/ /var/www/html &&
-        cp -r /var/www/.htaccess /var/www/html &&
-        service apache2 restart
+        rm -r ${{secret.PATH_SERVER}} &&
+        cp -r ${{secret.PATH_BUILD}} ${{secret.PATH_SERVER}} &&
+        cp -r ${{secret.CONFIG_SERVER_ACCESS}} ${{secret.PATH_SERVER}} &&
+        ${{secret.CMD_RESTART_SERVER}} &&
         exit"
     - run: exit
          
