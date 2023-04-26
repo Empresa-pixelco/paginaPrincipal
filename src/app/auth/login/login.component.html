@@ -1,0 +1,19 @@
+<!-- app.component.html -->
+<div class="card-container">
+  <h2 class="mb-4">Login</h2>
+  <div class="form-group mb-3">
+    <label for="rut">Rut</label>
+    <input type="text" id="rut" placeholder="19019234" >
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" placeholder="***********">
+  </div>
+
+  <div class="form-group mb-3">
+    <a class="anchor" (click)="register()">No tienes una cuenta? Regístrate aquí!</a>
+  </div>
+
+  <button class="login-button" (click)="login()">Acceder</button>
+</div>

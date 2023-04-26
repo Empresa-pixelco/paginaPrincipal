@@ -1,0 +1,7 @@
+<div class="card-container">
+  <h2 class="mb-4">Detalle de la reserva</h2>
+  <button (click)="openToast()">Agendar!</button>
+  <div class="toast-container" *ngIf="showToast">
+    Felicidades, tu hora ha sido reservada!
+  </div>
+</div>

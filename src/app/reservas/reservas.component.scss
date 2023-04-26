@@ -1,0 +1,31 @@
+/* app.component.css */
+.card {
+background-color: #42cfd4;
+  width: 300px;
+  margin: 0 auto;
+  margin-bottom: 230px;
+  margin-top: 250px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  width: 100%;
+  border-radius: 30px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px;
+  transition: background-color 0.3s ease-in-out;
+}
