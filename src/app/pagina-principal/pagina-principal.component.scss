@@ -1,7 +1,8 @@
 .seccion-portada {
   position: relative;
-  height: 100vh; /* Establece la altura de la sección como el 100% del viewport height */
+  height: 60vh; /* Establece la altura de la sección como el 100% del viewport height */
   overflow: hidden; /* Oculta el desbordamiento de la imagen de fondo */
+  
 }
 
 .imagen-fondo {
@@ -13,30 +14,33 @@
   background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
   background-position: center; /* Centra la imagen de fondo */
   background-repeat: no-repeat;
+  z-index: 1;
 }
 
-.container {
+.containerTitulo {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  z-index: 1;
+  z-index: 2; /* Agrega un z-index mayor */
 }
 
 .titulo-portada {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 4rem;
-  /* Ajuste: tamaño de letra reducido */
   font-weight: bold;
   color: #ffffff;
   text-align: center;
-  margin-top: -560px;
-  border-radius: 70px;
-  padding: 1rem 4rem;
+  border-radius: 30px;
+  padding: -2rem 1rem;
   background-color: rgba(212, 176, 122, 0.7);
-  /* Ajuste: opacidad de fondo */
   transition: background-color 4s ease-in-out;
-  /* Transición para el cambio de opacidad */
+  z-index: 2;
 }
+
 
 
 @media (max-width: 576px) {
