@@ -1,0 +1,43 @@
+/* app.component.css */
+.card-container {
+    max-width: 300px;
+    margin: 130px auto; /* Agregar margen superior */
+    padding: 20px;
+    background-color: #42cfd4;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrar los elementos verticalmente */
+    margin-left: auto; /* Centrar el card en el centro horizontal */
+    margin-right: auto; /* Centrar el card en el centro horizontal */
+  }
+  
+  .form-group {
+    width: 100%; /* Asegurar que los elementos dentro de .form-group ocupen el ancho completo */
+  }
+  
+  label {
+    margin-bottom: 5px; /* Añadir margen inferior a las etiquetas de los inputs */
+  }
+  
+  input {
+    width: 100%; /* Asegurar que los inputs ocupen el ancho completo */
+    padding: 5px;
+    margin-top: 5px; /* Añadir margen superior a los inputs */
+  }
+  
+  .anchor {
+    cursor: pointer;
+    color: blue;
+  }
+  
+  .login-button {
+    width: 100%;
+    border-radius: 30px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out; /* Añadir margen superior al botón de login */
+  }
+  

@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagina-principal',
@@ -6,7 +7,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./pagina-principal.component.scss']
 })
 export class PaginaPrincipalComponent {
-
+  constructor(private router: Router) { }
   sliceActual = 0; // Variable para llevar el registro del slice actual
 
   cambiarSlice(direccion: string) {
@@ -15,5 +16,9 @@ export class PaginaPrincipalComponent {
     } else if (direccion === 'siguiente') {
       this.sliceActual = this.sliceActual < 4 ? this.sliceActual + 1 : 0; // Cambiar al slice siguiente, asegurándose de no ser mayor a 4 (la cantidad total de slices)
     }
+  }
+
+  continuar() {
+    this.router.navigate(['/datos-paciente']);
   }
 }
