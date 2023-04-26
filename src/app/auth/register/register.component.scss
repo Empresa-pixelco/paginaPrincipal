@@ -1,0 +1,83 @@
+/* app.component.css */
+.card-container {
+  max-width: 300px;
+  margin: 20px auto; /* Agregar margen superior */
+  padding: 20px;
+  background-color: #42cfd4;
+  border-radius: 5px;
+  margin-left: auto; /* Centrar el card en el centro horizontal */
+  margin-right: auto; /* Centrar el card en el centro horizontal */
+}
+
+/* Ajustar el espacio entre los elementos dentro de .form-group */
+.card-container .form-group label,
+.card-container .form-group input {
+  margin-top: 10px;
+}
+.card-container .form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centrar el título */
+  margin-bottom: 20px;
+}
+
+.title {
+  text-align: center; /* Centrar el título */
+  margin: 0;
+}
+
+.form-group {
+  margin-bottom: 10px;
+  text-align: center; /* Centrar los labels */
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px; /* Añadir espacio entre el formulario y los botones */
+}
+
+
+.register-button {
+  flex-basis: 45%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.back-button {
+  flex-basis: 45%;
+  padding: 10px;
+  background-color: #6c757d;
+  color: #fff;
+  text-align: center;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.back-button:hover,
+.register-button:hover {
+  background-color: #0056b3;
+}
