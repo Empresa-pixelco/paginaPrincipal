@@ -1,12 +1,10 @@
-import { CommonModule, Location } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Location } from '@angular/common';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { IonicModule } from '@ionic/angular';
-import { AuthService } from 'src/app/services/auth.service';
+import {NgForm} from '@angular/forms';
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, IonicModule],
+  standalone: false,
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -14,25 +12,26 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginComponent implements OnInit {
   location = inject(Location);
   router = inject(Router);
-  
-  // email: string | any;
-  // password: string | any;
-  // constructor(private authService: AuthService) {}
+
+  email: string | any;
+  password: string | any;
+
+  constructor( ) {}
+
 
   ngOnInit() {}
 
   login() {
     this.router.navigate(['confirmacion']);
+    this.email = this.email
+    console.log('Value submitted:', this.email);
   }
-
   register() {
     this.router.navigate(['register']);
   }
-
   
 
   // onSubmit() {
-    
   //   // Llama al servicio de autenticación para realizar el inicio de sesión
   //   this.authService.login(this.email, this.password).subscribe(
   //     // Maneja la respuesta del API de autenticación

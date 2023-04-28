@@ -27,9 +27,9 @@ export class AuthService {
     // y retorna los datos encriptados
     // Tu implementación de encriptación AES aquí
   }
-  // register(userData: any): Observable<any> {
-  //   const encryptedData = this.encryptData(userData);
-  //   return this.http.post<any>(this.registerUrl, encryptedData);
-  // }
+  register(userData: any): Observable<any> {
+    const encryptedData = this.encryptData(userData);
+    return this.http.post<any>(this.registerUrl, encryptedData);
+  }
   
 }
