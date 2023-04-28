@@ -11,14 +11,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
-import { Router } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PaginaPrincipalComponent,
+    LoginComponent
   ],
   imports: [
+    
+    ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
     MatSelectModule,
