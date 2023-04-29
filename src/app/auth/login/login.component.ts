@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {NgForm} from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   standalone: false,
@@ -16,17 +17,35 @@ export class LoginComponent implements OnInit {
   email: string | any;
   password: string | any;
 
-  constructor( ) {}
-
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {}
 
   login() {
-    this.router.navigate(['confirmacion']);
-    this.email = this.email
-    console.log('Value submitted:', this.email);
+    if (!this.email || !this.password) {
+      alert('Por favor ingrese su correo y contraseña');
+      return;
+    }
+
+    this.authService.login(this.email, this.password)
+      .then((data) => {
+        alert('Bienvenido!');
+        localStorage.setItem('access_token', data.token);
+        //redirigir al usuario a la página que confirmar
+        this.router.navigate(['confirmacion']);
+      })
+      .catch((error) => {
+        console.log(error);
+        alert('Error al iniciar sesión');
+      });
   }
+
   register() {
+    //implementar la lógica para redirigir al usuario a la página de registro
+  }
+
+
+  registers() {
     this.router.navigate(['register']);
   }
   
