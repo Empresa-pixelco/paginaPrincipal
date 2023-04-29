@@ -16,6 +16,6 @@ export class ReservasComponent {
 
 
   continuar() {
-    this.router.navigate(['/datos-paciente']);
+    this.router.navigate(['horarios-veterinarios']);
   }
 }

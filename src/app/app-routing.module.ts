@@ -7,6 +7,7 @@ import { DatosPacienteComponent } from './datos-paciente/datos-paciente.componen
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
+import { HorariosVeterinariosComponent } from './horarios-veterinarios/horarios-veterinarios.component';
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: PaginaPrincipalComponent },
@@ -15,7 +16,9 @@ const routes: Routes = [
   { path: 'datos-paciente', component: DatosPacienteComponent },
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'confirmacion', component: ConfirmacionComponent}
+  { path: 'confirmacion', component: ConfirmacionComponent},
+  { path: 'horarios-veterinarios', component: HorariosVeterinariosComponent}
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
