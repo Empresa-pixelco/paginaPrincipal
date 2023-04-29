@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     }   
  
     if (validarRutNumeros(this.userDni) == false) {
-      alert('El RUT ingresado no es válido');
+      alert('El RUT ingresado no es válido. Formato => 20999888-7');
       return;
     }
     // Eliminar espacios del número de teléfono
