@@ -1,35 +1,42 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environment';
-
+import { encrypt } from '../util/crypto';
+import axios from 'axios';
+import * as CryptoJS from 'crypto-js';
+import { tokenResponses } from '../interfaces/responses.dto';
 @Injectable()
 export class AuthService {
-
+  keys: any= environment.key;
+  ivs: any= environment.iv
   apiUrl = environment.apiUrl;
-  constructor(private http: HttpClient) { }
-  // Acceder a la URL del backend
+  constructor() { }
 
-  // Utilizar la URL del backend en una llamada HTTP
-  // http.get(apiUrl + '/login').subscribe(data => {
-  //   // Procesar la respuesta del backend
-  // });
-  login(email: string, password: string): Observable<any> {
-    // Encripta los datos de inicio de sesión con AES
-    const encryptedData = this.encryptData({ email, password });
+  login(email: string, password: string) {
+    const loginData = {email, password}
+    const encripData = encrypt(loginData)
+    const body = { data: encripData };
 
-    // Realiza una llamada POST al endpoint de autenticación
-    return this.http.post<any>(`${this.apiUrl}/api/auth`, encryptedData);
+    return axios.post(environment.apiUrl, body, {
+    })
+      .then((response) => {
+        const token = response.data['accessToken'];
+        localStorage.setItem('jwt', token);
+        return token;
+      })
+      .catch((error) => {
+        throw new Error('Error al iniciar sesión', error);
+      });
   }
 
-  encryptData(data: any): any {
-    // Implementa la encriptación AES utilizando la misma clave y vector que en el frontend
-    // y retorna los datos encriptados
-    // Tu implementación de encriptación AES aquí
-  }
-  register(userData: any): Observable<any> {
-    const encryptedData = this.encryptData(userData);
-    return this.http.post<any>(this.registerUrl, encryptedData);
+  async register(userData: object): Promise<tokenResponses> {
+    const encryptedData = encrypt(userData);
+    console.log("🚀 ~ file: auth.service.ts:33 ~ AuthService ~ register ~ encryptedData:", encryptedData)
+    const response = await axios.post(`http://ultravetshop.cl:3003/api/auth/register`, encryptedData);
+    try {
+        return response.data;
+    } catch (error) {
+      throw new Error('Error al registrar usuario');
+    }
   }
   
 }
