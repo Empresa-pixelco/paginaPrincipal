@@ -1,0 +1,32 @@
+<div class="horarios-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Día</th>
+          <th>Horarios disponibles</th>
+          <th>Seleccionar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let horario of horariosDisponibles">
+          <td>{{ horario.dia }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let hora of horario.horarios">{{ hora }}</li>
+            </ul>
+          </td>
+          <td>
+            <select>
+              <option *ngFor="let hora of horario.horarios">{{ hora }}</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>      
+    </table>
+</div>
+<div class="continuar-container">
+    <button >Continuar</button>
+</div>
+
+  
+  
