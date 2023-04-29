@@ -13,15 +13,19 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
+import * as CryptoJS from 'crypto-js';
+import { AuthService } from './services/auth.service';
+import { RegisterComponent } from './auth/register/register.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     PaginaPrincipalComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
-    
     ReactiveFormsModule,
     MatCardModule,
     MatFormFieldModule,
@@ -34,7 +38,12 @@ import { LoginComponent } from './auth/login/login.component';
     MatIconModule,
     IonicModule
   ],
-  providers: [],
+  providers: [
+    { provide: AuthService, useClass: AuthService },
+    {
+      provide: CryptoJS,
+      useValue: CryptoJS
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
