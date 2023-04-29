@@ -17,7 +17,7 @@ export class DatosPacienteComponent {
 
 
   continuar() {
-    this.router.navigate(['register']);
+    this.router.navigate(['login']);
   }
   atras(){
     this.router.navigate(['reserva']);
