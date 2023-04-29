@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-horarios-veterinarios',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./horarios-veterinarios.component.scss']
 })
 export class HorariosVeterinariosComponent {
+
+  constructor(private router: Router) { }
+
+
   public horariosDisponibles = [  {    dia: "Lunes",    horarios: ["10:00", "11:00", "12:00", "16:00", "17:00", "18:00"]
       },
       {
@@ -30,7 +35,6 @@ export class HorariosVeterinariosComponent {
         horarios: ["09:00", "10:00", "11:00", "12:00"]
       }
       ];
-  router: any;
   continuar(){
     this.router.navigate(['datos-paciente']);
   }
