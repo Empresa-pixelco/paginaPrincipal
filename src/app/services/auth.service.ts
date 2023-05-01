@@ -6,26 +6,24 @@ import * as CryptoJS from 'crypto-js';
 import { tokenResponses } from '../interfaces/responses.dto';
 @Injectable()
 export class AuthService {
-  keys: any= environment.key;
-  ivs: any= environment.iv
+  keys: string= environment.key;
+  ivs: string= environment.iv
   apiUrl = environment.apiUrl;
   constructor() { }
 
-  login(email: string, password: string) {
+  async login(email: string, password: string) {
     const loginData = {email, password}
     const encripData = encrypt(loginData)
     const body = { data: encripData };
 
-    return axios.post(environment.apiUrl, body, {
-    })
-      .then((response) => {
-        const token = response.data['accessToken'];
-        localStorage.setItem('jwt', token);
-        return token;
-      })
-      .catch((error) => {
-        throw new Error('Error al iniciar sesión', error);
-      });
+    try {
+      const response = await axios.post(environment.apiUrl, body, {});
+      const token = response.data['accessToken'];
+      localStorage.setItem('jwt', token);
+      return token;
+    } catch (error: any) {
+      throw new Error('Error al iniciar sesión', error);
+    }
   }
 
   async register(userData: object): Promise<tokenResponses> {

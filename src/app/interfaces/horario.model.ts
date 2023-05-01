@@ -1,3 +1,4 @@
-interface HorariosVeterinarios {
-  [key: string]: string;
+export interface Horario {
+  hora: string;
+  disponible: boolean;
 }
