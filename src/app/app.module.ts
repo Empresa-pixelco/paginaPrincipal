@@ -17,6 +17,7 @@ import * as CryptoJS from 'crypto-js';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './auth/register/register.component';
 import { HorariosVeterinariosComponent } from './horarios-veterinarios/horarios-veterinarios.component';
+import { AsignarHorariosComponent } from './asignar-horarios/asignar-horarios.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HorariosVeterinariosComponent } from './horarios-veterinarios/horarios-
     PaginaPrincipalComponent,
     LoginComponent,
     RegisterComponent,
-    HorariosVeterinariosComponent
+    HorariosVeterinariosComponent,
+    AsignarHorariosComponent
   ],
   imports: [
     ReactiveFormsModule,

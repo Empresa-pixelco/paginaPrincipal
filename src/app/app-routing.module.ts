@@ -8,6 +8,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
 import { HorariosVeterinariosComponent } from './horarios-veterinarios/horarios-veterinarios.component';
+import { AsignarHorariosComponent } from './asignar-horarios/asignar-horarios.component';
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: PaginaPrincipalComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
   { path: 'confirmacion', component: ConfirmacionComponent},
-  { path: 'horarios-veterinarios', component: HorariosVeterinariosComponent}
+  { path: 'horarios-veterinarios', component: HorariosVeterinariosComponent},
+  { path: 'asignar-horarios', component: AsignarHorariosComponent}
 
 ];
 @NgModule({
