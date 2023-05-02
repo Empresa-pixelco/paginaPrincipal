@@ -86,7 +86,7 @@
 
 .slices-container {
   display: flex;
-  animation: desplazamiento-slices 11s infinite;
+  animation: desplazamiento-slices 20s infinite;
   /* Animación de desplazamiento automático */
 }
 
@@ -117,7 +117,18 @@
   max-height: 200px;
   /* Ajusta la altura de las imágenes según tu preferencia */
   object-fit: cover;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  /* Agrega las reglas CSS para dispositivos móviles aquí  */
+  .slice img {
+  width: 80%;
+  // Agrega esta línea para establecer la altura
+  height: 40px; 
+  object-fit: cover;
+  margin-bottom: 20px;
+  }
 }
 
 // seccion nosotros

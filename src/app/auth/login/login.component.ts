@@ -22,15 +22,19 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   login() {
+    const user = {
+      email: this.email,
+      password: this.password
+    };
     if (!this.email || !this.password) {
       alert('Por favor ingrese su correo y contraseña');
-      return;
+      return; 
     }
-
-    this.authService.login(this.email, this.password)
+    
+    this.authService.login(user)
       .then((data) => {
         alert('Bienvenido!');
-        localStorage.setItem('access_token', data.token);
+        localStorage.setItem('access_token', data.accesToken);
         //redirigir al usuario a la página que confirmar
         this.router.navigate(['confirmacion']);
       })
