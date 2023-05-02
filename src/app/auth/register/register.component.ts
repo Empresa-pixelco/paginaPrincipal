@@ -8,12 +8,13 @@ import { validarRutNumeros} from 'src/app/util/validaRut';
   standalone: false,
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  styleUrls: ['./register.component.scss'], 
 })
 export class RegisterComponent implements OnInit {
   location = inject(Location);
   router = inject(Router);
 
+  
   userDni: string | any;
   userFirstName: string | any;
   email: string | any;

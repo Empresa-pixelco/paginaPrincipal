@@ -11,16 +11,18 @@ export class AuthService {
   apiUrl = environment.apiUrl;
   constructor() { }
 
-  async login(email: string, password: string) {
-    const loginData = {email, password}
-    const encripData = encrypt(loginData)
-    const body = { data: encripData };
-
+  async login(userData: object):Promise<tokenResponses> {
+    // const loginData = {email, password}
+    console.log(userData)
+    const encripData = encrypt(userData)
+    // const body = { data: encripData };
+    console.log(encripData)
+    const response = await axios.post(`http://ultravetshop.cl:3003/api/auth`, encripData);
+    console.log('este es el response:', response)
+    const token = response.data['accessToken'];
+    console.log('este es el token:', token)
     try {
-      const response = await axios.post(environment.apiUrl, body, {});
-      const token = response.data['accessToken'];
-      localStorage.setItem('jwt', token);
-      return token;
+      return response.data;
     } catch (error: any) {
       throw new Error('Error al iniciar sesión', error);
     }
@@ -35,6 +37,5 @@ export class AuthService {
     } catch (error) {
       throw new Error('Error al registrar usuario');
     }
-  }
-  
+  }  
 }
