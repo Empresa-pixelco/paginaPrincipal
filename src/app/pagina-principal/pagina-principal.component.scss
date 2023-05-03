@@ -123,7 +123,7 @@
 @media screen and (max-width: 768px) {
   /* Agrega las reglas CSS para dispositivos móviles aquí  */
   .slice img {
-  width: 80%;
+  width: 100%;
   // Agrega esta línea para establecer la altura
   height: 40px; 
   object-fit: cover;
@@ -132,16 +132,15 @@
 }
 
 // seccion nosotros
-/* Estilos para hacer que el contenido sea responsive */
 .nosotros-container {
-  max-width: 40%;
+  max-width: 20%;
   padding: 0 20px;
 }
 
 /* Estilos para la sección de veterinarios */
 .seccion-veterinarios {
   background-color: #42cfd4;
-  padding: 50px;
+  padding: 20px;
   text-align: center;
 }
 
@@ -160,20 +159,20 @@
 /* Estilos para los cards de los veterinarios */
 .card-container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
-  gap: 10px;
+  gap: 6px;
 }
 
 .card {
   background-color: #e08700;
   /* Color naranja */
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
   position: relative;
   flex-basis: calc(33.33% - 20px);
-  max-width: 500px;
-  padding: 20px;
+  max-width: 250px;
+  padding: 10px;
   text-align: center;
   transition: transform 0.3s;
   /* Transición de transform para el efecto de zoom */
@@ -183,7 +182,7 @@
   width: 100%;
   height: 200px;
   object-fit: cover;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 .card:hover {
@@ -213,7 +212,13 @@
 /* Estilos adicionales para dispositivos móviles */
 @media (max-width: 768px) {
   .card {
-    flex-basis: calc(100% - 100px);
+    flex-basis: calc(50% - 50px);
+  }
+  .card img {
+    width: 60%;
+    height: 40px;
+    object-fit: cover;
+    margin-bottom: 15px;
   }
 }
 
@@ -223,7 +228,7 @@
 /* Estilos para la sección de animalitos*/
 .seccion-veterinarios {
   background-color: #42cfd4;
-  padding: 50px;
+  padding: -200px;
   text-align: center;
 }
 
@@ -235,36 +240,31 @@
 .card-container {
   background-color: #42cfd4;
   display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
-  flex-wrap: wrap;
   /* Permitir que los cards se envuelvan en una nueva línea */
   gap: 10px;
   /* Espacio entre los cards */
 }
 
-.card {
-  flex: 0 0 calc(25% - 20px);
-  /* Ajusta el ancho de los cards según tu preferencia */
-  text-align: center;
-  padding: 20px;
-  background-color: #e08700;
-  /* Color naranja */
-  border-radius: 10px;
-  overflow: hidden;
-  position: relative;
-  transition: transform 0.3s;
-  /* Transición de transform para el efecto de zoom */
-  /* Modificaciones para dispositivos móviles */
-  flex-basis: 200%;
-  max-width: 50%;
-}
+// .card {
+//   flex: 0 0 calc(25% - 20px);
+//   /* Ajusta el ancho de los cards según tu preferencia */
+//   text-align: center;
+//   padding: 20px;
+//   background-color: #e08700;
+//   /* Color naranja */
+//   border-radius: 10px;
+//   overflow: hidden;
+//   position: relative;
+//   transition: transform 0.3s;
+//   /* Transición de transform para el efecto de zoom */
+//   /* Modificaciones para dispositivos móviles */
+//   flex-basis: 200%;
+//   max-width: 50%;
+// }
 
-.card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
+
 
 .card:hover {
   transform: scale(1.05);

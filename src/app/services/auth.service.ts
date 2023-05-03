@@ -38,4 +38,15 @@ export class AuthService {
       throw new Error('Error al registrar usuario');
     }
   }  
+
+// {{URL}}/api/services/staff/2PiNETB6CdlKHXJm9b3g
+async staff(): Promise<object> {
+  // const encryptedData = encrypt(userData);
+  const response = await axios.get(`http://ultravetshop.cl:3003/api/services/staff/2PiNETB6CdlKHXJm9b3g`);
+  try {
+      return response.data;
+  } catch (error) {
+    throw new Error('Error al registrar usuario');
+  }
+}  
 }
