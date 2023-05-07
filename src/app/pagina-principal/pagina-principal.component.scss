@@ -164,8 +164,8 @@
   gap: 6px;
 }
 
-.card {
-  background-color: #e08700;
+.card-veterinario {
+  background-color: #42cfd4;
   /* Color naranja */
   border-radius: 5px;
   overflow: hidden;
@@ -245,6 +245,21 @@
   /* Permitir que los cards se envuelvan en una nueva línea */
   gap: 10px;
   /* Espacio entre los cards */
+}
+
+
+.card {
+  background-color: #e08700;
+  /* Color naranja */
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  flex-basis: calc(33.33% - 20px);
+  max-width: 250px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s;
+  /* Transición de transform para el efecto de zoom */
 }
 
 // .card {
