@@ -56,14 +56,12 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 200%;
     height: 100%;
-    /* Ajuste: altura automática para evitar que la imagen se vea aplastada */
-    background-size: cover;
-    /* Ajuste: tamaño de imagen para cubrir completamente el contenedor */
-    background-position: center;
-    /* Centra la imagen de fondo */
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
+    background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat;
+    z-index: 1;
   }
 
 }
@@ -156,6 +154,8 @@
   color: #000000;
 }
 
+
+
 /* Estilos para los cards de los veterinarios */
 .card-container {
   display: flex;
@@ -177,13 +177,18 @@
   transition: transform 0.3s;
   /* Transición de transform para el efecto de zoom */
 }
+.card-veterinario img {
 
+  border-radius: 15%;
+}
 .card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
+  border-radius: 50%;
 }
+
 
 .card:hover {
   transform: scale(1.05);
