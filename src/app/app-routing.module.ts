@@ -9,6 +9,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
 import { HorariosVeterinariosComponent } from './horarios-veterinarios/horarios-veterinarios.component';
 import { AsignarHorariosComponent } from './asignar-horarios/asignar-horarios.component';
+import { VeterinarioServiceComponent } from './veterinario-service/veterinario-service.component';
+
+
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: PaginaPrincipalComponent },
@@ -19,7 +22,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'confirmacion', component: ConfirmacionComponent},
   { path: 'horarios-veterinarios', component: HorariosVeterinariosComponent},
-  { path: 'asignar-horarios', component: AsignarHorariosComponent}
+  { path: 'asignar-horarios', component: AsignarHorariosComponent},
+  { path: 'veterinario-service', component: VeterinarioServiceComponent}
 
 ];
 @NgModule({

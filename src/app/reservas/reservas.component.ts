@@ -18,9 +18,9 @@ export class ReservasComponent implements OnInit{
   constructor(private router: Router, private authService: AuthService) { }
   ngOnInit() {
 
-    this.authService.staff().then((data: Categoria) =>{
+    this.authService.servicios().then((data: Categoria) =>{
+      console.log(data)
       const primerCategoria = data.categorias[0];
-      // console.log(primerCategoria)
       const servicios = primerCategoria.servicios;
       this.tsservicios = servicios.map((servicio, index) => ({ nombre: servicio, numero: index + 1 }));
       console.log(this.tsservicios)
@@ -33,7 +33,7 @@ export class ReservasComponent implements OnInit{
 
 
   continuar() {
-    this.router.navigate(['horarios-veterinarios']);
+    this.router.navigate(['veterinario-service']);
 
   }
   servicioSeleccionado: number = -1;
