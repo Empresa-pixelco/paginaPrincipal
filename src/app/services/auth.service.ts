@@ -5,6 +5,7 @@ import axios from 'axios';
 import * as CryptoJS from 'crypto-js';
 import { tokenResponses } from '../interfaces/responses.dto';
 import { Categoria } from '../interfaces/categorias.model';
+import { Veterinarios, VeterinariosResponse } from '../interfaces/veterinarios.model';
 @Injectable()
 export class AuthService {
   keys: string= environment.key;
@@ -41,13 +42,24 @@ export class AuthService {
   }  
 
 // {{URL}}/api/services/staff/2PiNETB6CdlKHXJm9b3g
-async staff(): Promise<Categoria> {
+async servicios(): Promise<Categoria> {
   // const encryptedData = encrypt(userData);
-  const response = await axios.get(`http://ultravetshop.cl:3003/api/services/2PiNETB6CdlKHXJm9b3g`);
+  try {
+    const response = await axios.get(`http://ultravetshop.cl:3003/api/services/2PiNETB6CdlKHXJm9b3g`);
+    return response.data;
+  } catch (error) {
+    throw new Error('Error al registrar usuario');
+  }
+}  
+
+async staff(): Promise<VeterinariosResponse> {
+  // const encryptedData = encrypt(userData);
+  const response = await axios.get(`http://ultravetshop.cl:3003/api/services/staff/2PiNETB6CdlKHXJm9b3g`);
   try {
       return response.data;
   } catch (error) {
     throw new Error('Error al registrar usuario');
   }
 }  
+
 }
