@@ -8,6 +8,33 @@
   border-radius: 5px;
   padding: 20px;
 }
+.card img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90%;
+  background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
+  background-position: center; /* Centra la imagen de fondo */
+  background-repeat: no-repeat;
+  z-index: -30;
+}
+
+@media (max-width: 576px) {
+  .card img{
+    position: absolute;
+    top: 60;
+    left: 0;
+    width: 200%;
+    height: 88%;
+    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
+    background-position: center; /* Centra la imagen de fondo */
+    background-repeat: no-repeat;
+    z-index: -40;
+  }
+
+}
+
 
 .card-title {
   text-align: center;
