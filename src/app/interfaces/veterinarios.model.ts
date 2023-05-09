@@ -3,7 +3,10 @@ export interface Veterinarios{
     nombre: string;
     sucursales: string[];
     };
-export interface VeterinariosResponse {
-    veterinarios: Veterinarios[];
-}
+
+
+
+
+
+
 
