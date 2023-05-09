@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { Categoria } from '../interfaces/categorias.model';
-import { Veterinarios, VeterinariosResponse } from '../interfaces/veterinarios.model';
+import { Veterinarios} from '../interfaces/veterinarios.model';
+import { Veterinario } from '../interfaces/veterinario.model';
 
 @Component({
   selector: 'app-veterinario-service',
@@ -14,14 +15,13 @@ export class VeterinarioServiceComponent implements OnInit{
 
   
   constructor(private router: Router, private authService: AuthService) { }
-  ngOnInit() {
-
-    this.authService.staff().then((data: VeterinariosResponse) =>{
-      console.log(JSON.stringify(data))
-      const veterinario1 = data.veterinarios[0];
-      console.log(veterinario1);
-    })
+  async ngOnInit() {
+        const data: Veterinarios[] = await this.authService.staff();
+        this.tsveterinarios = data
+        console.log(JSON.stringify(this.tsveterinarios));
+        console.log(this.tsveterinarios)    
   }
+  
 
 
   continuar() {
