@@ -8,43 +8,19 @@ import { Veterinario } from '../interfaces/veterinario.model';
   styleUrls: ['./asignar-horarios.component.scss']
 })
 export class AsignarHorariosComponent {
-
-  veterinarios: Veterinario[] = [
-    { nombre: 'Juan' },
-    { nombre: 'Ana' },
-    { nombre: 'Pedro' }
+  horariosDisponibles = [
+    '8:00 AM', '8:30 AM', '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', 
+    '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', 
+    '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM'
   ];
 
-  horarios: { [dia: string]: Horario[] } = {
-    lunes: [
-      { hora: '08:00', disponible: false },
-      { hora: '10:00', disponible: false }
-    ],
-    martes: [
-      { hora: '08:00', disponible: false },
-      { hora: '10:00', disponible: false }
-    ]
-  };
+  veterinarios = [
+    { nombre: 'Juan', asignaciones: [] },
+    { nombre: 'Pedro', asignaciones: [] },
+    { nombre: 'María', asignaciones: [] }
+  ];
 
-  veterinarioSeleccionado: string = '';
-  horarioSeleccionado: string = '';
-  diaSeleccionado: string = '';
 
-  cambiarVeterinario() {
-    this.horarioSeleccionado = '';
-    this.diaSeleccionado = '';
-  }
 
-  asignar() { 
-    if (this.veterinarioSeleccionado !== '' && this.horarioSeleccionado !== '' && this.diaSeleccionado !== '') {
-      const horario = this.horarios[this.diaSeleccionado].find(horario => horario.hora === this.horarioSeleccionado);
-      if (horario) {
-        horario.disponible = !horario.disponible;
-      }
-    }
-  }
 
-  continuar() {
-    console.log('Horarios:', this.horarios);
-  }
 }
