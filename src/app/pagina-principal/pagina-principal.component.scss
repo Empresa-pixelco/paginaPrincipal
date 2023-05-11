@@ -2,7 +2,7 @@
   position: relative;
   height: 85vh; /* Establece la altura de la sección como el 100% del viewport height */
   overflow: hidden; /* Oculta el desbordamiento de la imagen de fondo */
-  
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 .imagen-fondo {
@@ -75,6 +75,8 @@
   background-color: #42cfd4;
   padding: 50px;
   text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+
 }
 
 .container {
@@ -140,6 +142,7 @@
   background-color: #42cfd4;
   padding: 20px;
   text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 /* Estilos para el título de los veterinarios */
@@ -235,6 +238,7 @@
   background-color: #42cfd4;
   padding: -200px;
   text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 .container {
