@@ -1,40 +1,27 @@
-<div>
-    <label for="veterinario">Seleccionar veterinario:</label>
-    <select id="veterinario" [(ngModel)]="veterinarioSeleccionado" (change)="cambiarVeterinario()">
-      <option *ngFor="let veterinario of veterinarios" [value]="veterinario.nombre">{{ veterinario.nombre }}</option>
-    </select>
-  </div>
-  
-  <table>
-    <thead>
-      <tr>
-        <th>Día</th>
-        <th>Horarios disponibles</th>
-        <th>Asignar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Lunes</td>
-        <td>
-          <input type="text" [(ngModel)]="horarios">
-        </td>
-        <td>
-          <button (click)="asignar()">Asignar</button>
-        </td>
-      </tr>
-      <tr>
-        <td>Martes</td>
-        <td>
-          <input type="text" [(ngModel)]="horarios">
-        </td>
-        <td>
-          <button (click)="asignar()">Asignar</button>
-        </td>
-      </tr>
-      <!-- Agregar filas para los demás días de la semana -->
-    </tbody>
-  </table>
-  
-  <button class="boton-continuar" (click)="continuar()">Continuar</button>
-  
+<table>
+  <thead>
+    <tr>
+      <th>Día</th>
+      <th>Horarios disponibles</th>
+      <th>Asignar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let horario of horariosDisponibles">
+      <td>Lunes</td>
+      <td>{{ horario }}</td>
+      <td>
+        <input type="checkbox" >
+      </td>
+    </tr>
+    <tr *ngFor="let horario of horariosDisponibles">
+      <td>Martes</td>
+      <td>{{ horario }}</td>
+      <td>
+        <input type="checkbox" >
+      </td>
+    </tr>
+    <!-- Agregar filas para los demás días de la semana -->
+  </tbody>
+</table>
+ 

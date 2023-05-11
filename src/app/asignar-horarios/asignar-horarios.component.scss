@@ -1,63 +1,35 @@
-/* Estilos para la tabla */
+/* Estilos para la tabla de horarios disponibles */
 table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  th, td {
-    text-align: center;
-    padding: 8px;
-    border: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #42cfd4;
-    color: #333;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  /* Estilos para los encabezados de la tabla */
-  .encabezado-tabla {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #42cfd4;
-    color: #fff;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 8px 8px 0 0;
-  }
-  
-  /* Estilos para los selectores de veterinarios */
-  .veterinario-selector {
-    margin-right: 10px;
-    font-size: 16px;
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: none;
-    background-color: #42cfd4;
-    color: #333;
-    cursor: pointer;
-  }
-  
-  /* Estilos para los botones de guardar */
-  .btn-guardar {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-  }
-  
-  .btn-guardar:hover {
-    background-color: #3e8e41;
-  }
-  
+  border-collapse: collapse;
+  margin: 20px 0;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+/* Estilos para los botones */
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.boton-continuar {
+  background-color: #2196F3;
+}
+
+.boton-asignar {
+  background-color: #4CAF50;
+}
