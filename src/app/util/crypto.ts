@@ -1,5 +1,5 @@
 import * as CryptoJS from 'crypto-js';
-import { environment } from 'src/environment';
+import { environment } from '../../environment';
 
 
 const keyChain: string = environment.key || '';
