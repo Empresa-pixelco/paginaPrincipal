@@ -11,6 +11,7 @@ import { Categoria } from '../interfaces/categorias.model';
   templateUrl: './reservas.component.html',
   styleUrls: ['./reservas.component.scss'],
 })
+
 export class ReservasComponent implements OnInit{
   tsservicios: any | undefined;
 
