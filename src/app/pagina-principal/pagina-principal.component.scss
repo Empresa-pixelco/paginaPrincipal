@@ -52,13 +52,15 @@
     /* Ajuste: padding reducido */
 
   }
+
+  
   .imagen-fondo {
     position: absolute;
-    top: 0;
+    top:  0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-size: cover; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
+    background-size: contain; /* Ajusta el tamaño de la imagen para cubrir completamente el contenedor */
     background-position: center; /* Centra la imagen de fondo */
     background-repeat: no-repeat;
     z-index: 1;
@@ -72,7 +74,7 @@
 
 /* Estilos para la sección servicios*/
 .seccion-animales {
-  background-color: #42cfd4;
+  background-color: #7bd7db;
   padding: 50px;
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -139,7 +141,7 @@
 
 /* Estilos para la sección de veterinarios */
 .seccion-veterinarios {
-  background-color: #42cfd4;
+  background-color: #7bd7db;
   padding: 20px;
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -148,7 +150,7 @@
 /* Estilos para el título de los veterinarios */
 .titulo-veterinarios {
   text-align: center;
-  background-color: #42cfd4;
+  background-color: #7bd7db;
   padding: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
 
@@ -172,7 +174,7 @@
 }
 
 .card-veterinario {
-  background-color: #42cfd4;
+  background-color: #7bd7db;
   /* Color naranja */
   border-radius: 5px;
   overflow: hidden;
@@ -241,7 +243,7 @@
 
 /* Estilos para la sección de animalitos*/
 .seccion-veterinarios {
-  background-color: #42cfd4;
+  background-color: #7bd7db;
   padding: -200px;
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -253,7 +255,7 @@
 }
 
 .card-container {
-  background-color: #42cfd4;
+  background-color: #7bd7db;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
