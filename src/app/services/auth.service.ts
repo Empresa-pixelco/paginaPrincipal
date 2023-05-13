@@ -9,9 +9,9 @@ import { Veterinarios} from '../interfaces/veterinarios.model';
 
 @Injectable()
 export class AuthService {
-  keys: string= environment.key;
-  ivs: string= environment.iv
-  apiUrl: string = environment.apiUrl;
+  keys= environment.key;
+  ivs= environment.iv
+  apiUrl = environment.apiUrl;
   constructor() { }
 
   async login(userData: object):Promise<tokenResponses> {
@@ -52,10 +52,11 @@ async servicios(): Promise<Categoria> {
     throw new Error('Error al registrar usuario');
   }
 }  
+  // const encryptedData = encrypt(userData);
 
 async staff(): Promise<Veterinarios[]> {
   // const encryptedData = encrypt(userData);
-  const response = await axios.get(`${this.apiUrl}/api/services/staff/2PiNETB6CdlKHXJm9b3g`);
+  const response = await axios.get(`https://ultravetshop.cl/api/services/staff/2PiNETB6CdlKHXJm9b3g`);
   try {
       return response.data;
   } catch (error) {
