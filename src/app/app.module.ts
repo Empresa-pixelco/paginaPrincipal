@@ -19,6 +19,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HorariosVeterinariosComponent } from './horarios-veterinarios/horarios-veterinarios.component';
 import { AsignarHorariosComponent } from './asignar-horarios/asignar-horarios.component';
 import { VeterinarioServiceComponent } from './veterinario-service/veterinario-service.component';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { VeterinarioServiceComponent } from './veterinario-service/veterinario-s
     RegisterComponent,
     HorariosVeterinariosComponent,
     AsignarHorariosComponent,
-    VeterinarioServiceComponent
+    VeterinarioServiceComponent,
+    CalendarioComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -42,7 +44,7 @@ import { VeterinarioServiceComponent } from './veterinario-service/veterinario-s
     FormsModule,
     MatDialogModule,
     MatIconModule,
-    IonicModule
+    IonicModule.forRoot(),
   ],
   providers: [
     { provide: AuthService, useClass: AuthService },

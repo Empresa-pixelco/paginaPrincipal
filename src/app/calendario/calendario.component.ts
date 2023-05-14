@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { Component } from '@angular/core';
+import * as moment from 'moment';
+import { OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { Categoria } from '../interfaces/categorias.model';
-import { Veterinarios} from '../interfaces/veterinarios.model';
-import { Veterinario } from '../interfaces/veterinario.model';
+import { AuthService } from '../services/auth.service';
+import { Veterinarios } from '../interfaces/veterinarios.model';
 
 @Component({
-  selector: 'app-veterinario-service',
-  templateUrl: './veterinario-service.component.html',
-  styleUrls: ['./veterinario-service.component.scss']
+  selector: 'app-calendario',
+  templateUrl: './calendario.component.html',
+  styleUrls: ['./calendario.component.scss']
 })
-export class VeterinarioServiceComponent implements OnInit{
+export class CalendarioComponent {
   tsveterinarios: any | undefined;
 
   
@@ -22,12 +22,6 @@ export class VeterinarioServiceComponent implements OnInit{
         console.log(this.tsveterinarios)    
   }
   
-
-
-  continuar() {
-    this.router.navigate(['calendario']);
-
-  }
   servicioSeleccionado: number = -1;
 
   toggleSubservicios(servicio: number): void {
@@ -41,5 +35,12 @@ export class VeterinarioServiceComponent implements OnInit{
   }
   seleccionarSubservicio(subservicio: string): any {
     console.log('ReservasComponent - seleccionarSubservicio()', subservicio);
-  }
+
+
+
+}
+back(){}
+datosPaciente() {
+  this.router.navigate(['login']);
+}
 }
