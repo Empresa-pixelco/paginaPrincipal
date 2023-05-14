@@ -10,6 +10,7 @@ import { ConfirmacionComponent } from './confirmacion/confirmacion.component';
 import { HorariosVeterinariosComponent } from './horarios-veterinarios/horarios-veterinarios.component';
 import { AsignarHorariosComponent } from './asignar-horarios/asignar-horarios.component';
 import { VeterinarioServiceComponent } from './veterinario-service/veterinario-service.component';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 
 const routes: Routes = [
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'confirmacion', component: ConfirmacionComponent},
   { path: 'horarios-veterinarios', component: HorariosVeterinariosComponent},
   { path: 'asignar-horarios', component: AsignarHorariosComponent},
-  { path: 'veterinario-service', component: VeterinarioServiceComponent}
+  { path: 'veterinario-service', component: VeterinarioServiceComponent},
+  { path: 'calendario', component: CalendarioComponent}
 
 ];
 @NgModule({
