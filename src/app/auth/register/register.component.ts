@@ -13,8 +13,6 @@ import { validarRutNumeros} from 'src/app/util/validaRut';
 export class RegisterComponent implements OnInit {
   location = inject(Location);
   router = inject(Router);
-
-  
   userDni: string | any;
   userFirstName: string | any;
   email: string | any;

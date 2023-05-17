@@ -46,7 +46,7 @@ export class AuthService {
 async servicios(): Promise<Categoria> {
   // const encryptedData = encrypt(userData);
   try {
-    const response = await axios.get(`${this.apiUrl}/api/services/2PiNETB6CdlKHXJm9b3g`);
+    const response = await axios.get(`https://ultravetshop.cl/api/services/2PiNETB6CdlKHXJm9b3g`);
     return response.data;
   } catch (error) {
     throw new Error('Error al registrar usuario');
