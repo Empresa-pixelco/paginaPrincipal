@@ -1,22 +1,21 @@
 <div class="page">
-    <ion-card>
-      <h2 class="mb-2" style="text-align: center;">Selecciona un horario</h2>
-      <style>
-        ion-datetime {
-          display: block;
-          margin: 0 auto;
-          color: rgb(94, 180, 214);
-        }
-      </style>
-      <ion-datetime presentation="date"></ion-datetime>
-      <div>
-        <ion-chip color="success">12:30 - 13:00</ion-chip>
-        <ion-chip color="success">12:30 - 13:00</ion-chip>
-        <ion-chip color="success">12:30 - 13:00</ion-chip>
-      </div>
-      <div class="button-container">
-        <ion-button (click)="datosPaciente()">Continuar</ion-button>
-        <ion-button fill="clear" (click)="back()">Atrás</ion-button>      </div>
-    </ion-card>
-  </div>
-  
+  <ion-card>
+    <h2 class="mb-2" style="text-align: center;">Selecciona un horario</h2>
+    <style>
+      ion-datetime {
+        display: block;
+        margin: 0 auto;
+        color: rgb(94, 180, 214);
+      }
+    </style>
+    <ion-datetime presentation="date" [(ngModel)]="fechaSeleccionada" displayFormat="MMMM" pickerFormat="MMMM" disabled="false" (click)="datosPacientes()"></ion-datetime>
+    <div *ngIf="diaTurno">
+      <ion-chip color="success" *ngFor="let hora of horas" [class.selected]="hora === horaSeleccionada" (click)="seleccionarHora(hora)">{{hora}}</ion-chip>
+    </div>
+    <div class="button-container">
+      <ion-button (click)="siguiente()" [disabled]="!horaSeleccionada">Continuar</ion-button>
+      <ion-button fill="clear" (click)="back()">Atrás</ion-button>
+    </div>
+  </ion-card>
+</div>
+                                        

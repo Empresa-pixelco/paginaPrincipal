@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Categoria } from '../interfaces/categorias.model';
 import { Veterinarios} from '../interfaces/veterinarios.model';
 import { Veterinario } from '../interfaces/veterinario.model';
@@ -12,24 +12,26 @@ import { Veterinario } from '../interfaces/veterinario.model';
 })
 export class VeterinarioServiceComponent implements OnInit{
   tsveterinarios: any | undefined;
-
+  codigoVeterinario: any | undefined;
   
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
+
   async ngOnInit() {
-        const data: Veterinarios[] = await this.authService.staff();
+        this.route.queryParams.subscribe( async params => {
+          const codigoCategoria = params['codigoCategoria'];
+          console.log('Código de categoría recibido:', codigoCategoria);
+
+        const data: Veterinarios[] = await this.authService.staff(codigoCategoria);
         this.tsveterinarios = data
-        console.log(JSON.stringify(this.tsveterinarios));
         console.log(this.tsveterinarios)    
-  }
-  
-
-
+        })
+      }
   continuar() {
-    this.router.navigate(['calendario']);
-
+    this.router.navigate(['calendario'],{
+      queryParams: { codigoCategoria: this.codigoVeterinario }, // Pasa el parámetro como queryParams
+    });
   }
   servicioSeleccionado: number = -1;
-
   toggleSubservicios(servicio: number): void {
     console.log('ReservasComponent - toggleSubservicios()', servicio);  
     if (this.servicioSeleccionado === servicio) {
@@ -41,5 +43,9 @@ export class VeterinarioServiceComponent implements OnInit{
   }
   seleccionarSubservicio(subservicio: string): any {
     console.log('ReservasComponent - seleccionarSubservicio()', subservicio);
+  }
+  twotoggleSubservicios(veterinario: string): void{
+    this.codigoVeterinario =  veterinario
+    console.log(this.codigoVeterinario)
   }
 }

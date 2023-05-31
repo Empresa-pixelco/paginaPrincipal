@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.component';
 import { ReservasComponent } from './reservas/reservas.component';
-import { SeleccionHoraComponent } from './seleccion-hora/seleccion-hora.component';
 import { DatosPacienteComponent } from './datos-paciente/datos-paciente.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -17,7 +16,6 @@ const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'main', component: PaginaPrincipalComponent },
   { path: 'reserva', component: ReservasComponent },
-  { path: 'seleccion-hora', component: SeleccionHoraComponent },
   { path: 'datos-paciente', component: DatosPacienteComponent },
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},

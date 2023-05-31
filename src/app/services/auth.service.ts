@@ -6,7 +6,7 @@ import * as CryptoJS from 'crypto-js';
 import { tokenResponses } from '../interfaces/responses.dto';
 import { Categoria } from '../interfaces/categorias.model';
 import { Veterinarios} from '../interfaces/veterinarios.model';
-
+import { Calendario } from '../interfaces/calendario.model';
 @Injectable()
 export class AuthService {
   keys= environment.key;
@@ -45,23 +45,38 @@ export class AuthService {
 // {{URL}}/api/services/staff/2PiNETB6CdlKHXJm9b3g
 async servicios(): Promise<Categoria> {
   // const encryptedData = encrypt(userData);
+  const response = await axios.get(`${this.apiUrl}/api/services/2PiNETB6CdlKHXJm9b3g`, {
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
+  });
+
   try {
-    const response = await axios.get(`https://ultravetshop.cl/api/services/2PiNETB6CdlKHXJm9b3g`);
     return response.data;
   } catch (error) {
-    throw new Error('Error al registrar usuario');
+    throw new Error('Error al obtener los servicios');
+    console.log(error)
   }
 }  
   // const encryptedData = encrypt(userData);
 
-async staff(): Promise<Veterinarios[]> {
+async staff(codigoCategoria: string): Promise<Veterinarios[]> {
   // const encryptedData = encrypt(userData);
-  const response = await axios.get(`https://ultravetshop.cl/api/services/staff/2PiNETB6CdlKHXJm9b3g`);
+  const response = await axios.get(`${this.apiUrl}/api/services/${codigoCategoria}/sucursal/2PiNETB6CdlKHXJm9b3g/vet`);
   try {
       return response.data;
-  } catch (error) {
+  } catch (error) { 
     throw new Error('Error al registrar usuario');
   }
 }  
 
+async calendary(codigoVeterinario: string): Promise<Calendario> {
+  // const encryptedData = encrypt(userData);
+  const response = await axios.get(`${this.apiUrl}/api/services/turnos/2PiNETB6CdlKHXJm9b3g/${codigoVeterinario}/2023/JUNIO`);
+  try {
+      return response.data;
+  } catch (error) { 
+    throw new Error('Error al registrar usuario');
+  }
+}  
 }
