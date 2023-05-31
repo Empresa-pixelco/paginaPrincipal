@@ -14,33 +14,36 @@ import { Categoria } from '../interfaces/categorias.model';
 
 export class ReservasComponent implements OnInit{
   tsservicios: any | undefined;
-
-  
+  codigoCategoriaSeleccionado: string | undefined; // Variable para almacenar el codigoCategoria seleccionado
+ 
   constructor(private router: Router, private authService: AuthService) { }
+ 
   ngOnInit() {
-
-    this.authService.servicios().then((data: Categoria) =>{
-      console.log(data)
-      const primerCategoria = data.categorias[0];
-      const servicios = primerCategoria.servicios;
-      this.tsservicios = servicios.map((servicio, index) => ({ nombre: servicio, numero: index + 1 }));
-      console.log(this.tsservicios)
-
-      const subCategoria = data;
-      console.log(subCategoria)
-
-    })
-  }
-
-
-  continuar() {
-    this.router.navigate(['veterinario-service']);
-
+    this.authService.servicios().then((data: Categoria) => {
+      const categorias = data.categorias;
+      console.log(categorias)
+      this.tsservicios = categorias.map((categoria) => {
+        const subservicios = categoria.servicios || [];
+        return {
+          nombre: categoria.nombre,
+          codigoCategoria : categoria.codigoCategoria,
+          servicios: subservicios,           
+        };
+      });
+    });
+}
+  continuar() { 
+    this.router.navigate(['veterinario-service'],{
+      queryParams: { codigoCategoria: this.codigoCategoriaSeleccionado }, // Pasa el parámetro como queryParams
+    });
   }
   servicioSeleccionado: number = -1;
 
-  toggleSubservicios(servicio: number): void {
-    console.log('ReservasComponent - toggleSubservicios()', servicio);  
+  toggleSubservicios(servicio: number, codigoCategoria: any): void {
+    console.log('ReservasComponent - toggleSubservicios()', servicio);
+    this.codigoCategoriaSeleccionado =   codigoCategoria
+    console.log(this.codigoCategoriaSeleccionado)
+  
     if (this.servicioSeleccionado === servicio) {
       this.servicioSeleccionado = -1;
     } else {
@@ -50,13 +53,8 @@ export class ReservasComponent implements OnInit{
   }
   seleccionarSubservicio(subservicio: string): any {
     console.log('ReservasComponent - seleccionarSubservicio()', subservicio);
+    // console.log('ReservasComponent - codigoCategoria', codigoCategoria);
+    // this.codigoCategoriaSeleccionado = codigoCategoria; // Guardar el codigoCategoria seleccionado
+    // console.log(this.codigoCategoriaSeleccionado)
   }
-
 }
-
-
-
-
-
-
-

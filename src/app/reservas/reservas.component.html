@@ -1,23 +1,17 @@
-<ion-card>
-  <ion-card-header>
-    <ion-card-title style="text-align: center;">Selecciona tu servicio</ion-card-title>
-  </ion-card-header>
-  <ion-card-content>
-    <ion-list>
-      <ion-item *ngFor="let servicio of tsservicios">
-        <button ion-button class="servicio-btn" (click)="toggleSubservicios(servicio.numero)">
-          {{ servicio.nombre }}
-        </button>
-        <ion-list *ngIf="servicioSeleccionado === servicio.numero">
-          <ion-item>Consulta Veterinaria</ion-item>
-          <ion-item>Vacunas</ion-item>
-          <ion-item>Imagenología (Ecografías)</ion-item>
-          <ion-item>Especialidades Médicas</ion-item>
-          <ion-item>Exámenes de Sangre</ion-item>
-          <ion-item>Cirugía y Procedimientos</ion-item>
-        </ion-list>
-      </ion-item>
-    </ion-list>
-    <ion-button color="primary" expand="full" (click)="continuar()">Continuar</ion-button>
-  </ion-card-content>
-</ion-card>
+<ion-card-content>
+  <ion-list>
+    <ion-item *ngFor="let categoria of tsservicios">
+      <button ion-button class="servicio-btn" (click)="toggleSubservicios(categoria.nombre, categoria.codigoCategoria)">
+        <span class="categoria-nombre">{{ categoria.nombre }}</span>
+      </button>
+      <ion-list *ngIf="servicioSeleccionado === categoria.nombre">
+        <ion-item *ngFor="let subservicio of categoria.servicios">
+          <button ion-button class="subservicio-btn subservicio" (click)="seleccionarSubservicio(subservicio)">
+            {{ subservicio }}
+          </button>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+  </ion-list>
+  <ion-button color="primary" expand="full" (click)="continuar()">Continuar</ion-button>
+</ion-card-content>

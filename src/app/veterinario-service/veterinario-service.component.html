@@ -7,8 +7,8 @@
       <ion-item *ngFor="let veterinario of tsveterinarios">
         <ion-thumbnail slot="start">
           <img src="assets/veterinario.jpg">
-        </ion-thumbnail>
-        <ion-label>
+        </ion-thumbnail >
+        <ion-label (click)="twotoggleSubservicios(veterinario.id)" [class.selected]="codigoVeterinario === veterinario.id ">
           <h3>{{ veterinario.nombre }}</h3>
           <p>{{ veterinario.sucursal }}</p>
         </ion-label>
