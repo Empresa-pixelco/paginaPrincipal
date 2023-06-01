@@ -1,6 +1,15 @@
 <div class="card-container">
   <h2 class="mb-4">Detalle de la reserva</h2>
-  <button (click)="openToast()">Agendar!</button>
+  <div>
+    <p><strong>Nombre de la mascota:</strong> {{ datosPaciente.nombreMascota }}</p>
+    <p><strong>Especie:</strong> {{ datosPaciente.especie }}</p>
+    <p><strong>Sexo:</strong> {{ datosPaciente.sexo }}</p>
+    <p><strong>Servicio:</strong> {{ servicio }}</p>
+    <p><strong>Veterinario:</strong> {{ nombreveterinario }}</p>
+    <p><strong>Hora:</strong> {{ horaAtencion }}</p>
+    <!-- Agrega aquí más campos para mostrar los datos de otras vistas -->
+  </div>
+  <button (click)="agendar()">Agendar!</button>
   <div class="toast-container" *ngIf="showToast">
     Felicidades, tu hora ha sido reservada!
   </div>

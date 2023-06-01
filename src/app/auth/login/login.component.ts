@@ -32,16 +32,20 @@ export class LoginComponent implements OnInit {
     }
     
     this.authService.login(user)
-      .then((data) => {
+    .then((data) => {
+      if (data && data.accesToken) {
         alert('Bienvenido!');
         localStorage.setItem('access_token', data.accesToken);
-        //redirigir al usuario a la página que confirmar
+        // Redirigir al usuario a la página de confirmación
         this.router.navigate(['confirmacion']);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert('Error al iniciar sesión');
-      });
+      } else {
+        alert('Debe Registrarse');
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+      alert('No registrado');
+    });
   }
 
   register() {
