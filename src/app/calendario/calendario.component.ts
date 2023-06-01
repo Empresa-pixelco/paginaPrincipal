@@ -6,6 +6,7 @@ import { AuthService } from '../services/auth.service';
 import { Veterinarios } from '../interfaces/veterinarios.model';
 import { Calendario, Dia, Horario } from '../interfaces/calendario.model';
 import 'moment/locale/es';
+import { StorageService } from '../services/storage.service';
 @Component({
   selector: 'app-calendario',
   templateUrl: './calendario.component.html',
@@ -22,7 +23,7 @@ export class CalendarioComponent {
   mesVet:string| any;
   horaSeleccionada: string| any;
 
-  constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute, private dataStorageService: StorageService) { }
 
   async ngOnInit() {
       this.route.queryParams.subscribe( async params => {
@@ -60,7 +61,7 @@ export class CalendarioComponent {
   }
   seleccionarHora(hora: string): void{
     this.horaSeleccionada = hora
-    console.log(this.horaSeleccionada)
+    this.dataStorageService.setHoraSeleccionado(hora)
     console.log('holaaa')
   }
 

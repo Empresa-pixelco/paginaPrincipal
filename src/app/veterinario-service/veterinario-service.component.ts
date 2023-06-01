@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Categoria } from '../interfaces/categorias.model';
 import { Veterinarios} from '../interfaces/veterinarios.model';
 import { Veterinario } from '../interfaces/veterinario.model';
+import { StorageService } from '../services/storage.service';
 
 @Component({
   selector: 'app-veterinario-service',
@@ -14,7 +15,7 @@ export class VeterinarioServiceComponent implements OnInit{
   tsveterinarios: any | undefined;
   codigoVeterinario: any | undefined;
   
-  constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
+  constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute, private dataStorageService: StorageService) { }
 
   async ngOnInit() {
         this.route.queryParams.subscribe( async params => {
@@ -44,8 +45,9 @@ export class VeterinarioServiceComponent implements OnInit{
   seleccionarSubservicio(subservicio: string): any {
     console.log('ReservasComponent - seleccionarSubservicio()', subservicio);
   }
-  twotoggleSubservicios(veterinario: string): void{
+  twotoggleSubservicios(nombre:string,veterinario: string): void{
     this.codigoVeterinario =  veterinario
-    console.log(this.codigoVeterinario)
+    console.log(nombre)
+    this.dataStorageService.setnombreVeterinarioSeleccionado(nombre)
   }
 }

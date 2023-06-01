@@ -4,18 +4,20 @@
     <form class="form-container">
       <div class="form-group">
         <label for="nombreMascota">Nombre de la mascota</label>
-        <input type="text" id="nombreMascota" name="nombreMascota" placeholder="Nombre de la mascota" [(ngModel)]="nombreMascota">
+        <input type="text" id="nombreMascota" name="nombreMascota" placeholder="Nombre de la mascota" [(ngModel)]="nombreMascota" required>
       </div>
       <div class="form-group">
         <label for="especie">Especie</label>
-        <select id="especie" name="especie" [(ngModel)]="especie">
+        <select id="especie" name="especie" [(ngModel)]="especie" required>
+          <option value="" disabled selected>Seleccionar especie</option>
           <option value="canino">Canino</option>
           <option value="felino">Felino</option>
         </select>
       </div>
       <div class="form-group">
         <label for="sexo">Sexo</label>
-        <select id="sexo" name="sexo" [(ngModel)]="sexo">
+        <select id="sexo" name="sexo" [(ngModel)]="sexo" required>
+          <option value="" disabled selected>Seleccionar sexo</option>
           <option value="macho">Macho</option>
           <option value="hembra">Hembra</option>
           <option value="ns">N/S</option>
