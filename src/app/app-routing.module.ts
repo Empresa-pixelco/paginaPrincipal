@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes, CanActivate } from '@angular/router';
 import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.component';
 import { ReservasComponent } from './reservas/reservas.component';
 import { DatosPacienteComponent } from './datos-paciente/datos-paciente.component';
@@ -10,7 +10,7 @@ import { HorariosVeterinariosComponent } from './horarios-veterinarios/horarios-
 import { AsignarHorariosComponent } from './asignar-horarios/asignar-horarios.component';
 import { VeterinarioServiceComponent } from './veterinario-service/veterinario-service.component';
 import { CalendarioComponent } from './calendario/calendario.component';
-
+import {AuthGuard} from './guards/auth.guard'
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'datos-paciente', component: DatosPacienteComponent },
   { path: 'register', component: RegisterComponent},
   { path: 'login', component: LoginComponent},
-  { path: 'confirmacion', component: ConfirmacionComponent},
+  { path: 'confirmacion', component: ConfirmacionComponent, canActivate: [AuthGuard] },
   { path: 'horarios-veterinarios', component: HorariosVeterinariosComponent},
   { path: 'asignar-horarios', component: AsignarHorariosComponent},
   { path: 'veterinario-service', component: VeterinarioServiceComponent},
