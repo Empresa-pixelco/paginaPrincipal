@@ -12,7 +12,17 @@ export class AuthService {
   keys= environment.key;
   ivs= environment.iv
   apiUrl = environment.apiUrl;
+  isAuthenticated: boolean = false;
   constructor() { }
+
+
+
+  checkAuthentication(): boolean {
+    const token = localStorage.getItem('acces_token');
+    console.log(token)
+    this.isAuthenticated = !!token; // Verifica si el token existe
+    return this.isAuthenticated;
+  }
 
   async login(userData: object):Promise<tokenResponses> {
     // const loginData = {email, password}
@@ -20,11 +30,12 @@ export class AuthService {
     const encripData = encrypt(userData)
     // const body = { data: encripData };
     console.log(encripData)
-    const response = await axios.post(`${this.apiUrl}/api/auth`, encripData);
-    console.log('este es el response:', response)
-    const token = response.data['accessToken'];
-    console.log('este es el token:', token)
     try {
+      const response = await axios.post(`${this.apiUrl}/api/auth`, encripData);
+      console.log('este es el response:', response)
+      const token = response.data['accessToken'];
+      console.log('este es el token:', token)
+      console.log(response.data)
       return response.data;
     } catch (error: any) {
       throw new Error('Error al iniciar sesión');

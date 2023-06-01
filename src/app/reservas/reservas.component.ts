@@ -4,6 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Categoria } from '../interfaces/categorias.model';
+import { StorageService } from '../services/storage.service';
+
 @Component({
   standalone: true,
   imports: [CommonModule, IonicModule],
@@ -14,9 +16,9 @@ import { Categoria } from '../interfaces/categorias.model';
 
 export class ReservasComponent implements OnInit{
   tsservicios: any | undefined;
-  codigoCategoriaSeleccionado: string | undefined; // Variable para almacenar el codigoCategoria seleccionado
+  codigoCategoriaSeleccionado: string | any; // Variable para almacenar el codigoCategoria seleccionado
  
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService,  private dataStorageService: StorageService) { }
  
   ngOnInit() {
     this.authService.servicios().then((data: Categoria) => {
@@ -42,17 +44,16 @@ export class ReservasComponent implements OnInit{
   toggleSubservicios(servicio: number, codigoCategoria: any): void {
     console.log('ReservasComponent - toggleSubservicios()', servicio);
     this.codigoCategoriaSeleccionado =   codigoCategoria
-    console.log(this.codigoCategoriaSeleccionado)
-  
     if (this.servicioSeleccionado === servicio) {
       this.servicioSeleccionado = -1;
     } else {
       this.servicioSeleccionado = servicio;
     }
-    console.log('ReservasComponent - servicioSeleccionado', this.servicioSeleccionado);
   }
   seleccionarSubservicio(subservicio: string): any {
     console.log('ReservasComponent - seleccionarSubservicio()', subservicio);
+    this.dataStorageService.setnombreServicioSeleccionado(subservicio)  
+
     // console.log('ReservasComponent - codigoCategoria', codigoCategoria);
     // this.codigoCategoriaSeleccionado = codigoCategoria; // Guardar el codigoCategoria seleccionado
     // console.log(this.codigoCategoriaSeleccionado)
