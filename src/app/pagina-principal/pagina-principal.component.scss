@@ -123,20 +123,19 @@
   }
 }
 
-@keyframes desplazamiento-slices-mobile {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-180%);
-  }
-}
-
 @media screen and (max-width: 768px) {
   /* Agrega las reglas CSS para dispositivos móviles aquí  */
   .slices-container {
     animation: desplazamiento-slices-mobile 10s infinite;
+  }
+  @keyframes desplazamiento-slices-mobile {
+    0% {
+      transform: translateX(0);
+    }
+  
+    100% {
+      transform: translateX(-180%);
+    }
   }
 }
 
@@ -149,6 +148,16 @@
   height: 40px; 
   object-fit: cover;
   margin-bottom: 20px;
+  }
+
+  @keyframes desplazamiento-slices-mobile {
+    0% {
+      transform: translateX(0);
+    }
+  
+    100% {
+      transform: translateX(-180%);
+    }
   }
 }
 
