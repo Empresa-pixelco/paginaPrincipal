@@ -19,7 +19,6 @@ export class AuthService {
 
   checkAuthentication(): boolean {
     const token = localStorage.getItem('access_token');
-    console.log(token)
     this.isAuthenticated = !!token; // Verifica si el token existe
     return this.isAuthenticated;
   }

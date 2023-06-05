@@ -8,19 +8,42 @@ import { Veterinario } from '../interfaces/veterinario.model';
   styleUrls: ['./asignar-horarios.component.scss']
 })
 export class AsignarHorariosComponent {
-  horariosDisponibles = [
-    '8:00 AM', '8:30 AM', '9:00 AM', '9:30 AM', '10:00 AM', '10:30 AM', 
-    '11:00 AM', '11:30 AM', '12:00 PM', '12:30 PM', '1:00 PM', '1:30 PM', 
-    '2:00 PM', '2:30 PM', '3:00 PM', '3:30 PM', '4:00 PM', '4:30 PM'
-  ];
+  veterinarios: string[] = ['Veterinario 1', 'Veterinario 2', 'Veterinario 3']; // Lista de veterinarios disponibles
+  veterinarioSeleccionado: string | undefined;
+  fechaSeleccionada: string | undefined;
+  diaTurno: boolean = false;
+  horas: string[] = ['09:00', '10:00', '11:00', '12:00', '13:00']; // Horarios disponibles
+  horaSeleccionada: string | undefined;
 
-  veterinarios = [
-    { nombre: 'Juan', asignaciones: [] },
-    { nombre: 'Pedro', asignaciones: [] },
-    { nombre: 'María', asignaciones: [] }
-  ];
+  datosPacientes() {
+    // Lógica para obtener los datos de los pacientes según la fecha seleccionada y el veterinario seleccionado
+    // ...
+    this.diaTurno = true;
+  }
 
+  seleccionarHora(hora: string) {
+    this.horaSeleccionada = hora;
+  }
 
+  guardarHorario() {
+    // Lógica para guardar el horario asignado al veterinario seleccionado
+    // ...
+    console.log('Horario guardado:', this.fechaSeleccionada, this.horaSeleccionada, 'Veterinario:', this.veterinarioSeleccionado);
+    // Restablecer los valores seleccionados
+    this.veterinarioSeleccionado = '';
+    this.fechaSeleccionada = '';
+    this.diaTurno = false;
+    this.horaSeleccionada = '';
+  }
+
+  atras() {
+    // Lógica para volver atrás en la selección de horarios
+    // ...
+    this.veterinarioSeleccionado = '';
+    this.fechaSeleccionada = '';
+    this.diaTurno = false;
+    this.horaSeleccionada = '';
+  }
 
 
 }
