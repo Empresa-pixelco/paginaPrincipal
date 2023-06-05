@@ -21,6 +21,7 @@ import { AsignarHorariosComponent } from './asignar-horarios/asignar-horarios.co
 import { VeterinarioServiceComponent } from './veterinario-service/veterinario-service.component';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { DatosPacienteComponent } from './datos-paciente/datos-paciente.component';
+import { CitasVeterinariosComponent } from './citas-veterinarios/citas-veterinarios.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { DatosPacienteComponent } from './datos-paciente/datos-paciente.componen
     AsignarHorariosComponent,
     VeterinarioServiceComponent,
     CalendarioComponent,
-    DatosPacienteComponent
+    DatosPacienteComponent,
+    CitasVeterinariosComponent
   ],
   imports: [
     ReactiveFormsModule,

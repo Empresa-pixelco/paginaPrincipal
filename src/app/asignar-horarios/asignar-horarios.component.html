@@ -1,27 +1,16 @@
-<table>
-  <thead>
-    <tr>
-      <th>Día</th>
-      <th>Horarios disponibles</th>
-      <th>Asignar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let horario of horariosDisponibles">
-      <td>Lunes</td>
-      <td>{{ horario }}</td>
-      <td>
-        <input type="checkbox" >
-      </td>
-    </tr>
-    <tr *ngFor="let horario of horariosDisponibles">
-      <td>Martes</td>
-      <td>{{ horario }}</td>
-      <td>
-        <input type="checkbox" >
-      </td>
-    </tr>
-    <!-- Agregar filas para los demás días de la semana -->
-  </tbody>
-</table>
- 
+<div class="page">
+  <ion-card class="card-container">
+    <h2 class="mb-2" style="text-align: center;">Horarios</h2>
+    <ion-select [(ngModel)]="veterinarioSeleccionado" placeholder="Seleccionar veterinario">
+      <ion-select-option *ngFor="let veterinario of veterinarios" [value]="veterinario">{{veterinario}}</ion-select-option>
+    </ion-select>
+    <ion-datetime presentation="date" [(ngModel)]="fechaSeleccionada" displayFormat="MMMM" pickerFormat="MMMM" (ionChange)="datosPacientes()"></ion-datetime>
+    <div *ngIf="diaTurno" class="horarios-container">
+      <ion-chip color="success" *ngFor="let hora of horas" [class.selected]="hora === horaSeleccionada" (click)="seleccionarHora(hora)">{{hora}}</ion-chip>
+    </div>
+    <div class="button-container">
+      <ion-button (click)="guardarHorario()" [disabled]="!horaSeleccionada">Guardar</ion-button>
+      <ion-button fill="clear" (click)="atras()">Atrás</ion-button>
+    </div>
+  </ion-card>
+</div>

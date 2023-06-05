@@ -11,6 +11,7 @@ import { AsignarHorariosComponent } from './asignar-horarios/asignar-horarios.co
 import { VeterinarioServiceComponent } from './veterinario-service/veterinario-service.component';
 import { CalendarioComponent } from './calendario/calendario.component';
 import {AuthGuard} from './guards/auth.guard'
+import { CitasVeterinariosComponent } from './citas-veterinarios/citas-veterinarios.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -23,7 +24,8 @@ const routes: Routes = [
   { path: 'horarios-veterinarios', component: HorariosVeterinariosComponent},
   { path: 'asignar-horarios', component: AsignarHorariosComponent},
   { path: 'veterinario-service', component: VeterinarioServiceComponent},
-  { path: 'calendario', component: CalendarioComponent}
+  { path: 'calendario', component: CalendarioComponent},
+  { path: 'citas', component: CitasVeterinariosComponent}
 
 ];
 @NgModule({

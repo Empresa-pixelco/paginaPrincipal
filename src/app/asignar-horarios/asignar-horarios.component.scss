@@ -1,35 +1,32 @@
-/* Estilos para la tabla de horarios disponibles */
-table {
-  border-collapse: collapse;
-  margin: 20px 0;
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.content {
   width: 100%;
 }
 
-th, td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
+.horarios-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
-/* Estilos para los botones */
-button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 12px 24px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 4px;
+.footer {
+  width: 100%;
 }
 
-.boton-continuar {
-  background-color: #2196F3;
-}
-
-.boton-asignar {
-  background-color: #4CAF50;
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
