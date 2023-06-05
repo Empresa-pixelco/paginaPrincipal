@@ -30,7 +30,7 @@ export class AuthService {
     // const body = { data: encripData };
     console.log(encripData)
     try {
-      const response = await axios.post(`${this.apiUrl}/api/auth`, encripData);
+      const response = await axios.post(`${this.apiUrl}/auth`, encripData);
       console.log('este es el response:', response)
       const token = response.data['accessToken'];
       console.log('este es el token:', token)
@@ -44,7 +44,7 @@ export class AuthService {
   async register(userData: object): Promise<tokenResponses> {
     const encryptedData = encrypt(userData);
     console.log("🚀 ~ file: auth.service.ts:33 ~ AuthService ~ register ~ encryptedData:", encryptedData)
-    const response = await axios.post(`${this.apiUrl}/api/auth/register`, encryptedData);
+    const response = await axios.post(`${this.apiUrl}/auth/register`, encryptedData);
     try {
         return response.data;
     } catch (error) {
@@ -55,7 +55,7 @@ export class AuthService {
 // {{URL}}/api/services/staff/2PiNETB6CdlKHXJm9b3g
 async servicios(): Promise<Categoria> {
   // const encryptedData = encrypt(userData);
-  const response = await axios.get(`${this.apiUrl}/api/services/2PiNETB6CdlKHXJm9b3g`, {
+  const response = await axios.get(`${this.apiUrl}/services/2PiNETB6CdlKHXJm9b3g`, {
     headers: {
       "Access-Control-Allow-Origin": "*"
     }
@@ -72,7 +72,7 @@ async servicios(): Promise<Categoria> {
 
 async staff(codigoCategoria: string): Promise<Veterinarios[]> {
   // const encryptedData = encrypt(userData);
-  const response = await axios.get(`${this.apiUrl}/api/services/${codigoCategoria}/sucursal/2PiNETB6CdlKHXJm9b3g/vet`);
+  const response = await axios.get(`${this.apiUrl}/services/${codigoCategoria}/sucursal/2PiNETB6CdlKHXJm9b3g/vet`);
   try {
       return response.data;
   } catch (error) { 
@@ -82,7 +82,7 @@ async staff(codigoCategoria: string): Promise<Veterinarios[]> {
 
 async calendary(codigoVeterinario: string): Promise<Calendario> {
   // const encryptedData = encrypt(userData);
-  const response = await axios.get(`${this.apiUrl}/api/services/turnos/2PiNETB6CdlKHXJm9b3g/${codigoVeterinario}/2023/JUNIO`);
+  const response = await axios.get(`${this.apiUrl}/services/turnos/2PiNETB6CdlKHXJm9b3g/${codigoVeterinario}/2023/JUNIO`);
   try {
       return response.data;
   } catch (error) { 
