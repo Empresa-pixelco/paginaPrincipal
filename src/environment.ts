@@ -1,6 +1,6 @@
 
 export const environment = {
-    apiUrl: 'https://ultravetshop.cl:3003', // URL del backend
+    apiUrl: 'https://www.ultravetshop.cl/api', // URL del backend
     key: 'df6147b10517f518d4ef7631e34117dc13d7bd5fadc7b75c5f8efa4ca40ea356',
     iv: 'ed29dd55c39d48e95dab69bb26584f86',
 
