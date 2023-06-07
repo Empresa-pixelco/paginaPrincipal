@@ -22,6 +22,8 @@ import { VeterinarioServiceComponent } from './veterinario-service/veterinario-s
 import { CalendarioComponent } from './calendario/calendario.component';
 import { DatosPacienteComponent } from './datos-paciente/datos-paciente.component';
 import { CitasVeterinariosComponent } from './citas-veterinarios/citas-veterinarios.component';
+import { LoginvetComponent } from './auth-vet/loginvet/loginvet.component';
+import { RegistervetComponent } from './auth-vet/registervet/registervet.component';
 
 
 @NgModule({
@@ -35,7 +37,9 @@ import { CitasVeterinariosComponent } from './citas-veterinarios/citas-veterinar
     VeterinarioServiceComponent,
     CalendarioComponent,
     DatosPacienteComponent,
-    CitasVeterinariosComponent
+    CitasVeterinariosComponent,
+    LoginvetComponent,
+    RegistervetComponent
   ],
   imports: [
     ReactiveFormsModule,

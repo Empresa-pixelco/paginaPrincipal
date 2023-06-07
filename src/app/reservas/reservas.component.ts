@@ -17,7 +17,8 @@ import { StorageService } from '../services/storage.service';
 export class ReservasComponent implements OnInit{
   tsservicios: any | undefined;
   codigoCategoriaSeleccionado: string | any; // Variable para almacenar el codigoCategoria seleccionado
- 
+  subServicio: string | undefined
+  
   constructor(private router: Router, private authService: AuthService,  private dataStorageService: StorageService) { }
  
   ngOnInit() {
@@ -53,6 +54,7 @@ export class ReservasComponent implements OnInit{
   seleccionarSubservicio(subservicio: string): any {
     console.log('ReservasComponent - seleccionarSubservicio()', subservicio);
     this.dataStorageService.setnombreServicioSeleccionado(subservicio)  
+    this.subServicio =  subservicio
 
     // console.log('ReservasComponent - codigoCategoria', codigoCategoria);
     // this.codigoCategoriaSeleccionado = codigoCategoria; // Guardar el codigoCategoria seleccionado
