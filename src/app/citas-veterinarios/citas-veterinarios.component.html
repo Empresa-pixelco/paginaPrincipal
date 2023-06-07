@@ -1,20 +1,20 @@
 <div class="page">
-    <ion-card>
-      <h2 class="mb-2" style="text-align: center;">Citas asignadas</h2>
-      <div *ngFor="let veterinario of veterinarios">
-        <h3>{{ veterinario }}</h3>
-        <ul>
-          <li *ngFor="let cita of citas[veterinario]">
-            <div class="cita-details">
-              <p class="cita-fecha">{{ cita.fecha }}</p>
-              <p class="cita-servicio">{{ cita.servicio }}</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="button-container">
-        <ion-button fill="clear" (click)="volver()">Volver</ion-button>
-      </div>
-    </ion-card>
-  </div>
-  
+  <ion-card>
+    <h2 class="mb-2" style="text-align: center;">Citas asignadas</h2>
+    <ion-datetime presentation="date" [(ngModel)]="fechaSeleccionada" (ionChange)="filtrarCitas()"></ion-datetime>
+    <div *ngFor="let veterinario of veterinarios">
+      <h3>{{ veterinario }}</h3>
+      <ul>
+        <li *ngFor="let cita of citas[veterinario]">
+          <div class="cita-details">
+            <p class="cita-fecha">{{ cita.fecha }}</p>
+            <p class="cita-servicio">{{ cita.servicio }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="button-container">
+      <ion-button fill="clear" (click)="volver()">Volver</ion-button>
+    </div>
+  </ion-card>
+</div>
