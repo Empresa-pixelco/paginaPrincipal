@@ -45,7 +45,7 @@ export class VeterinarioServiceComponent implements OnInit{
   seleccionarSubservicio(subservicio: string): any {
     console.log('ReservasComponent - seleccionarSubservicio()', subservicio);
   }
-  twotoggleSubservicios(nombre:string,veterinario: string): void{
+  twotoggleSubservicios(nombre:string, veterinario: string): void{
     this.codigoVeterinario =  veterinario
     console.log(nombre)
     this.dataStorageService.setnombreVeterinarioSeleccionado(nombre)

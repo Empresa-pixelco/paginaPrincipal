@@ -80,7 +80,6 @@
   padding: 50px;
   text-align: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-
 }
 
 .container {
@@ -119,7 +118,7 @@
   }
 
   100% {
-    transform: translateX(-40%);
+    transform: translateX(-80%);
   }
 }
 
@@ -156,7 +155,7 @@
     }
   
     100% {
-      transform: translateX(-180%);
+      transform: translateX(-200%);
     }
   }
 }
@@ -194,11 +193,30 @@
 
 
 /* Estilos para los cards de los veterinarios */
+.seccion-vetenarios {
+  background-color: #7bd7db;
+  padding: 20px;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
 .card-container {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  gap: 6px;
+  gap: 10px;
+}
+
+.card-veterinario .especialidad {
+  font-size: 17px;
+  color: #424242;
+  line-height: 1.4;
+}
+
+.card-veterinario .especialidad-title {
+  font-family: 'Roboto', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 5px;
 }
 
 .card-veterinario {
@@ -213,18 +231,20 @@
   text-align: center;
   transition: transform 0.3s;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-
   /* Transición de transform para el efecto de zoom */
 }
 .card-veterinario img {
-
-  border-radius: 15%;
+  width: auto;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 20%;
+  margin-bottom: 19px;
 }
 .card img {
   width: 100%;
   height: 200px;
   object-fit: cover;
-  margin-bottom: 60px;
+  margin-bottom: 200px;
   border-radius: 50%;
 }
 
@@ -255,47 +275,66 @@
 
 /* Estilos adicionales para dispositivos móviles */
 @media (max-width: 768px) {
-  .card {
-    flex-basis: calc(50% - 50px);
+
+  .card-veterinario img {
+    width: auto;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 20%;
+    margin-bottom: 0px;
   }
+
   .card img {
     width: 100%;
-    height: 80px;
+    height: 200px;
     object-fit: cover;
-    margin-bottom: 15px;
+    margin-bottom: 2px;
+    border-radius: 0%;
+    padding: 1px;
+  }
+
+  .card-veterinario .especialidad-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
+  .card-veterinario .especialidad {
+    font-size: 16px, 'Roboto', sans-serif;
+    color: #424242;
+    line-height: 1.4;
+    margin-bottom: 19px;
+  }
+  .nombre {
+    font-size: 9px;
+    color: #000000;
+    line-height: 1.4;
+    padding: 12px;
   }
 }
 
 
 
 
-/* Estilos para la sección de animalitos*/
-.seccion-veterinarios {
+/* Estilos para la sección de animalitos */
+.seccion-animalitos {
   background-color: #7bd7db;
-  padding: -200px;
+  padding: 20px;
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
-.container {
-  overflow: hidden;
-  margin-top: 100px;
-}
-
-.card-container {
-  background-color: #7bd7db;
+.card-animalitos {
   display: flex;
-  flex-wrap: nowrap;
   justify-content: center;
-  /* Permitir que los cards se envuelvan en una nueva línea */
-  gap: 10px;
-  /* Espacio entre los cards */
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 100px;
+  gap: 20px; /* Espacio entre los cards */
 }
-
 
 .card {
   background-color: #e08700;
-  /* Color naranja */
   border-radius: 5px;
   overflow: hidden;
   position: relative;
@@ -304,31 +343,11 @@
   padding: 10px;
   text-align: center;
   transition: transform 0.3s;
-  /* Transición de transform para el efecto de zoom */
+  font-family: 'Roboto', sans-serif;
 }
-
-// .card {
-//   flex: 0 0 calc(25% - 20px);
-//   /* Ajusta el ancho de los cards según tu preferencia */
-//   text-align: center;
-//   padding: 20px;
-//   background-color: #e08700;
-//   /* Color naranja */
-//   border-radius: 10px;
-//   overflow: hidden;
-//   position: relative;
-//   transition: transform 0.3s;
-//   /* Transición de transform para el efecto de zoom */
-//   /* Modificaciones para dispositivos móviles */
-//   flex-basis: 200%;
-//   max-width: 50%;
-// }
-
-
 
 .card:hover {
   transform: scale(1.05);
-  /* Efecto de zoom al pasar el cursor sobre el card */
 }
 
 .card::before {
@@ -339,13 +358,20 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.3);
-  /* Overlay negro con transparencia */
   opacity: 0;
   transition: opacity 0.3s;
-  /* Transición de opacidad para el overlay */
 }
 
-.card:hover::before {
-  opacity: 1;
-  /* Mostrar overlay al pasar el cursor sobre el card */
+@media (max-width: 768px) {
+  .card {
+    flex-basis: calc(100% - 100px);
+    max-width: 200px;
+  }
+  
+  .card-animalitos {
+    margin-top: 50px;
+  }
 }
+
+
+
