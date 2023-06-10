@@ -12,6 +12,8 @@ import { VeterinarioServiceComponent } from './veterinario-service/veterinario-s
 import { CalendarioComponent } from './calendario/calendario.component';
 import {AuthGuard} from './guards/auth.guard'
 import { CitasVeterinariosComponent } from './citas-veterinarios/citas-veterinarios.component';
+import { LoginvetComponent } from './auth-vet/loginvet/loginvet.component';
+import { RegistervetComponent } from './auth-vet/registervet/registervet.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -25,8 +27,9 @@ const routes: Routes = [
   { path: 'asignar-horarios', component: AsignarHorariosComponent},
   { path: 'veterinario-service', component: VeterinarioServiceComponent},
   { path: 'calendario', component: CalendarioComponent},
-  { path: 'citas', component: CitasVeterinariosComponent}
-
+  { path: 'citas', component: CitasVeterinariosComponent},
+  { path: 'loginvet', component: LoginvetComponent},
+  { path: 'register-vet', component: RegistervetComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
