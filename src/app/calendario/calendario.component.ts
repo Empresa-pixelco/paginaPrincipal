@@ -17,11 +17,12 @@ export class CalendarioComponent {
   tsveterinarios: Calendario | any;
   mesActual: string | any;
   horas: any
-  fechaSeleccionada: any | undefined; // Variable para almacenar la fecha seleccionada
+  fechaSeleccionada: any | undefined;
   diaTurno: Dia | any;
   diaSelecter: any
   mesVet:string| any;
   horaSeleccionada: string| any;
+
 
   constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute, private dataStorageService: StorageService) { }
 
@@ -34,6 +35,7 @@ export class CalendarioComponent {
       this.tsveterinarios = data
   })
 }
+
   datosPacientes() {
     //meses que tiene turno veterinario
     this.mesVet = this.tsveterinarios.mes
@@ -43,10 +45,7 @@ export class CalendarioComponent {
     moment.locale('es');
     //obtener el mes de ionic calendar
     const mesEnEspanol = moment(fecha).format('MMMM').toUpperCase();
-
     this.diaSelecter = fecha.getDate();
-
-
     this.mesActual = moment(this.mesActual).format('MMMM').toUpperCase();
 
     this.diaTurno = this.tsveterinarios.dias.filter((dia: Dia)=> dia.dia == this.diaSelecter && mesEnEspanol == this.mesVet)[0]
@@ -58,7 +57,9 @@ export class CalendarioComponent {
       const horas = this.diaTurno.horarios.filter((horario: Horario) =>horario.hora);
       console.log('Horas seleccionadas:', horas);
     }
+
   }
+
   seleccionarHora(hora: string): void{
     this.horaSeleccionada = hora
     this.dataStorageService.setHoraSeleccionado(hora)

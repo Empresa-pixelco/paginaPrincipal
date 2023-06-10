@@ -1,1 +1,33 @@
-<p>registervet works!</p>
+<div class="card-container">
+    <div class="card-header">
+      <h2>Cuenta de veterinario</h2>
+    </div>
+    <div class="card-content">
+      <div class="form-group">
+  
+        <label for="rut">Rut</label>
+        <input type="text" id="rut" [(ngModel)]="userDni" placeholder="20009090-4" required>
+      </div>
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" [(ngModel)]="userFirstName" placeholder="Juan">
+      </div>
+      <div class="form-group">
+        <label for="correoElectronico">Correo electrónico</label>
+        <input  type="text" id="correoElectronico" [(ngModel)]="email" placeholder="juanvet@gmail.com">
+      </div>
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <input  type="tel" id="telefono" [(ngModel)]="phone" placeholder="9 8123 5223">
+      </div>
+      <div class="form-group">
+        <label for="contrasena">Contraseña</label>
+        <input  type="password" id="contrasena" [(ngModel)]="password" placeholder="***********">
+      </div>
+      <div class="button-group">
+        <button class="register-button" (click)="register()">Crear cuenta</button>
+        <button class="back-button" (click)="back()">Atrás</button>
+      </div>
+    </div>
+  </div>
+  
