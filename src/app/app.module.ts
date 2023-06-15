@@ -17,7 +17,6 @@ import { PaginaPrincipalComponent } from './pagina-principal/pagina-principal.co
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './auth/register/register.component';
-import { HorariosVeterinariosComponent } from './horarios-veterinarios/horarios-veterinarios.component';
 import { AsignarHorariosComponent } from './asignar-horarios/asignar-horarios.component';
 import { VeterinarioServiceComponent } from './veterinario-service/veterinario-service.component';
 import { CalendarioComponent } from './calendario/calendario.component';
@@ -25,22 +24,23 @@ import { DatosPacienteComponent } from './datos-paciente/datos-paciente.componen
 import { CitasVeterinariosComponent } from './citas-veterinarios/citas-veterinarios.component';
 import { LoginvetComponent } from './auth-vet/loginvet/loginvet.component';
 import { RegistervetComponent } from './auth-vet/registervet/registervet.component';
-
-
+import jwt_decode from 'jwt-decode';
+import { TurnoVetComponent } from './turno-vet/turno-vet.component';
 @NgModule({
   declarations: [
     AppComponent,
     PaginaPrincipalComponent,
     LoginComponent,
     RegisterComponent,
-    HorariosVeterinariosComponent,
     AsignarHorariosComponent,
     VeterinarioServiceComponent,
     CalendarioComponent,
     DatosPacienteComponent,
     CitasVeterinariosComponent,
     LoginvetComponent,
-    RegistervetComponent
+    RegistervetComponent,
+    TurnoVetComponent,
+
   ],
   imports: [
     ReactiveFormsModule,

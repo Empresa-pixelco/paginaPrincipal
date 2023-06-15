@@ -57,13 +57,11 @@ export class CalendarioComponent {
       const horas = this.diaTurno.horarios.filter((horario: Horario) =>horario.hora);
       console.log('Horas seleccionadas:', horas);
     }
-
   }
 
   seleccionarHora(hora: string): void{
     this.horaSeleccionada = hora
     this.dataStorageService.setHoraSeleccionado(hora)
-    console.log('holaaa')
   }
 
   servicioSeleccionado: number = -1;

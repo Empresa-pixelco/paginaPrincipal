@@ -1,6 +1,6 @@
 <!-- app.component.html -->
 <div class="card-container">
-  <h2 class="mb-4">Login Veterinario</h2>
+  <h2 class="mb-4">Login Administrativo</h2>
     <div class="form-group mb-3">
       <label for="rut">Correo</label>
       <input type="text" id="rut" placeholder="juan@gmail.com" [(ngModel)]="email" #ctrl="ngModel" required>
@@ -10,7 +10,7 @@
       <input type="password" id="password" placeholder="***********" [(ngModel)]="password" #ctrl="ngModel" required>
     </div>
   <div class="form-group mb-3">
-    <a class="anchor" (click)="registers()">No tienes una cuenta? Regístrate aquí!</a>
+    <br>
   </div>
   <button class="login-button" (click)="login()">Acceder</button>
 </div>
