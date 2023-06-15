@@ -8,6 +8,7 @@ export class StorageService {
   private nombreServicio: string | undefined;
   private veterinario: string | undefined;
   private horaSelecionada: string | undefined;
+  private token: string | undefined;
   // Agrega otras variables privadas para almacenar los datos de las otras vistas
 
   constructor() {}
@@ -49,6 +50,12 @@ export class StorageService {
     return this.horaSelecionada;
   }
 
+  setToken(token: string): void {
+    this.token = token;
+    console.log(this.nombreServicio)
+  }
 
-
+  getToken(): any {
+    return this.token;
+  }
 }

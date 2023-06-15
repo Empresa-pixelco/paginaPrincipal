@@ -1,0 +1,24 @@
+<div class="page">
+  <ion-card>
+    <h2 class="mb-2" style="text-align: center;">Turnos asignados</h2>
+    <ion-select [(ngModel)]="veterinarioSeleccionado" (ionChange)="filtrarTurnos()">
+      <ion-select-option *ngFor="let veterinario of veterinarios" [value]="veterinario">{{ veterinario.nombre }}</ion-select-option>
+    </ion-select>
+    <ion-datetime presentation="date" [(ngModel)]="fechaSeleccionada" (ionChange)="filtrarTurnos()"></ion-datetime>
+    <div *ngIf="veterinarioSeleccionado">
+      <h3>{{ veterinarioSeleccionado.nombre }}</h3>
+      <ul>
+        <li *ngFor="let turno of veterinarioSeleccionado.turnos">
+          <div class="turno-details">
+            <p class="turno-fecha">{{ turno.fecha }}</p>
+            <p class="turno-hora">{{ turno.hora }}</p>
+            <p class="turno-paciente">{{ turno.paciente }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="button-container">
+      <ion-button fill="clear" (click)="volver()">Volver</ion-button>
+    </div>
+  </ion-card>
+</div>

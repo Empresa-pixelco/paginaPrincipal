@@ -2,6 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import da from 'date-fns/esm/locale/da/index.js';
 import { AuthService } from 'src/app/services/auth.service';
 import { validarRutNumeros} from 'src/app/util/validaRut';
 @Component({
@@ -62,8 +63,10 @@ export class RegisterComponent implements OnInit {
     this.authService.register(user)
       .then((data) => {
         alert('Cuenta creada con éxito!');
-        localStorage.setItem('access_token', data.accesToken)
+        console.log(data)
+        localStorage.setItem('access_t', data.accesToken)
         this.router.navigate(['confirmacion']);
+        console.log(data.accesToken)
       })
       .catch((error) => {
         console.log(error, 'en registro');
