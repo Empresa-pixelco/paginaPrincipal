@@ -1,18 +1,45 @@
 .page {
-  ion-card {
-      margin-top: 50px;
-      margin-inline: auto;
-      max-width: 300px;
-      padding: 42px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
+
+ion-card {
+  width: 80%;
+  max-width: 400px;
+}
+
+.card-title {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.cita-details {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cita-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cita-label {
+  font-weight: bold;
+  flex-basis: 30%;
+}
+
+.cita-value {
+  flex-grow: 1;
+  margin: 0;
+}
+
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  margin-top: 16px;
 }
-
-.selected {
-  background-color: blue;
-  color: white;
-}
-

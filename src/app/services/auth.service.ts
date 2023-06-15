@@ -7,20 +7,29 @@ import { tokenResponses } from '../interfaces/responses.dto';
 import { Categoria } from '../interfaces/categorias.model';
 import { Veterinarios} from '../interfaces/veterinarios.model';
 import { Calendario } from '../interfaces/calendario.model';
+import { StorageService } from '.././services/storage.service';
+
 @Injectable()
 export class AuthService {
   keys= environment.key;
   ivs= environment.iv
   apiUrl = environment.apiUrl;
   isAuthenticated: boolean = false;
-  constructor() { }
+  isAuthenticatedVet: boolean = false;
+  constructor(private dataStorageService: StorageService) { }
 
 
 
   checkAuthentication(): boolean {
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem('access_t');
     this.isAuthenticated = !!token; // Verifica si el token existe
     return this.isAuthenticated;
+  }
+  checkAuthenticationVet(): boolean {
+    const token = localStorage.getItem('access_toke');
+    console.log(token)
+    this.isAuthenticatedVet = !!token; // Verifica si el token existe
+    return this.isAuthenticatedVet;
   }
 
   async login(userData: object):Promise<tokenResponses> {
@@ -32,8 +41,6 @@ export class AuthService {
     try {
       const response = await axios.post(`${this.apiUrl}/auth`, encripData);
       console.log('este es el response:', response)
-      const token = response.data['accessToken'];
-      console.log('este es el token:', token)
       console.log(response.data)
       return response.data;
     } catch (error: any) {
@@ -42,12 +49,14 @@ export class AuthService {
   }
 
   async register(userData: object): Promise<tokenResponses> {
+    const token = localStorage.getItem('access_t');
+    console.log(token)
     const encryptedData = encrypt(userData);
     console.log("🚀 ~ file: auth.service.ts:33 ~ AuthService ~ register ~ encryptedData:", encryptedData)
-    const response = await axios.post(`${this.apiUrl}/auth/register`, encryptedData);
     try {
-        return response.data;
-    } catch (error) {
+      const response = await axios.post(`${this.apiUrl}/auth/register`, encryptedData);
+      return response.data;
+      } catch (error) {
       throw new Error('Error al registrar usuario');
     }
   }  
@@ -65,7 +74,6 @@ async servicios(): Promise<Categoria> {
     return response.data;
   } catch (error) {
     throw new Error('Error al obtener los servicios');
-    console.log(error)
   }
 }  
   // const encryptedData = encrypt(userData);
@@ -73,6 +81,22 @@ async servicios(): Promise<Categoria> {
 async staff(codigoCategoria: string): Promise<Veterinarios[]> {
   // const encryptedData = encrypt(userData);
   const response = await axios.get(`${this.apiUrl}/services/${codigoCategoria}/sucursal/2PiNETB6CdlKHXJm9b3g/vet`);
+  try {
+      return response.data;
+  } catch (error) { 
+    throw new Error('Error al registrar usuario');
+  }
+}  
+
+async staffAll(): Promise<any> {
+  // const encryptedData = encrypt(userData);
+  const response = await axios.get(`${this.apiUrl}/services/staff/2PiNETB6CdlKHXJm9b3g`,{
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }
+    });
+
+  console.log(response)
   try {
       return response.data;
   } catch (error) { 
@@ -88,5 +112,22 @@ async calendary(codigoVeterinario: string): Promise<Calendario> {
   } catch (error) { 
     throw new Error('Error al registrar usuario');
   }
-}  
+}
+async citas(codigoVeterinario: string): Promise<any> {
+  const token = localStorage.getItem('access_toke'); // Obtener el token de almacenamiento local
+  console.log(codigoVeterinario)
+  console.log(token)
+
+  const response = await axios.get(`${this.apiUrl}/date/${codigoVeterinario}`,{
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  console.log(response.data)
+  try {
+      return response.data;
+  } catch (error) { 
+    throw new Error('Error al registrar usuario');
+  }
+}    
 }

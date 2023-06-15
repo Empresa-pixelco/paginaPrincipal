@@ -1,20 +1,39 @@
 <div class="page">
   <ion-card>
-    <h2 class="mb-2" style="text-align: center;">Citas asignadas</h2>
-    <ion-datetime presentation="date" [(ngModel)]="fechaSeleccionada" (ionChange)="filtrarCitas()"></ion-datetime>
-    <div *ngFor="let veterinario of veterinarios">
-      <h3>{{ veterinario }}</h3>
-      <ul>
-        <li *ngFor="let cita of citas[veterinario]">
-          <div class="cita-details">
-            <p class="cita-fecha">{{ cita.fecha }}</p>
-            <p class="cita-servicio">{{ cita.servicio }}</p>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="button-container">
-      <ion-button fill="clear" (click)="volver()">Volver</ion-button>
-    </div>
+    <ion-card-header>
+      <h2 class="card-title">Citas Asignadas</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-datetime presentation="date" [(ngModel)]="fechaSeleccionada" (click)="datosCita()"></ion-datetime>
+      <div class="cita-details" *ngIf="diaParse == diaSelecter && mes == mesEnEspanol">
+        <div class="cita-info">
+          <h3 class="cita-label">Hora:</h3>
+          <p class="cita-value">{{ horaCita }}</p>
+        </div>
+        <div class="cita-info">
+          <h3 class="cita-label">Veterinario:</h3>
+          <p class="cita-value">{{ veterinario }}</p>
+        </div>
+        <div class="cita-info">
+          <h3 class="cita-label">Servicio:</h3>
+          <p class="cita-value">{{ servicioCita }}</p>
+        </div>
+        <div class="cita-info">
+          <h3 class="cita-label">Paciente:</h3>
+          <p class="cita-value">{{ paciente.nombre }}</p>
+        </div>
+        <div class="cita-info">
+          <h3 class="cita-label">Especie:</h3>
+          <p class="cita-value">{{ paciente.especie }}</p>
+        </div>
+        <div class="cita-info">
+          <h3 class="cita-label">Sexo:</h3>
+          <p class="cita-value">{{ paciente.sexo }}</p>
+        </div>
+      </div>
+    </ion-card-content>
+      <div class="button-container">
+        <ion-button fill="clear" (click)="volver()">Volver</ion-button>
+      </div>
   </ion-card>
 </div>

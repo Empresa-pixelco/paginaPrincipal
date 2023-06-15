@@ -1,18 +1,17 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-
-
+import jwt_decode from 'jwt-decode';
 @Component({
   selector: 'app-loginvet',
   templateUrl: './loginvet.component.html',
   styleUrls: ['./loginvet.component.scss']
 })
 export class LoginvetComponent {
-
   email: string | any;
   password: string | any;
-
+  roles: any | any;
+  idVeterinario: string | any;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {}
@@ -31,10 +30,22 @@ export class LoginvetComponent {
     .then((data) => {
       if (data && data.accesToken) {
         alert('Bienvenido!');
-        localStorage.setItem('access_token', data.accesToken);
-        // Redirigir al usuario a la página de confirmación
-        this.router.navigate(['confirmacion']);
-      } else {
+        localStorage.setItem('access_toke', data.accesToken);
+        const tokenData: any = jwt_decode(data.accesToken);
+        console.log(tokenData)
+        this.roles = tokenData.aRoles
+        console.log(this.roles)
+        console.log(this.idVeterinario)
+        if (this.roles.includes('VET')){
+          this.router.navigate(['citas'],{
+            queryParams: { idVet: this.idVeterinario }, // Pasa el parámetro como queryParams
+          });
+        }
+        if (this.roles.includes('ADMIN')){
+          this.router.navigate(['turnos']);
+        }
+       } 
+       else {
         alert('Debe Registrarse');
       }
     })
@@ -43,9 +54,5 @@ export class LoginvetComponent {
       alert('No registrado');
     });
   }
-  
 
-  registers() {
-    this.router.navigate(['register']);
-  }
 }

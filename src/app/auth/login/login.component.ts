@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     .then((data) => {
       if (data && data.accesToken) {
         alert('Bienvenido!');
-        localStorage.setItem('access_token', data.accesToken);
+        localStorage.setItem('access_t', data.accesToken);
         // Redirigir al usuario a la página de confirmación
         this.router.navigate(['confirmacion']);
       } else {
