@@ -17,6 +17,10 @@ import { CitasVeterinariosComponent } from './citas-veterinarios/citas-veterinar
 import { LoginvetComponent } from './auth-vet/loginvet/loginvet.component';
 import { RegistervetComponent } from './auth-vet/registervet/registervet.component';
 import { TurnoVetComponent } from './turno-vet/turno-vet.component';
+import { TurnosDiasVetComponent } from './turnos-dias-vet/turnos-dias-vet.component';
+import { PanelAdminComponent } from './panel-admin/panel-admin.component';
+import { EliminarTurnoComponent } from './eliminar-turno/eliminar-turno.component';
+import { EliminarTurnoCalendaryComponent } from './eliminar-turno-calendary/eliminar-turno-calendary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -32,7 +36,12 @@ const routes: Routes = [
   { path: 'citas', component: CitasVeterinariosComponent, canActivate: [AuthGuardVet]},
   { path: 'loginvet', component: LoginvetComponent},
   { path: 'register-vet', component: RegistervetComponent},
-  { path: 'turnos', component: TurnoVetComponent}
+  { path: 'turnos', component: TurnoVetComponent},
+  { path: 'turnos-dias-vet', component: TurnosDiasVetComponent},
+  { path: 'panel', component: PanelAdminComponent},
+  { path: 'eliminarturno', component: EliminarTurnoComponent},
+  { path: 'eliminarturnocalendary', component: EliminarTurnoCalendaryComponent},
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],

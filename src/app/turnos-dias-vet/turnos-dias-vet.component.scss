@@ -1,0 +1,27 @@
+.page {
+    ion-card {
+        margin-top: 50px;
+        margin-inline: auto;
+        max-width: 500px;
+        padding: 42px;
+    }
+}
+.button-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+.selected {
+    background-color: blue;
+    color: white;
+  }
+  .selectedDia {
+    color: rgb(238, 255, 0);
+
+  }
+  ion-datetime {
+    display: block;
+    margin: 0 auto;
+    color: rgb(94, 180, 214);
+  }
+

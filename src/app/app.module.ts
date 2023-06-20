@@ -26,6 +26,10 @@ import { LoginvetComponent } from './auth-vet/loginvet/loginvet.component';
 import { RegistervetComponent } from './auth-vet/registervet/registervet.component';
 import jwt_decode from 'jwt-decode';
 import { TurnoVetComponent } from './turno-vet/turno-vet.component';
+import { TurnosDiasVetComponent } from './turnos-dias-vet/turnos-dias-vet.component';
+import { PanelAdminComponent } from './panel-admin/panel-admin.component';
+import { EliminarTurnoComponent } from './eliminar-turno/eliminar-turno.component';
+import { EliminarTurnoCalendaryComponent } from './eliminar-turno-calendary/eliminar-turno-calendary.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +44,10 @@ import { TurnoVetComponent } from './turno-vet/turno-vet.component';
     LoginvetComponent,
     RegistervetComponent,
     TurnoVetComponent,
+    TurnosDiasVetComponent,
+    PanelAdminComponent,
+    EliminarTurnoComponent,
+    EliminarTurnoCalendaryComponent,
 
   ],
   imports: [
