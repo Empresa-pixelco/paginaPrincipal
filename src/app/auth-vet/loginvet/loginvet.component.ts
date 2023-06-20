@@ -34,6 +34,7 @@ export class LoginvetComponent {
         const tokenData: any = jwt_decode(data.accesToken);
         console.log(tokenData)
         this.roles = tokenData.aRoles
+        // this.idVeterinario = tokenData.staff._id
         console.log(this.roles)
         console.log(this.idVeterinario)
         if (this.roles.includes('VET')){
@@ -42,7 +43,7 @@ export class LoginvetComponent {
           });
         }
         if (this.roles.includes('ADMIN')){
-          this.router.navigate(['turnos']);
+          this.router.navigate(['panel']);
         }
        } 
        else {

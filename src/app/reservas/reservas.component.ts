@@ -47,8 +47,10 @@ export class ReservasComponent implements OnInit{
     this.codigoCategoriaSeleccionado =   codigoCategoria
     if (this.servicioSeleccionado === servicio) {
       this.servicioSeleccionado = -1;
+      console.log(this.servicioSeleccionado)
     } else {
       this.servicioSeleccionado = servicio;
+      console.log(this.servicioSeleccionado)
     }
   }
   seleccionarSubservicio(subservicio: string): any {

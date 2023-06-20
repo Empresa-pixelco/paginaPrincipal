@@ -2,13 +2,12 @@
   <ion-card>
     <h2 class="mb-2" style="text-align: center;">Selecciona un horario</h2>
     <ion-datetime  presentation="date" [(ngModel)]="fechaSeleccionada" displayFormat="MMMM" pickerFormat="MMMM" disabled="false" (click)="datosPacientes()"></ion-datetime>
-    <div *ngIf="diaTurno">
-      <ion-chip color="success" *ngFor="let hora of horas" [class.selected]="hora === horaSeleccionada" (click)="seleccionarHora(hora)">{{hora}}</ion-chip>
+    <div *ngIf="diaSelecter">
+      <ion-chip color="success" *ngFor="let hora of horarios"  [class.selected]="horarioVet.includes(hora)" (click)="seleccionarHora(hora)">{{hora}}</ion-chip>
     </div>
     <div class="button-container">
-      <ion-button (click)="siguiente()" [disabled]="!horaSeleccionada">Continuar</ion-button>
+      <ion-button (click)="siguiente()" [disabled]="!horarioVet">Guardar</ion-button>
       <ion-button fill="clear" (click)="back()">Atrás</ion-button>
     </div>
   </ion-card>
-</div>
-                                        
+</div>                                      

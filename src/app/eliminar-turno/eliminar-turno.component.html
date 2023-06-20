@@ -1,0 +1,16 @@
+<div class="page">
+    <ion-card>
+      <h2 class="mb-2" style="text-align: center;">Eliminar Turnos</h2>
+      <ion-item *ngFor="let veterinario of veterinarios">
+        <ion-thumbnail slot="start">
+          <img src="assets/logo.jpg">
+        </ion-thumbnail >
+        <ion-label (click)="veterinarioSelected(veterinario.id)" [class.selected]="idSelected === veterinario.id ">
+          <h3>{{ veterinario.nombre }}</h3>
+        </ion-label>
+      </ion-item>
+      <div class="button-container">
+        <ion-button fill="clear" (click)="continuar()">Continuar</ion-button>
+      </div>
+    </ion-card>
+  </div>
