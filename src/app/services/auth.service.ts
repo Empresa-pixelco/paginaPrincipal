@@ -130,4 +130,55 @@ async citas(codigoVeterinario: string): Promise<any> {
     throw new Error('Error al registrar usuario');
   }
 }    
+
+
+async turnosMes(userData: any): Promise<any> {
+  const encryptedData = encrypt(userData);
+  const token = localStorage.getItem('access_toke'); 
+  console.log(encryptedData)
+  const response = await axios.post(`${this.apiUrl}/turno`, encryptedData, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+  console.log(response.data.message) 
+  try {
+      return response;
+  } catch (error) { 
+    throw new Error('Error al registrar usuario');
+  }
+}
+
+
+async obtenerTurnos(idVet: any): Promise<any> {
+  const encryptedData = encrypt(idVet);
+  console.log(encryptedData)
+  const response = await axios.get(`${this.apiUrl}/services/turnos/2PiNETB6CdlKHXJm9b3g/${idVet}/2023/JUNIO`, encryptedData)
+  
+  console.log(response.data) 
+  try {
+      return response;
+  } catch (error) { 
+    throw new Error('Error al registrar usuario');
+  }
+}
+
+async eliminarTurnos(datavet: any, idturno: string): Promise<any> {
+  console.log(idturno)
+  const token = localStorage.getItem('access_toke'); 
+  const encryptedData = encrypt(datavet);
+  const response = await axios.delete(`${this.apiUrl}/turno/${idturno}`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    data: encryptedData
+  });
+  
+  console.log(response) 
+  try {
+      return response;
+  } catch (error) { 
+    throw new Error('Error al registrar usuario');
+  }
+}
 }

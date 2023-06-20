@@ -23,7 +23,6 @@ export class CalendarioComponent {
   mesVet:string| any;
   horaSeleccionada: string| any;
 
-
   constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute, private dataStorageService: StorageService) { }
 
   async ngOnInit() {
@@ -45,6 +44,8 @@ export class CalendarioComponent {
     moment.locale('es');
     //obtener el mes de ionic calendar
     const mesEnEspanol = moment(fecha).format('MMMM').toUpperCase();
+
+    
     this.diaSelecter = fecha.getDate();
     this.mesActual = moment(this.mesActual).format('MMMM').toUpperCase();
 
