@@ -55,9 +55,15 @@ export class ConfirmacionComponent {
     console.log(this.idTurno)
     try{
       const respuesta = this.authService.crearCita(cita,this.idTurno);
-      this.showToast = true;
+      if(!!respuesta){
+        this.showToast = true;
+        alert('Cita agendada')
+      }
+      else{
+        alert()
+      }
     }catch(err){
-        window.alert('cita ya creada')
+        alert('Vuelve a intentarlo')
     }
 
   }

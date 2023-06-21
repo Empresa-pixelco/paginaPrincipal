@@ -1,41 +1,40 @@
 .card-container {
-    max-width: 300px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #42cfd4;
-    border-radius: 5px;
-  }
-  
-  .mb-4 {
-    margin-bottom: 1rem;
-  }
-  
-  button {
-    display: block;
-    width: 100%;
-    margin-bottom: 1rem;
-  }
-  
-  .toast-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    background-color: #007bff;
-    color: #fff;
-    border-radius: 5px;
-    font-size: 14px;
-    transition: opacity 0.3s ease-in-out;
-    opacity: 0;
-    pointer-events: none;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .toast-container.active {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #42cfd4;
+  border-radius: 5px;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+button {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.toast-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 14px;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.toast-container.active {
+  opacity: 1;
+  pointer-events: auto;
+}
