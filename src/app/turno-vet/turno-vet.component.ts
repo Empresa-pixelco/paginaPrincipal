@@ -43,14 +43,14 @@ export class TurnoVetComponent {
       this.router.navigate(['turnos-dias-vet'])
     } catch (error) { 
       alert('Mes con turno ya han sido creados, ahora debes asignar los horarios por dia');
-      this.router.navigate(['turnos-dias-vet'])
+      this.router.navigate(['turnos-dias-vet'],{
+        queryParams: { idVet: this.idSelected }, // Pasa el parámetro como queryParams
+      });
       throw new Error('Error al registrar usuario');
     }
     // Lógica para volver a la página anterior o realizar alguna acción específica al hacer clic en "Volver"
     // Puedes implementar aquí la funcionalidad específica que necesites
   }
-
-
 
   veterinarioSelected(id: string){
       this.idSelected = id;

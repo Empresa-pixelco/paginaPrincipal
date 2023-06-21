@@ -34,10 +34,10 @@ export class LoginvetComponent {
         const tokenData: any = jwt_decode(data.accesToken);
         console.log(tokenData)
         this.roles = tokenData.aRoles
-        // this.idVeterinario = tokenData.staff._id
         console.log(this.roles)
         console.log(this.idVeterinario)
         if (this.roles.includes('VET')){
+          this.idVeterinario = tokenData.staff._id
           this.router.navigate(['citas'],{
             queryParams: { idVet: this.idVeterinario }, // Pasa el parámetro como queryParams
           });
