@@ -30,6 +30,7 @@ import { TurnosDiasVetComponent } from './turnos-dias-vet/turnos-dias-vet.compon
 import { PanelAdminComponent } from './panel-admin/panel-admin.component';
 import { EliminarTurnoComponent } from './eliminar-turno/eliminar-turno.component';
 import { EliminarTurnoCalendaryComponent } from './eliminar-turno-calendary/eliminar-turno-calendary.component';
+import { EliminarcitaComponent } from './eliminarcita/eliminarcita.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,7 @@ import { EliminarTurnoCalendaryComponent } from './eliminar-turno-calendary/elim
     PanelAdminComponent,
     EliminarTurnoComponent,
     EliminarTurnoCalendaryComponent,
-
+    EliminarcitaComponent,
   ],
   imports: [
     ReactiveFormsModule,

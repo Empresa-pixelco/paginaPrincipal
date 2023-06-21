@@ -32,9 +32,10 @@ export class TurnosDiasVetComponent {
       this.idVet = params['idVet'];
       console.log('Código vet:', this.idVet);
     })
+
     const respuesta = await this.authService.obtenerTurnos(this.idVet)
-    console.log(respuesta.data.id)
     this.idTurno = respuesta.data.id
+    console.log(this.idTurno)
   }
 
   datosPacientes() {
@@ -77,6 +78,7 @@ export class TurnosDiasVetComponent {
           }
       ]
     }
+    console.log(this.idTurno)
     try{
       const respuesta = this.authService.TurnoPorDia(data, this.idTurno)
       console.log(respuesta)
