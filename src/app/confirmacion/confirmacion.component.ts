@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { StorageService } from '../services/storage.service';
 import { AuthService } from '../services/auth.service';
+import * as moment from 'moment';
 
 @Component({
   standalone: true,
@@ -17,7 +18,9 @@ export class ConfirmacionComponent {
   nombreveterinario: string | undefined;
   horaAtencion: string | undefined;
   showToast: boolean = false;
-
+  diaCita: any
+  mesActual: any;
+  idTurno: string | any;
   constructor(private dataStorageService: StorageService, private authService: AuthService) {}
 
   ngOnInit() {
@@ -26,15 +29,36 @@ export class ConfirmacionComponent {
     this.servicio = this.dataStorageService.getnombreServicioSeleccionado()
     this.nombreveterinario = this.dataStorageService.getnombreVeterinarioSeleccionado()
     this.horaAtencion = this.dataStorageService.getHoraSeleccionado()
+    const fecha = new Date();
+    this.diaCita = this.dataStorageService.getDiaSeleccionado()
+    this.idTurno = this.dataStorageService.getTurnoSeleccionado()
+    //dejar la fecha en espanol
+    moment.locale('es');
+    //obtener el mes de ionic calendar
+    this.mesActual = moment(fecha).format('MMMM')
     // Si deseas mostrar los datos de otras vistas, puedes obtenerlos de manera similar usando los métodos correspondientes del servicio
     console.log(this.datosPaciente) 
   }
 
   agendar() {
-    if (!this.authService.checkAuthentication()) {
-      console.log('Debe estar autenticado para confirmar la reserva.');
-      return;
+    const cita= {
+      "servicio": this.servicio,
+      "dia": this.diaCita,
+      "hora": this.horaAtencion,
+      "paciente": {
+        "nombre": this.datosPaciente.nombreMascota,
+        "especie": this.datosPaciente.especie,
+        "sexo": this.datosPaciente.sexo,
+      }
     }
-    this.showToast = true;
+    console.log(cita)
+    console.log(this.idTurno)
+    try{
+      const respuesta = this.authService.crearCita(cita,this.idTurno);
+      this.showToast = true;
+    }catch(err){
+        window.alert('cita ya creada')
+    }
+
   }
 }

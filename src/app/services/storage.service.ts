@@ -9,23 +9,25 @@ export class StorageService {
   private veterinario: string | undefined;
   private horaSelecionada: string | undefined;
   private token: string | undefined;
+  private diaCita: string | undefined;
+  private idTurno: string | undefined;
   // Agrega otras variables privadas para almacenar los datos de las otras vistas
 
   constructor() {}
 
   setDatosPaciente(datos: any): void {
     this.datosPaciente = datos;
-    console.log(this.datosPaciente)
+
   }
 
   getDatosPaciente(): any {
     return this.datosPaciente;
-    console.log(this.datosPaciente)
+
   }
 
   setnombreServicioSeleccionado(servicio: string): void {
     this.nombreServicio = servicio;
-    console.log(this.nombreServicio)
+
   }
 
   getnombreServicioSeleccionado(): any {
@@ -34,7 +36,7 @@ export class StorageService {
 
   setnombreVeterinarioSeleccionado(veterinario: string): void {
     this.veterinario = veterinario;
-    console.log(this.nombreServicio)
+
   }
 
   getnombreVeterinarioSeleccionado(): any {
@@ -43,19 +45,26 @@ export class StorageService {
 
   setHoraSeleccionado(hora: string): void {
     this.horaSelecionada = hora;
-    console.log(this.nombreServicio)
+
   }
 
   getHoraSeleccionado(): any {
     return this.horaSelecionada;
   }
 
-  setToken(token: string): void {
-    this.token = token;
-    console.log(this.nombreServicio)
+  setDiaSeleccionado(dia: string): void {
+    this.diaCita = dia;
   }
 
-  getToken(): any {
-    return this.token;
+  getDiaSeleccionado(): any {
+    return this.diaCita;
+  }
+
+  setTurnoSeleccionado(turno: string): void {
+    this.idTurno = turno;
+  }
+
+  getTurnoSeleccionado(): any {
+    return this.idTurno;
   }
 }
