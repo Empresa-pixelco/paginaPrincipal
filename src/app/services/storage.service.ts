@@ -11,6 +11,7 @@ export class StorageService {
   private token: string | undefined;
   private diaCita: string | undefined;
   private idTurno: string | undefined;
+  private horarioServicio: any | undefined;
   // Agrega otras variables privadas para almacenar los datos de las otras vistas
 
   constructor() {}
@@ -66,5 +67,13 @@ export class StorageService {
 
   getTurnoSeleccionado(): any {
     return this.idTurno;
+  }
+
+  setHorarioServicioSeleccionado(horarioServicio:any): void {
+    this.horarioServicio = horarioServicio;
+  }
+
+  getHorarioServicioSeleccionado(): any {
+    return this.horarioServicio;
   }
 }
