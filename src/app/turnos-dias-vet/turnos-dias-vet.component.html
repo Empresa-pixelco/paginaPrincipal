@@ -4,9 +4,11 @@
     <ion-datetime  presentation="date" [(ngModel)]="fechaSeleccionada" displayFormat="MMMM" pickerFormat="MMMM" disabled="false" (click)="datosPacientes()"></ion-datetime>
     <div *ngIf="diaSelecter">
       <ion-chip color="success" *ngFor="let hora of horarios"  [class.selected]="horarioVet.includes(hora)" (click)="seleccionarHora(hora)">{{hora}}</ion-chip>
+      <p>Horarios Especiales</p>
+      <ion-chip color="success" *ngFor="let hora of horariosEspeciales"  [class.selected]="horarioVet.includes(hora)" (click)="seleccionarHora(hora)">{{hora}}</ion-chip>
     </div>
     <div class="button-container">
-      <ion-button (click)="siguiente()" [disabled]="!horarioVet">Guardar</ion-button>
+      <ion-button (click)="guardar()">Guardar</ion-button>
       <ion-button fill="clear" (click)="back()">Atrás</ion-button>
     </div>
   </ion-card>

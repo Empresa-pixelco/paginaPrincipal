@@ -181,4 +181,45 @@ async eliminarTurnos(datavet: any, idturno: string): Promise<any> {
     throw new Error('Error al registrar usuario');
   }
 }
+
+
+async crearCita(dataCita: any, idturno: string): Promise<any> {
+  console.log(idturno)
+  const token = localStorage.getItem('access_t'); 
+  const encryptedData = encrypt(dataCita);
+  console.log(encryptedData)
+  const response = await axios.post(`${this.apiUrl}/date/${idturno}`,encryptedData, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    
+  });
+  
+  console.log(response) 
+  try {
+      return response;
+  } catch (error) { 
+    throw new Error('Error al registrar usuario');
+  }
+}
+
+async TurnoPorDia(dataDia: any, idturno: string): Promise<any> {
+  console.log(idturno)
+  const token = localStorage.getItem('access_toke'); 
+  const encryptedData = encrypt(dataDia);
+  console.log(encryptedData)
+  const response = await axios.patch(`${this.apiUrl}/turno/${idturno}`,encryptedData, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+    
+  });
+  
+  console.log(response) 
+  try {
+      return response;
+  } catch (error) { 
+    throw new Error('Error al registrar usuario');
+  }
+}
 }
