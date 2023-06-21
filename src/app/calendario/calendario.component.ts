@@ -74,17 +74,16 @@ export class CalendarioComponent {
     )[0];
     console.log(this.diaTurno);
 
-    if (this.servicio) {
+    if(this.servicio) {
       // Filtrar los horarios según el servicio seleccionado y obtener las horas correspondientes
+      console.log(this.servicio)
       this.horas = this.diaTurno.horarios
         .filter(
           (horario: Horario) => horario.enable && horario.hora == this.servicio.duracion
         )
         .map((horario: Horario) => horario.hora);
       console.log(this.horas);
-    }
-
-    if (this.ecografia) {
+    } else if  (this.ecografia == 'Ecografia') {
       // Filtrar los horarios según la ecografía seleccionada y obtener las horas correspondientes
       this.horas = this.diaTurno.horarios
         .filter((horario: Horario) => horario.enable && horario.hora !== '14:00 a 16:00')
@@ -97,7 +96,8 @@ export class CalendarioComponent {
         return horaA.getTime() - horaB.getTime();
       });
       console.log(this.horas);
-    } else {
+    }
+    else{
       // Filtrar los horarios y obtener las horas correspondientes
       this.horas = this.diaTurno.horarios
         .filter((horario: Horario) => horario.enable && horario.hora !== '14:00 a 16:00')
@@ -128,7 +128,7 @@ export class CalendarioComponent {
     const siguienteHora = siguienteHoraMoment.format('HH:mm');
     console.log(siguienteHora);
 
-    if (this.ecografia) {
+    if (this.ecografia  == 'Ecografia') {
       // Filtrar las horas y eliminar la siguiente hora de la lista
       this.horas = this.horas.filter((hora: string) => hora !== siguienteHora);
     }
