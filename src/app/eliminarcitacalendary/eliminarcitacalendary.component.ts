@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { StorageService } from '../services/storage.service';
 import * as moment from 'moment';
+import { AuthService } from '../services/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { StorageService } from '../services/storage.service';
+
 @Component({
-  selector: 'app-citas-veterinarios',
-  templateUrl: './citas-veterinarios.component.html',
-  styleUrls: ['./citas-veterinarios.component.scss']
+  selector: 'app-eliminarcitacalendary',
+  templateUrl: './eliminarcitacalendary.component.html',
+  styleUrls: ['./eliminarcitacalendary.component.scss']
 })
-export class CitasVeterinariosComponent {
+export class EliminarcitacalendaryComponent {
   iVet: string | any;
   filteredCitas: any
   horaCita: any | any
@@ -23,17 +24,17 @@ export class CitasVeterinariosComponent {
   dataCita: any | any;
   diaSelecter: any | any;
   fechaSeleccionada: any | undefined;
+  idCitaSeleccionada: any
   constructor(private router: Router, private authService: AuthService,  private dataStorageService: StorageService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe( async params => {
-      this.iVet = params['idVet'];
+      this.iVet = params['idSelected'];
       console.log('Código de categoría recibido:', this.iVet);
 
       const data: any = await this.authService.citas(this.iVet);
       this.dataCita = data.data
       console.log(this.dataCita)
-      localStorage.setItem('access_token', data.accesToken)
     })
   }
 
@@ -55,13 +56,29 @@ export class CitasVeterinariosComponent {
 
  }
 
-  
 
   filtrarCitas() {
     // Implementa el código para filtrar las citas por la fecha seleccionada
   }
-
   volver() {
-    this.router.navigate(['panel'])
+    this.router.navigate(['panel'])  
+  }
+  async seleccionarcita(idVet: string){
+    if (this.idCitaSeleccionada === idVet) {
+      this.idCitaSeleccionada = ''
+    
+      console.log(this.idCitaSeleccionada)
+    }else{
+      this.idCitaSeleccionada = idVet
+    }
+  }
+  async borrar(){
+      const res = window.confirm('seguro que quieres eliminar este dia con turno?')
+      console.log(res)
+      if(res){
+
+        const respuesta = await this.authService.borrarCita(this.idCitaSeleccionada)
+        console.log('borrada con exito')
+      } 
   }
 }

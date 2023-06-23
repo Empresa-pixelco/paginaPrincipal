@@ -19,4 +19,8 @@ export class PanelAdminComponent {
   eliminar(){
     this.router.navigate(['eliminarturno'])
   }
+  eliminarcita(){
+    this.router.navigate(['eliminarcita'])
+
+  }
 }
