@@ -149,7 +149,6 @@ async turnosMes(userData: any): Promise<any> {
   }
 }
 
-
 async obtenerTurnos(idVet: any): Promise<any> {
   const encryptedData = encrypt(idVet);
   console.log(encryptedData)
@@ -222,4 +221,24 @@ async TurnoPorDia(dataDia: any, idturno: string): Promise<any> {
     throw new Error('Error al registrar usuario');
   }
 }
+
+async borrarCita(idCita: string): Promise<any> {
+  console.log(idCita);
+  const token = localStorage.getItem('access_toke');
+  console.log(token);
+
+  try {
+    const response = await axios.post(`${this.apiUrl}/date/cancel/${idCita}`, null, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    console.log(response);
+    return response;
+  } catch (error) {
+    throw new Error('Error al cancelar la cita');
+  }
+}
+
 }
