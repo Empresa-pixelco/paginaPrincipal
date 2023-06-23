@@ -21,6 +21,8 @@ import { TurnosDiasVetComponent } from './turnos-dias-vet/turnos-dias-vet.compon
 import { PanelAdminComponent } from './panel-admin/panel-admin.component';
 import { EliminarTurnoComponent } from './eliminar-turno/eliminar-turno.component';
 import { EliminarTurnoCalendaryComponent } from './eliminar-turno-calendary/eliminar-turno-calendary.component';
+import { EliminarcitaComponent } from './eliminarcita/eliminarcita.component';
+import { EliminarcitacalendaryComponent } from './eliminarcitacalendary/eliminarcitacalendary.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/main', pathMatch: 'full' },
@@ -41,7 +43,8 @@ const routes: Routes = [
   { path: 'panel', component: PanelAdminComponent},
   { path: 'eliminarturno', component: EliminarTurnoComponent},
   { path: 'eliminarturnocalendary', component: EliminarTurnoCalendaryComponent},
-
+  { path: 'eliminarcita', component: EliminarcitaComponent},
+  { path: 'eliminarcitacalendary', component: EliminarcitacalendaryComponent},
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],

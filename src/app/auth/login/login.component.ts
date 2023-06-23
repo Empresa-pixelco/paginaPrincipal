@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {NgForm} from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { StorageService } from '../../services/storage.service';
 
 @Component({
   standalone: false,
@@ -17,11 +18,12 @@ export class LoginComponent implements OnInit {
   email: string | any;
   password: string | any;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private dataStorage: StorageService) { }
 
   ngOnInit() {}
 
   login() {
+    this.dataStorage.setCorreoSeleccionado(this.email)
     const user = {
       email: this.email,
       password: this.password

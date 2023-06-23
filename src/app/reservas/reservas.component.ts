@@ -3,9 +3,10 @@ import { Component, inject, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+// import { emailService } from 'src/app/services/email.service';
+
 import { Categoria } from '../interfaces/categorias.model';
 import { StorageService } from '../services/storage.service';
-
 @Component({
   standalone: true,
   imports: [CommonModule, IonicModule],
@@ -35,6 +36,7 @@ export class ReservasComponent implements OnInit{
       });
     });
 }
+
   continuar() { 
     this.router.navigate(['veterinario-service'],{
       queryParams: { codigoCategoria: this.codigoCategoriaSeleccionado }, // Pasa el parámetro como queryParams

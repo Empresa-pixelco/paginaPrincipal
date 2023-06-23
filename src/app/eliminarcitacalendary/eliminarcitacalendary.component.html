@@ -1,0 +1,45 @@
+<div class="page">
+    <ion-card>
+      <ion-card-header>
+        <h2 class="card-title">Citas Asignadas</h2>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-datetime presentation="date" [(ngModel)]="fechaSeleccionada" (click)="datosCita()"></ion-datetime>
+        <div *ngFor="let cita of filteredCitas" class="cita-details" >
+          <div class="colorear" (click)="seleccionarcita(cita.id)" [class.selected]="cita.id === idCitaSeleccionada"> 
+          <div class="cita-info">
+            <h3 class="cita-label">Hora:</h3>
+            <p class="cita-value">{{ cita.hora }}</p>
+          </div>
+          <div class="cita-info">
+            <h3 class="cita-label">Veterinario:</h3>
+            <p class="cita-value">{{ cita.staff }}</p>
+          </div>
+          <div class="cita-info">
+            <h3 class="cita-label">Servicio:</h3>
+            <p class="cita-value">{{ cita.servicio }}</p>
+          </div>
+          <div class="cita-info">
+            <h3 class="cita-label">Paciente:</h3>
+            <p class="cita-value">{{ cita.paciente.nombre }}</p>
+          </div>
+          <div class="cita-info">
+            <h3 class="cita-label">Especie:</h3>
+            <p class="cita-value">{{ cita.paciente.especie }}</p>
+          </div>
+          <div class="cita-info">
+            <h3 class="cita-label">Sexo:</h3>
+            <p class="cita-value">{{ cita.paciente.sexo }}</p>
+          </div>
+        </div>
+        </div>
+      </ion-card-content>
+      <div class="button-container">
+        <ion-button class="boton-rojo" (click)="borrar()" >Borrar Cita</ion-button>
+        <br>
+        <br>
+        <ion-button fill="clear" (click)="volver()">Atrás</ion-button>
+      </div>
+    </ion-card>
+  </div>
+  

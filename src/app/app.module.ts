@@ -31,6 +31,7 @@ import { PanelAdminComponent } from './panel-admin/panel-admin.component';
 import { EliminarTurnoComponent } from './eliminar-turno/eliminar-turno.component';
 import { EliminarTurnoCalendaryComponent } from './eliminar-turno-calendary/eliminar-turno-calendary.component';
 import { EliminarcitaComponent } from './eliminarcita/eliminarcita.component';
+import { EliminarcitacalendaryComponent } from './eliminarcitacalendary/eliminarcitacalendary.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { EliminarcitaComponent } from './eliminarcita/eliminarcita.component';
     EliminarTurnoComponent,
     EliminarTurnoCalendaryComponent,
     EliminarcitaComponent,
+    EliminarcitacalendaryComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -65,7 +67,8 @@ import { EliminarcitaComponent } from './eliminarcita/eliminarcita.component';
     IonicModule.forRoot(),
   ],
   providers: [
-    { provide: AuthService, useClass: AuthService },
+    { provide: AuthService, useClass: AuthService},
+
     {
       provide: CryptoJS,
       useValue: CryptoJS
