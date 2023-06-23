@@ -74,7 +74,7 @@
 
 
 
-/* Estilos para la sección servicios*/
+/* Estilos para la sección servicios */
 .seccion-animales {
   background-color: #7bd7db;
   padding: 50px;
@@ -98,11 +98,9 @@
   /* Ajusta el ancho de los slices según tu preferencia */
   text-align: center;
   padding: 20px;
-  background-color: #ffffff;
-  /* Color calipso */
+  background-color: #ffffff; /* Color calipso */
   margin-right: 10px;
-  border-radius: 10px;
-  /* Añade el border-radius para hacer los cards más redondos */
+  border-radius: 10px; /* Añade el border-radius para hacer los cards más redondos */
 }
 
 .slice img {
@@ -112,40 +110,44 @@
   object-fit: cover;
   margin-bottom: 20px;
 }
+
 @keyframes desplazamiento-slices {
   0% {
     transform: translateX(0);
   }
-
   100% {
     transform: translateX(-80%);
   }
 }
 
-
-
 @media screen and (max-width: 768px) {
-  /* Agrega las reglas CSS para dispositivos móviles aquí  */
-  .slice img {
-  width: 800%;
-  // Agrega esta línea para establecer la altura
-  height: 70px; 
-  object-fit: cover;
-  margin-bottom: 1px;
+  /* Agrega las reglas CSS para dispositivos móviles aquí */
+  .slice {
+    flex: 0 0 33.33%; /* Ajusta el ancho de los slices para dispositivos móviles */
+    padding: 20px; /* Ajusta el padding de los slices para dispositivos móviles */
   }
+  
+  .slice img {
+    width: 300%;
+    height: 50%; /* Cambia la altura a auto para mantener la proporción de las imágenes */
+    max-height: 300px; /* Ajusta la altura máxima de las imágenes para dispositivos móviles */
+  }
+
   .slices-container {
     animation: desplazamiento-slices-mobile 10s infinite;
+  }
+
   @keyframes desplazamiento-slices-mobile {
     0% {
       transform: translateX(0);
     }
-  
     100% {
-      transform: translateX(-220%);
+      transform: translateX(-300%);
     }
   }
 }
-}
+
+
 
 // seccion nosotros
 .nosotros-container {
