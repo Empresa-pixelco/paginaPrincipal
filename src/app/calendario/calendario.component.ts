@@ -34,8 +34,9 @@ export class CalendarioComponent implements OnInit {
 
   async ngOnInit() {
     this.servicio = this.dataStorageService.getHorarioServicioSeleccionado();
+
     this.ecografia = this.dataStorageService.getnombreServicioSeleccionado();
-    console.log()
+    console.log(this.servicio)
     this.route.queryParams.subscribe(async (params) => {
       const codigoCategoria = params['codigoCategoria'];
       console.log('Código de vetrinario recibido:', codigoCategoria);
@@ -44,13 +45,20 @@ export class CalendarioComponent implements OnInit {
       this.tsveterinarios = data;
       this.idTurno = data.id;
       this.dataStorageService.setTurnoSeleccionado(this.idTurno);
-      const diasConHorarios = this.tsveterinarios.dias.map((dia: Dia) => dia.dia);
       if (this.servicio){
-        window.alert('Días con horarios disponibles: ' + diasConHorarios);
+        const diasConHorarios = this.tsveterinarios.dias.filter((dia: Dia) => {
+          return dia.horarios.some((horario: Horario) => horario.hora === this.servicio.duracion && horario.enable)
+        });
+        const dias = diasConHorarios.map((horario: any) => horario.dia)
+        window.alert('Días con horarios disponibles: ' + dias);
+      
       }else if (this.ecografia == 'Ecografia'){
-        window.alert('Días con horarios disponibles: ' + diasConHorarios);
+        const diaTurno = this.tsveterinarios.dias.filter(
+          (dia: Dia) => dia.dia
+        )[0];
+        window.alert('Días con horarios disponibles: ' + diaTurno);
       }else{
-        window.alert('Días con horarios disponibles: ' + diasConHorarios);
+        window.alert('Días con horarios disponibles: ');
       }
       
     });
@@ -68,12 +76,11 @@ export class CalendarioComponent implements OnInit {
 
     this.diaSelecter = fecha.getDate();
     this.mesActual = moment(this.mesActual).format('MMMM').toUpperCase();
-    console.log(this.tsveterinarios)
     // Filtrar el objeto diaTurno según el día seleccionado y el mes actual
     this.diaTurno = this.tsveterinarios.dias.filter(
       (dia: Dia) => dia.dia == this.diaSelecter && mesEnEspanol == this.tsveterinarios.mes
     )[0];
-
+    console.log(this.diaTurno)
     // Determinar si el día tiene turnos o no
     const tieneTurnos = this.tieneTurnos(this.diaTurno);
 
@@ -81,6 +88,7 @@ export class CalendarioComponent implements OnInit {
     this.diaSelecterClass = tieneTurnos ? '' : 'day-without-turns';
 
     if (this.servicio) {
+
       // Filtrar los horarios según el servicio seleccionado y obtener las horas correspondientes
       console.log(this.diaTurno)
       this.horas = this.diaTurno.horarios
@@ -88,6 +96,39 @@ export class CalendarioComponent implements OnInit {
           (horario: Horario) => horario.enable && horario.hora == this.servicio.duracion
         )
         .map((horario: Horario) => horario.hora);
+
+      console.log(this.horas)
+      const fechaActual = new Date();
+      
+      const horaActual = fechaActual.getHours();
+      console.log(horaActual);
+      
+      const minutosActual = fechaActual.getMinutes();
+      console.log(minutosActual);
+      
+      const diaActual = fechaActual.getDate();
+      console.log(diaActual);
+      
+      const horasInferiores = this.horas.filter((hora: string) => {
+        const horasEnTurno = hora.split('a');
+        const [horas, minutos] = horasEnTurno[0].split(':');
+        console.log(horas);
+        console.log(minutos);
+        const minutosTotalesTurno = parseInt(horas) * 60 + parseInt(minutos);
+        const minutosTotalesActual = horaActual * 60 + minutosActual;
+        console.log()
+        console.log(minutosTotalesTurno, minutosTotalesActual)
+        return minutosTotalesActual > minutosTotalesTurno;
+      });
+      
+      console.log(horasInferiores);
+
+      if (horasInferiores.length > 0 && diaActual >= this.diaSelecter) {
+        window.alert('Solo hay horas anteriores a la hora actual. Por favor, selecciona una fecha y hora válidas.');
+        this.horas = ''
+        return;
+      }
+    
       
     } else if (this.ecografia == 'Ecografia') {
       // Filtrar los horarios según la ecografía seleccionada y obtener las horas correspondientes
