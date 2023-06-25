@@ -80,10 +80,11 @@ export class TurnosDiasVetComponent {
     console.log(this.idTurno)
     try{
       const respuesta = this.authService.TurnoPorDia(data, this.idTurno)
+      window.alert('turnos asignados');
       console.log(respuesta)
     }catch(eerr){
       console.log(eerr)
-      alert('ya hay horarios asignados')
+      window.alert('ya hay turnos asignados');
     }
   }
 
