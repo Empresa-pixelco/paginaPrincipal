@@ -24,6 +24,7 @@ export class CalendarioComponent implements OnInit {
   servicio: any | any;
   ecografia: any | any;
   diaSelecterClass: string = '';
+  ConHorarios: any
 
   constructor(
     private router: Router,
@@ -33,6 +34,9 @@ export class CalendarioComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
+    const fechaActual = new Date();
+    const diaActual = fechaActual.getDate();
+
     this.servicio = this.dataStorageService.getHorarioServicioSeleccionado();
 
     this.ecografia = this.dataStorageService.getnombreServicioSeleccionado();
@@ -45,6 +49,14 @@ export class CalendarioComponent implements OnInit {
       this.tsveterinarios = data;
       this.idTurno = data.id;
       this.dataStorageService.setTurnoSeleccionado(this.idTurno);
+      
+      const diasEnables = this.tsveterinarios.dias.filter((dia: Dia) => {
+        return dia.horarios.some((horario: Horario) => horario.enable && horario.hora !== '14:00 a 16:00')
+      });
+      console.log(diasEnables)
+      this.ConHorarios = diasEnables.filter((horarios: any) => diaActual <= horarios.dia)
+      .map((horarios: any) => horarios.dia);
+      console.log(this.ConHorarios)
       if (this.servicio){
         const diasConHorarios = this.tsveterinarios.dias.filter((dia: Dia) => {
           return dia.horarios.some((horario: Horario) => horario.hora === this.servicio.duracion && horario.enable)
@@ -52,13 +64,8 @@ export class CalendarioComponent implements OnInit {
         const dias = diasConHorarios.map((horario: any) => horario.dia)
         window.alert('Días con horarios disponibles: ' + dias);
       
-      }else if (this.ecografia == 'Ecografia'){
-        const diaTurno = this.tsveterinarios.dias.filter(
-          (dia: Dia) => dia.dia
-        )[0];
-        window.alert('Días con horarios disponibles: ' + diaTurno);
       }else{
-        window.alert('Días con horarios disponibles: ');
+        window.alert('Días con horarios disponibles: ' + this.ConHorarios);
       }
       
     });
@@ -88,26 +95,23 @@ export class CalendarioComponent implements OnInit {
     this.diaSelecterClass = tieneTurnos ? '' : 'day-without-turns';
 
     if (this.servicio) {
-
-      // Filtrar los horarios según el servicio seleccionado y obtener las horas correspondientes
-      console.log(this.diaTurno)
-      this.horas = this.diaTurno.horarios
-        .filter(
-          (horario: Horario) => horario.enable && horario.hora == this.servicio.duracion
-        )
-        .map((horario: Horario) => horario.hora);
-
-      console.log(this.horas)
       const fechaActual = new Date();
-      
       const horaActual = fechaActual.getHours();
-      console.log(horaActual);
       
       const minutosActual = fechaActual.getMinutes();
-      console.log(minutosActual);
       
       const diaActual = fechaActual.getDate();
-      console.log(diaActual);
+      console.log(diaActual, this.diaSelecter);
+      
+      // Filtrar los horarios según el servicio seleccionado y obtener las horas correspondientes
+      console.log(this.diaTurno);
+      this.horas = this.diaTurno.horarios.filter(
+        (horario: Horario) =>
+          horario.enable && horario.hora === this.servicio.duracion
+          // && diaActual <= this.diaSelecter
+          ).map((horario: Horario) => horario.hora);
+
+      console.log(this.horas);      
       
       const horasInferiores = this.horas.filter((hora: string) => {
         const horasEnTurno = hora.split('a');
@@ -131,11 +135,18 @@ export class CalendarioComponent implements OnInit {
     
       
     } else if (this.ecografia == 'Ecografia') {
+      console.log(this.diaTurno)
+      const fechaActual = new Date();
+      const diaActual = fechaActual.getDate();
+      console.log(diaActual);
+
+      console.log(this.diaSelecter, diaActual)
       // Filtrar los horarios según la ecografía seleccionada y obtener las horas correspondientes
       this.horas = this.diaTurno.horarios
-        .filter((horario: Horario) => horario.enable && horario.hora !== '14:00 a 16:00')
+        .filter((horario: Horario) => {horario.enable && horario.hora !== '14:00 a 16:00' 
+                                       && diaActual >= this.diaSelecter})
         .map((horario: Horario) => horario.hora);
-
+      console.log(this.horas)
       // Ordenar las horas de forma ascendente
       this.horas.sort((a: any, b: any) => {
         const horaA = new Date(`2000-01-01T${a}`);
@@ -143,11 +154,15 @@ export class CalendarioComponent implements OnInit {
         return horaA.getTime() - horaB.getTime();
       });
     } else {
+      const fechaActual = new Date();
+      const diaActual = fechaActual.getDate();
+      console.log(diaActual);
       // Filtrar los horarios y obtener las horas correspondientes
       this.horas = this.diaTurno.horarios
-        .filter((horario: Horario) => horario.enable && horario.hora !== '14:00 a 16:00')
+        .filter((horario: Horario) => {horario.enable && horario.hora !== '14:00 a 16:00'
+                                      && diaActual >= this.diaSelecter})
         .map((horario: Horario) => horario.hora);
-    }
+      }
   }
 
   tieneTurnos(dia: Dia): boolean {
