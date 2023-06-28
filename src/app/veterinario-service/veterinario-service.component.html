@@ -14,6 +14,6 @@
         </ion-label>
       </ion-item>
     </ion-list>
-    <ion-button expand="block" (click)="continuar()">Continuar</ion-button>
+    <ion-button expand="block" (click)="continuar()" [disabled]="!codigoVeterinario">Continuar</ion-button>
   </ion-card-content>
 </ion-card>
