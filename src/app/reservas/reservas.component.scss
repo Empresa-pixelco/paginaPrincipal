@@ -1,13 +1,11 @@
-  ion-card {
-      margin-top: 50px;
-      margin-inline: auto;
-      max-width: 500px;
-      padding: 42px;
-  }
+.card {
+  margin-top: 50px;
+  margin-inline: auto;
+  max-width: 500px;
+  padding: 42px;
+}
 
-
-  .selected {
-    background-color: rgb(62, 139, 211);
-    color: white;
-  }
-  
+.selected {
+  background-color: rgb(62, 139, 211);
+  color: white;
+}

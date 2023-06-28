@@ -10,7 +10,7 @@ export const AuthGuardVet = () => {
     return true; // El usuario tiene permiso para activar la ruta
   } else {
     // El usuario no está autenticado, redirigir al componente de inicio de sesión
-    router.navigate(['loginVet']);
+    router.navigate(['loginvet']);
     return false;
   }
 };
