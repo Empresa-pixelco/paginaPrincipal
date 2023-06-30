@@ -179,9 +179,9 @@ export class CalendarioComponent implements OnInit {
         const minutosTotalesTurno = parseInt(hor) * 60 + parseInt(minutos);
         const minutosTotalesActual = horaActual * 60 + minutosActual;
         console.log(minutosTotalesTurno, minutosTotalesActual)
-        return minutosTotalesActual > minutosTotalesTurno && horario.enable 
+        return minutosTotalesActual < minutosTotalesTurno && horario.enable 
                && horario.hora !== '14:00 a 16:00'
-               && diaActual >= this.diaSelecter;
+               && diaActual <= this.diaSelecter;
       }).map((horario: Horario) => horario.hora);
       console.log(this.horas )
       // this.horas = this.diaTurno.horarios
