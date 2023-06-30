@@ -64,7 +64,6 @@ export class CalendarioComponent implements OnInit {
       console.log(diasHabilitados)
       this.ConHorarios = diasHabilitados.filter((horarios: any) => diaActual <= horarios.dia)
         .map((horarios: any) => horarios.dia);
-      console.log(this.ConHorarios)
 
       if (this.servicio) {
         // Filtrar los días con horarios correspondientes al servicio seleccionado
@@ -82,6 +81,7 @@ export class CalendarioComponent implements OnInit {
 
   // Método para obtener los datos de los pacientes
   datosPacientes() {
+    console.log('hola')
     // Obtener la fecha de Ionic Calendar
     const fecha = new Date(this.fechaSeleccionada);
 
@@ -95,6 +95,7 @@ export class CalendarioComponent implements OnInit {
     this.mesActual = moment(this.mesActual).format('MMMM').toUpperCase();
 
     // Filtrar el objeto diaTurno según el día seleccionado y el mes actual
+    console.log(this.tsveterinarios)
     this.diaTurno = this.tsveterinarios.dias.filter(
       (dia: Dia) => dia.dia == this.diaSelecter && mesEnEspanol == this.tsveterinarios.mes
     )[0];
@@ -107,6 +108,7 @@ export class CalendarioComponent implements OnInit {
     this.diaSelecterClass = tieneTurnos ? '' : 'day-without-turns';
 
     if (this.servicio) {
+      console.log('peluqueria')
       const fechaActual = new Date();
       const horaActual = fechaActual.getHours();
       const minutosActual = fechaActual.getMinutes();
@@ -121,7 +123,7 @@ export class CalendarioComponent implements OnInit {
           // && diaActual <= this.diaSelecter
       ).map((horario: Horario) => horario.hora);
 
-      console.log(this.horas);
+      
 
       const horasInferiores = this.horas.filter((hora: string) => {
         const horasEnTurno = hora.split('a');
@@ -142,6 +144,7 @@ export class CalendarioComponent implements OnInit {
         return;
       }
     } else if (this.ecografia == 'Ecografia') {
+      console.log('Ecografia')
       console.log(this.diaTurno)
       const fechaActual = new Date();
       const diaActual = fechaActual.getDate();
@@ -161,14 +164,32 @@ export class CalendarioComponent implements OnInit {
         return horaA.getTime() - horaB.getTime();
       });
     } else {
+      console.log('otros')
+      console.log('peluqueria')
       const fechaActual = new Date();
+      const horaActual = fechaActual.getHours();
+      const minutosActual = fechaActual.getMinutes();
       const diaActual = fechaActual.getDate();
-      console.log(diaActual);
+      console.log(diaActual, this.diaSelecter);
       // Filtrar los horarios y obtener las horas correspondientes
-      this.horas = this.diaTurno.horarios
-        .filter((horario: Horario) => {horario.enable && horario.hora !== '14:00 a 16:00'
-                                      && diaActual >= this.diaSelecter})
-        .map((horario: Horario) => horario.hora);
+      this.horas = this.diaTurno.horarios.filter((horario: Horario) => {
+        const [horas, minutos] = horario.hora.split(':');
+        console.log(horas);
+        console.log(minutos);
+        const minutosTotalesTurno = parseInt(horas) * 60 + parseInt(minutos);
+        const minutosTotalesActual = horaActual * 60 + minutosActual;
+        console.log(minutosTotalesTurno, minutosTotalesActual)
+        return minutosTotalesActual < minutosTotalesTurno && horario.enable 
+               && horario.hora !== '14:00 a 16:00'
+               && diaActual >= this.diaSelecter
+               && diaActual >= this.diaSelecter;
+      }).map((horario: Horario) => horario.hora);
+      console.log(this.horas )
+      // this.horas = this.diaTurno.horarios
+      //   .filter((horario: Horario) => horario.enable && horario.hora !== '14:00 a 16:00'
+      //                                 && diaActual >= this.diaSelecter)
+      //   .map((horario: Horario) => horario.hora);
+      
     }
   }
 

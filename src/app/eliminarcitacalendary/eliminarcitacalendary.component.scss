@@ -1,9 +1,11 @@
+//margen con el footer
 .page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-bottom: 80px; /* Ajusta el valor según el tamaño del footer */
+}
   
   ion-card {
     width: 80%;
