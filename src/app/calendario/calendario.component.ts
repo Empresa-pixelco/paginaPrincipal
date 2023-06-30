@@ -97,7 +97,7 @@ export class CalendarioComponent implements OnInit {
     // Filtrar el objeto diaTurno según el día seleccionado y el mes actual
     console.log(this.tsveterinarios)
     this.diaTurno = this.tsveterinarios.dias.filter(
-      (dia: Dia) => dia.dia == this.diaSelecter && mesEnEspanol == this.tsveterinarios.mes
+      (dia: Dia) => dia.dia == this.diaSelecter
     )[0];
     console.log(this.diaTurno)
 
@@ -173,15 +173,14 @@ export class CalendarioComponent implements OnInit {
       console.log(diaActual, this.diaSelecter);
       // Filtrar los horarios y obtener las horas correspondientes
       this.horas = this.diaTurno.horarios.filter((horario: Horario) => {
-        const [horas, minutos] = horario.hora.split(':');
-        console.log(horas);
+        const [hor, minutos] = horario.hora.split(':');
+        console.log(hor);
         console.log(minutos);
-        const minutosTotalesTurno = parseInt(horas) * 60 + parseInt(minutos);
+        const minutosTotalesTurno = parseInt(hor) * 60 + parseInt(minutos);
         const minutosTotalesActual = horaActual * 60 + minutosActual;
         console.log(minutosTotalesTurno, minutosTotalesActual)
-        return minutosTotalesActual < minutosTotalesTurno && horario.enable 
+        return minutosTotalesActual > minutosTotalesTurno && horario.enable 
                && horario.hora !== '14:00 a 16:00'
-               && diaActual >= this.diaSelecter
                && diaActual >= this.diaSelecter;
       }).map((horario: Horario) => horario.hora);
       console.log(this.horas )
