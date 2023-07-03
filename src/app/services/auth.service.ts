@@ -105,9 +105,9 @@ async staffAll(): Promise<any> {
   }
 }  
 
-async calendary(codigoVeterinario: string): Promise<Calendario> {
+async calendary(codigoVeterinario: string, mes: any): Promise<Calendario> {
   // const encryptedData = encrypt(userData);
-  const response = await axios.get(`${this.apiUrl}/services/turnos/2PiNETB6CdlKHXJm9b3g/${codigoVeterinario}/2023/JUNIO`);
+  const response = await axios.get(`${this.apiUrl}/services/turnos/2PiNETB6CdlKHXJm9b3g/${codigoVeterinario}/2023/${mes}`);
   try {
       return response.data;
   } catch (error) { 
@@ -150,10 +150,10 @@ async turnosMes(userData: any): Promise<any> {
   }
 }
 
-async obtenerTurnos(idVet: any): Promise<any> {
+async obtenerTurnos(idVet: any, mes: any): Promise<any> {
   const encryptedData = encrypt(idVet);
   console.log(encryptedData)
-  const response = await axios.get(`${this.apiUrl}/services/turnos/2PiNETB6CdlKHXJm9b3g/${idVet}/2023/JUNIO`, encryptedData)
+  const response = await axios.get(`${this.apiUrl}/services/turnos/2PiNETB6CdlKHXJm9b3g/${idVet}/2023/${mes}`, encryptedData)
   
   console.log(response.data) 
   try {

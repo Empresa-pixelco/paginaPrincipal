@@ -6,12 +6,31 @@
       <ion-thumbnail slot="start">
         <img src="assets/logo.jpg">
       </ion-thumbnail >
-      <ion-label (click)="veterinarioSelected(veterinario.id)" [class.selected]="idSelected === veterinario.id ">
+      <ion-label (click)="veterinarioSelected(veterinario.id)" [class.selected]="idSelected === veterinario.id">
         <h3>{{ veterinario.nombre }}</h3>
       </ion-label>
     </ion-item>
+
+    <div class="month-select">
+      <label for="month">Seleccionar mes:</label>
+      <select id="month" [(ngModel)]="selectedMonth">
+        <option value="enero">ENERO</option>
+        <option value="febrero">FEBRERO</option>
+        <option value="MARZO">MARZO</option>
+        <option value="ABRIL">ABRIL</option>
+        <option value="MAYO">MAYO</option>
+        <option value="JUNIO">JUNIO</option>
+        <option value="JULIO">JULIO</option>
+        <option value="AGOSTO">AGOSTO</option>
+        <option value="SEPTIEMBRE">SEPTIEMBRE</option>
+        <option value="OCTUBRE">OCTUBRE</option>
+        <option value="NOVIEMBRE">NOVIEMBRE</option>
+        <option value="DICIEMBRE">DICIEMBRE</option>
+        <!-- Agrega las opciones restantes para los meses -->
+      </select>
+    </div>
     <div class="button-container">
-      <ion-button fill="clear" (click)="continuar()">Continuar</ion-button>
+      <ion-button fill="clear" (click)="continuar()" [disabled]="!idSelected || !selectedMonth">Continuar</ion-button>
     </div>
   </ion-card>
 </div>

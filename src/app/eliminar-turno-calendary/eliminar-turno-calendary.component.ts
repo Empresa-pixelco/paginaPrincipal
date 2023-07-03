@@ -34,12 +34,8 @@ export class EliminarTurnoCalendaryComponent {
       this.idVet = params['idSelected'];
       console.log('Código de VET recibido:', this.idVet);
     });
-    //obtener los turnos del veterinario seleccionado
-    this.horarios = await this.authService.obtenerTurnos(this.idVet)
-    this.idTurno = this.horarios.data.id
-    this.dias = this.horarios.data.dias
   } 
-  datosPacientes(){
+  async datosPacientes(){
     //fecha de ionic al dar clic al dia 
     const fecha = new Date(this.fechaSeleccionada);
     this.diaSelecter = fecha.getDate();
@@ -48,16 +44,37 @@ export class EliminarTurnoCalendaryComponent {
     //obtener el mes de ionic calendar y el mes actual
     this.mesActual = moment().format('MMMM').toUpperCase();
     this.mesSelected = moment(fecha).format('MMMM').toUpperCase();
-
-    this.turnos = this.dias.find((turno: any)=> turno.dia == this.diaSelecter) 
-    console.log(this.turnos)
-    if(this.turnos){
-        this.horas = this.turnos.horarios.map((hora: any )=> hora.hora)
-        console.log(this.horas)
+    console.log(this.mesSelected)
+    console.log(this.mesActual)
+    if(this.mesSelected != this.mesActual){
+      //obtener los turnos del veterinario seleccionado
+      this.horarios = await this.authService.obtenerTurnos(this.idVet, this.mesSelected)
+      this.idTurno = this.horarios.data.id
+      this.dias = this.horarios.data.dias
+      this.turnos = this.dias.find((turno: any)=> turno.dia == this.diaSelecter) 
+      console.log(this.turnos)
+      if(this.turnos){
+          this.horas = this.turnos.horarios.map((hora: any )=> hora.hora)
+          console.log(this.horas)
+      }
+    console.log(this.horas)
     }
+    else if(this.mesSelected == this.mesActual){
+      //obtener los turnos del veterinario seleccionado
+      this.horarios = await this.authService.obtenerTurnos(this.idVet, this.mesSelected)
+      this.idTurno = this.horarios.data.id
+      this.dias = this.horarios.data.dias
+      this.turnos = this.dias.find((turno: any)=> turno.dia == this.diaSelecter) 
+      console.log(this.turnos)
+      if(this.turnos){
+          this.horas = this.turnos.horarios.map((hora: any )=> hora.hora)
+          console.log(this.horas)
+      }
+    }  
   }
 
   seleccionarHora(hora: string): void{
+    console.log(hora)
   }
 
   seleccionarSubservicio(subservicio: string): any {

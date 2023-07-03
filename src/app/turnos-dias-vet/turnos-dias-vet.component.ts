@@ -24,15 +24,16 @@ export class TurnosDiasVetComponent {
   horaSeleccionada: string| any;
   idVet: any | any
   idTurno: any;
+  month: any
   constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
 
   async ngOnInit() {
     this.route.queryParams.subscribe( async params => {
-      this.idVet = params['idVet'];
-      console.log('Código vet:', this.idVet);
+      this.idVet = params['idVet'], this.month = params['mes'];
+      console.log('Código vet:', this.idVet, this.month);
     })
 
-    const respuesta = await this.authService.obtenerTurnos(this.idVet)
+    const respuesta = await this.authService.obtenerTurnos(this.idVet, this.month)
     this.idTurno = respuesta.data.id
     console.log(this.idTurno)
   }
