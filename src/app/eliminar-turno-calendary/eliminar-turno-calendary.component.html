@@ -2,7 +2,7 @@
     <ion-card>
       <h2 class="mb-2" style="text-align: center;">Selecciona un horario</h2>
       <ion-datetime  presentation="date" [(ngModel)]="fechaSeleccionada" displayFormat="MMMM" pickerFormat="MMMM" disabled="false" (click)="datosPacientes()"></ion-datetime>
-      <div *ngIf="turnos && mesSelected == mesActual">
+      <div *ngIf="turnos">
         <ion-chip color="success" *ngFor="let hora of horas" (click)="seleccionarHora(hora)">{{hora}}</ion-chip>
       </div>
       <div class="button-container">
