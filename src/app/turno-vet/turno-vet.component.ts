@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./turno-vet.component.scss']
 })
 export class TurnoVetComponent {
+  selectedMonth: any
   fechaSeleccionada: Date | any;
   anio: any | any;
   mes: any | any;
@@ -29,11 +30,12 @@ export class TurnoVetComponent {
     // Puedes implementar aquí la funcionalidad específica que necesites
   }
   async continuar() {
+    console.log(this.selectedMonth)
     const turnoM={
       "staff_id": this.idSelected,
       "sucursal_id": "2PiNETB6CdlKHXJm9b3g",
       "anio": this.anio,
-      "mes": this.mes
+      "mes": this.selectedMonth
     }
     console.log(turnoM)
     try {
@@ -44,7 +46,7 @@ export class TurnoVetComponent {
     } catch (error) { 
       alert('Mes con turno ya han sido creados, ahora debes asignar los horarios por dia');
       this.router.navigate(['turnos-dias-vet'],{
-        queryParams: { idVet: this.idSelected }, // Pasa el parámetro como queryParams
+        queryParams: { idVet: this.idSelected , mes: this.selectedMonth}, // Pasa el parámetro como queryParams
       });
       throw new Error('Error al registrar usuario');
     }
