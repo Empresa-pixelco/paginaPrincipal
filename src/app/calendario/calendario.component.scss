@@ -1,35 +1,29 @@
 .page {
-    ion-card {
-        margin-top: 50px;
-        margin-inline: auto;
-        max-width: 500px;
-        padding: 42px;
-    }
+  ion-card {
+    margin-top: 50px;
+    margin-inline: auto;
+    max-width: 500px;
+    padding: 42px;
+  }
 }
+
 .button-container {
-    display: flex;
-    justify-content: space-between;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+}
+
 .selected {
-    background-color: blue;
-    color: white;
-  }
-  .selectedDia {
-    color: rgb(238, 255, 0);
+  background-color: blue;
+  color: white;
+}
 
-  }
-  ion-datetime {
-    display: block;
-    margin: 0 auto;
-    color: rgb(94, 180, 214);
-  }
-  .highlighted-day {
-    background-color: yellow; /* Cambia el color de fondo según tu preferencia */
-    /* Agrega otros estilos de resaltado si es necesario */
-  }
+.selectedDia {
+  color: rgb(238, 255, 0);
+}
 
+ion-datetime {
+  display: block;
+  margin: 0 auto;
+  color: rgb(166, 193, 203);
+}
 
-  
-  
-  
