@@ -21,6 +21,7 @@ export class ConfirmacionComponent {
   diaCita: any
   mesActual: any;
   idTurno: string | any;
+  mesSelectd: any
   constructor(private dataStorageService: StorageService, private authService: AuthService) {}
 
   ngOnInit() {
@@ -32,6 +33,8 @@ export class ConfirmacionComponent {
     const fecha = new Date();
     this.diaCita = this.dataStorageService.getDiaSeleccionado()
     this.idTurno = this.dataStorageService.getTurnoSeleccionado()
+    this.mesSelectd = this.dataStorageService.getMesSeleccionado().toLowerCase()
+    console.log(this.mesSelectd)
     //dejar la fecha en espanol
     moment.locale('es');
     //obtener el mes de ionic calendar
