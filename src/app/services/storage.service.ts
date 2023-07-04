@@ -13,6 +13,7 @@ export class StorageService {
   private idTurno: string | undefined;
   private horarioServicio: any | undefined;
   private correo: any
+  private mes: any
   // Agrega otras variables privadas para almacenar los datos de las otras vistas
 
   constructor() {}
@@ -83,5 +84,11 @@ export class StorageService {
 
   getCorreoSeleccionado(): any {
     return this.correo;
+  }
+  setMesSeleccionado(mes:any): void {
+    this.mes = mes;
+  }
+  getMesSeleccionado(): any {
+    return this.mes;
   }
 }

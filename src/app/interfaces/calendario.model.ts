@@ -6,7 +6,6 @@ export interface Horario {
   
 export interface Dia {
 dia: number;
-mes: number;
 horarios: Horario[];
 }
 
