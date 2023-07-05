@@ -13,7 +13,7 @@ import { StorageService } from '../services/storage.service';
 })
 export class CalendarioComponent implements OnInit {
   // Propiedades
-  idTurno: string | undefined;
+  idTurno: any | undefined;
   tsveterinarios: Calendario | any;
   mesActual: string | any;
   horas: any;
@@ -35,12 +35,13 @@ export class CalendarioComponent implements OnInit {
   getDayValues: any
   peluqueria: any | undefined
   diaActual: any
+  data: Calendario | undefined
   // Constructor
   constructor(
     private router: Router,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private dataStorageService: StorageService
+    private dataStorageService: StorageService,
   ) {}
 
   // Método de inicialización
@@ -77,27 +78,33 @@ export class CalendarioComponent implements OnInit {
     console.log('dia seleccionada', this.diaSelecter)
     this.monthSelectedNumber = moment(fecha).format('MM').toUpperCase();
     // Obtener el calendario del servidor
-    const data: Calendario = await this.authService.calendary(this.codigoCategoria, this.mesEnEspanol);
-    this.tsveterinarios = data;    
-    this.idTurno = data.id;
-    this.monthVet =this.tsveterinarios.mes
-
-    this.dataStorageService.setTurnoSeleccionado(this.idTurno); 
-    // Filtrar el objeto diaTurno según el día seleccionado y el mes actual
-    this.diaTurno = this.tsveterinarios.dias.filter(
-      (dia: Dia) => dia.dia == this.diaSelecter 
-    )[0];
-    this.dias = this.tsveterinarios.dias.map(
-      (dia: any) => dia.dia
-    );
-    this.getDayValues = this.dias.join(',')
-    if (this.peluqueria == 'Peluquería'){
-      this.peluqueriaService(this.diaTurno)
-    } else if (this.ecografia == 'Ecografia') {
-      this.ecografiaServices(this.diaTurno)
-    } else {
-      this.otherServices(this.diaTurno)
+    try {
+      this.data = await this.authService.calendary(this.codigoCategoria, this.mesEnEspanol);
+      this.tsveterinarios = this.data;    
+      this.idTurno = this.tsveterinarios.id;
+      this.monthVet =this.tsveterinarios.mes
+      this.dataStorageService.setTurnoSeleccionado(this.idTurno); 
+      // Filtrar el objeto diaTurno según el día seleccionado y el mes actual
+      this.diaTurno = this.tsveterinarios.dias.filter(
+        (dia: Dia) => dia.dia == this.diaSelecter 
+      )[0];
+      const dias = this.tsveterinarios.dias.map(
+        (dia: any) => dia.dia
+      );
+      this.getDayValues = dias.join(',')
+      if (this.peluqueria == 'Peluquería'){
+        this.peluqueriaService(this.diaTurno)
+      } else if (this.ecografia == 'Ecografia') {
+        this.ecografiaServices(this.diaTurno)
+      } else {
+        this.otherServices(this.diaTurno)
+      }
+    } catch (error) {
+      this.diaTurno = ''
+      console.log('sin horarios')
     }
+    
+
   }
 
   peluqueriaService(diaTurno: any){
