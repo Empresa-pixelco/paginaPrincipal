@@ -30,8 +30,11 @@ export class CalendarioComponent implements OnInit {
   codigoCategoria: any
   monthVet: any
   mesEnEspanol:  any
-  dias: any
+  dias: any | undefined;
   monthSelectedNumber: any
+  getDayValues: any
+  peluqueria: any | undefined
+  diaActual: any
   // Constructor
   constructor(
     private router: Router,
@@ -44,18 +47,16 @@ export class CalendarioComponent implements OnInit {
   async ngOnInit() {
     console.log('fecha',this.fechaSeleccionada)
     const fechaActual = new Date();
-    const diaActual = fechaActual.getDate();
+    this.diaActual = fechaActual.getDate();
+    console.log('dia actual', this.diaActual)
     moment.locale('es');
     this.mesActual = moment().format('MMMM').toUpperCase();
     this.monthNumber = moment().format('MM').toUpperCase()[1];
-    console.log(this.monthNumber)
 
     // Obtener el servicio y la ecografía seleccionados del almacenamiento
     this.servicio = this.dataStorageService.getHorarioServicioSeleccionado();
     this.ecografia = this.dataStorageService.getnombreServicioSeleccionado();
-
-    console.log(this.servicio)
-    console.log(this.ecografia)
+    this.peluqueria =this.servicio['subServicio']
     // Suscribirse a los parámetros de la ruta
     this.route.queryParams.subscribe(async (params) => {
       this.codigoCategoria = params['codigoCategoria'];
@@ -73,17 +74,15 @@ export class CalendarioComponent implements OnInit {
     // Obtener el mes de Ionic Calendar en español
     this.mesEnEspanol = moment(fecha).format('MMMM').toUpperCase();
     this.diaSelecter = fecha.getDate();
+    console.log('dia seleccionada', this.diaSelecter)
     this.monthSelectedNumber = moment(fecha).format('MM').toUpperCase();
     // Obtener el calendario del servidor
     const data: Calendario = await this.authService.calendary(this.codigoCategoria, this.mesEnEspanol);
     this.tsveterinarios = data;    
     this.idTurno = data.id;
     this.monthVet =this.tsveterinarios.mes
-    console.log(this.monthVet)
 
-    this.dataStorageService.setTurnoSeleccionado(this.idTurno);
-    console.log(this.idTurno)
-    console.log(data)   
+    this.dataStorageService.setTurnoSeleccionado(this.idTurno); 
     // Filtrar el objeto diaTurno según el día seleccionado y el mes actual
     this.diaTurno = this.tsveterinarios.dias.filter(
       (dia: Dia) => dia.dia == this.diaSelecter 
@@ -91,8 +90,8 @@ export class CalendarioComponent implements OnInit {
     this.dias = this.tsveterinarios.dias.map(
       (dia: any) => dia.dia
     );
-    
-    if (this.servicio){
+    this.getDayValues = this.dias.join(',')
+    if (this.peluqueria == 'Peluquería'){
       this.peluqueriaService(this.diaTurno)
     } else if (this.ecografia == 'Ecografia') {
       this.ecografiaServices(this.diaTurno)
@@ -101,17 +100,11 @@ export class CalendarioComponent implements OnInit {
     }
   }
 
-  
-
   peluqueriaService(diaTurno: any){
     if(this.monthVet != this.mesActual){
       console.log('peluqueria, primer if')
-      const fechaActual = new Date();
-      const diaActual = fechaActual.getDate();
-      console.log(diaActual, this.diaSelecter);
-  
+      const fechaActual = new Date();  
       // Filtrar los horarios según el servicio seleccionado y obtener las horas correspondientes
-
       this.horas = diaTurno.horarios.filter(
         (horario: Horario) =>
           horario.enable && horario.hora === this.servicio.duracion
@@ -122,30 +115,29 @@ export class CalendarioComponent implements OnInit {
       const fechaActual = new Date();
       const horaActual = fechaActual.getHours();
       const minutosActual = fechaActual.getMinutes();
-      const diaActual = fechaActual.getDate();
-      console.log(diaActual, this.diaSelecter);
   
       // Filtrar los horarios según el servicio seleccionado y obtener las horas correspondientes
-      console.log(diaTurno);
       this.horas = diaTurno.horarios.filter((horario: Horario) =>{
             const horasEnTurno = horario.hora.split('a');
             const [horas, minutos] = horasEnTurno[0].split(':');
-            console.log(horas);
-            console.log(minutos);
+
             const minutosTotalesTurno = parseInt(horas) * 60 + parseInt(minutos);
             const minutosTotalesActual = horaActual * 60 + minutosActual;
-            console.log(minutosTotalesTurno, minutosTotalesActual)
-            if(this.diaSelecter> diaActual){
+            if(this.diaSelecter> this.diaActual){
               return horario.enable && 
                      horario.hora === this.servicio.duracion
-                     && this.diaSelecter >= diaActual
+                     && this.diaSelecter >= this.diaActual
             }
-            else if(this.diaSelecter= diaActual){
+            else if(this.diaSelecter= this.diaActual){
               return minutosTotalesActual < minutosTotalesTurno &&
                      horario.hora === this.servicio.duracion &&
                      horario.enable && 
-                     this.diaSelecter >= diaActual
+                     this.diaSelecter >= this.diaActual
+            }          
+            else if(this.diaSelecter< this.diaActual){
+              return false    
             }
+            
             return false
           // && diaActual <= this.diaSelecter
              }).map((horario: Horario) => horario.hora);
@@ -157,12 +149,7 @@ export class CalendarioComponent implements OnInit {
   ecografiaServices(diaTurno: any){
     if(this.monthVet != this.mesActual){
       console.log('Ecografia primeer if')
-      console.log(diaTurno)
       const fechaActual = new Date();
-      const diaActual = fechaActual.getDate();
-      console.log(diaActual);
-  
-      console.log(this.diaSelecter, diaActual)
       // Filtrar los horarios según la ecografía seleccionada y obtener las horas correspondientes
       this.horas = this.diaTurno.horarios
         .filter((horario: Horario) => horario.enable && horario.hora !== '14:00 a 16:00' 
@@ -180,23 +167,25 @@ export class CalendarioComponent implements OnInit {
       const fechaActual = new Date();
       const horaActual = fechaActual.getHours();
       const minutosActual = fechaActual.getMinutes();
-      const diaActual = fechaActual.getDate();
       // Filtrar los horarios según la ecografía seleccionada y obtener las horas correspondientes
       this.horas = this.diaTurno.horarios.filter((horario: Horario) =>{
             const [hor, minutos] = horario.hora.split(':');
             const minutosTotalesTurno = parseInt(hor) * 60 + parseInt(minutos);
             const minutosTotalesActual = horaActual * 60 + minutosActual;
             console.log(minutosTotalesTurno, minutosTotalesActual)
-            if(this.diaSelecter> diaActual){
+            if(this.diaSelecter> this.diaActual){
               return horario.enable && 
                      horario.hora !== '14:00 a 16:00' 
-                      && this.diaSelecter >= diaActual
+                      && this.diaSelecter >= this.diaActual
             }
-            else if(this.diaSelecter= diaActual){
+            else if(this.diaSelecter= this.diaActual){
               return minutosTotalesActual < minutosTotalesTurno &&
               horario.enable && 
               horario.hora !== '14:00 a 16:00' 
-              && this.diaSelecter >= diaActual
+              && this.diaSelecter >= this.diaActual
+            }
+            else if(this.diaSelecter< this.diaActual){
+              return false    
             }
             return false
 
@@ -225,7 +214,6 @@ export class CalendarioComponent implements OnInit {
       const fechaActual = new Date();
       const horaActual = fechaActual.getHours();
       const minutosActual = fechaActual.getMinutes();
-      const diaActual = fechaActual.getDate();
       // Filtrar los horarios y obtener las horas correspondientes
       this.horas = diaTurno.horarios.filter((horario: Horario) => {
         const [hor, minutos] = horario.hora.split(':');
@@ -233,16 +221,20 @@ export class CalendarioComponent implements OnInit {
         const minutosTotalesTurno = parseInt(hor) * 60 + parseInt(minutos);
         const minutosTotalesActual = horaActual * 60 + minutosActual;
         console.log(minutosTotalesTurno, minutosTotalesActual)
-        if(this.diaSelecter> diaActual){
+        console.log(this.diaSelecter, this.diaActual)
+        if(this.diaSelecter> this.diaActual){
           return horario.enable && 
                  horario.hora !== '14:00 a 16:00' 
-                  && this.diaSelecter >= diaActual
         }
-        else if(this.diaSelecter= diaActual){
+        else if(this.diaSelecter == this.diaActual){
           return minutosTotalesActual < minutosTotalesTurno &&
           horario.enable && 
           horario.hora !== '14:00 a 16:00' 
-          && this.diaSelecter >= diaActual
+        }
+        
+        else if(this.diaSelecter< this.diaActual){
+          console.log(this.diaSelecter,this.diaActual)
+          return false    
         }
         return false
       }).map((horario: Horario) => horario.hora);

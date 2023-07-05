@@ -59,11 +59,17 @@ export class ReservasComponent implements OnInit{
     console.log('ReservasComponent - seleccionarSubservicio()', subservicio);
     this.dataStorageService.setnombreServicioSeleccionado(subservicio)  
     this.subServicio =  subservicio
-    if(this.subServicio == 'Peluquería')
+    if(subservicio == 'Peluquería'){
       this.dataStorageService.setHorarioServicioSeleccionado({
-        'subServicio': this.subServicio,
+        'subServicio': subservicio,
         'duracion': '14:00 a 16:00'
       })
-      console.log(this.subServicio)
+    }else{
+      this.dataStorageService.setHorarioServicioSeleccionado({
+        'subServicio': '',
+        'duracion': ''})
+    }
+
+    console.log(this.subServicio)
   }
 }
