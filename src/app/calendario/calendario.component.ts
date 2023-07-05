@@ -92,7 +92,7 @@ export class CalendarioComponent implements OnInit {
       (dia: any) => dia.dia
     );
     
-    if (this.servicio){
+    if (this.servicio['subServicio'] == 'Peluquería'){
       this.peluqueriaService(this.diaTurno)
     } else if (this.ecografia == 'Ecografia') {
       this.ecografiaServices(this.diaTurno)
