@@ -104,11 +104,9 @@
 }
 
 .slice img {
-  width: 100%;
-  max-height: 200px;
-  /* Ajusta la altura de las imágenes según tu preferencia */
-  object-fit: cover;
-  margin-bottom: 20px;
+  width: 350%;
+  height: 80%; /* Cambia la altura a auto para mantener la proporción de las imágenes */
+  max-height: 300px;
 }
 
 @keyframes desplazamiento-slices {
