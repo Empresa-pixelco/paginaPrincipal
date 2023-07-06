@@ -135,14 +135,15 @@ export class CalendarioComponent implements OnInit {
                      horario.hora === this.servicio.duracion
                      && this.diaSelecter >= this.diaActual
             }
-            else if(this.diaSelecter= this.diaActual){
+            else if(this.diaSelecter== this.diaActual){
               return minutosTotalesActual < minutosTotalesTurno &&
                      horario.hora === this.servicio.duracion &&
                      horario.enable && 
                      this.diaSelecter >= this.diaActual
             }          
             else if(this.diaSelecter< this.diaActual){
-              return false    
+              console.log('dia menor')
+              return this.diaSelecter > this.diaActual
             }
             
             return false
@@ -185,14 +186,14 @@ export class CalendarioComponent implements OnInit {
                      horario.hora !== '14:00 a 16:00' 
                       && this.diaSelecter >= this.diaActual
             }
-            else if(this.diaSelecter= this.diaActual){
+            else if(this.diaSelecter== this.diaActual){
               return minutosTotalesActual < minutosTotalesTurno &&
               horario.enable && 
               horario.hora !== '14:00 a 16:00' 
               && this.diaSelecter >= this.diaActual
             }
             else if(this.diaSelecter< this.diaActual){
-              return false    
+              return this.diaSelecter > this.diaActual   
             }
             return false
 
@@ -241,7 +242,7 @@ export class CalendarioComponent implements OnInit {
         
         else if(this.diaSelecter< this.diaActual){
           console.log(this.diaSelecter,this.diaActual)
-          return false    
+          return this.diaSelecter > this.diaActual   
         }
         return false
       }).map((horario: Horario) => horario.hora);
