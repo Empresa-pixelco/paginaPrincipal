@@ -52,8 +52,8 @@ export class CalendarioComponent implements OnInit {
     console.log('dia actual', this.diaActual)
     moment.locale('es');
     this.mesActual = moment().format('MMMM').toUpperCase();
-    this.monthNumber = moment().format('MM').toUpperCase()[1];
-
+    this.monthNumber = parseInt(moment().format('MM').toUpperCase()[1]);
+    console.log(this.monthNumber)
     // Obtener el servicio y la ecografía seleccionados del almacenamiento
     this.servicio = this.dataStorageService.getHorarioServicioSeleccionado();
     this.ecografia = this.dataStorageService.getnombreServicioSeleccionado();
@@ -67,7 +67,6 @@ export class CalendarioComponent implements OnInit {
 
   // Método para obtener los datos de los pacientes
   async datosPacientes() {
-
     // Obtener la fecha de Ionic Calendar
     const fecha = new Date(this.fechaSeleccionada);
     // Establecer el idioma en español para las fechas
@@ -75,8 +74,7 @@ export class CalendarioComponent implements OnInit {
     // Obtener el mes de Ionic Calendar en español
     this.mesEnEspanol = moment(fecha).format('MMMM').toUpperCase();
     this.diaSelecter = fecha.getDate();
-    console.log('dia seleccionada', this.diaSelecter)
-    this.monthSelectedNumber = moment(fecha).format('MM').toUpperCase();
+    this.monthSelectedNumber = parseInt(moment(fecha).format('MM').toUpperCase());
     // Obtener el calendario del servidor
     try {
       this.data = await this.authService.calendary(this.codigoCategoria, this.mesEnEspanol);
@@ -110,11 +108,12 @@ export class CalendarioComponent implements OnInit {
   peluqueriaService(diaTurno: any){
     if(this.monthVet != this.mesActual){
       console.log('peluqueria, primer if')
-      const fechaActual = new Date();  
+      console.log(this.monthNumber, this.monthSelectedNumber)
       // Filtrar los horarios según el servicio seleccionado y obtener las horas correspondientes
       this.horas = diaTurno.horarios.filter(
         (horario: Horario) =>
-          horario.enable && horario.hora === this.servicio.duracion
+          horario.enable && horario.hora === this.servicio.duracion &&
+          this.monthNumber < this.monthSelectedNumber
       ).map((horario: Horario) => horario.hora);
     }
     else{
@@ -159,8 +158,9 @@ export class CalendarioComponent implements OnInit {
       console.log('Ecografia primeer if')
       const fechaActual = new Date();
       // Filtrar los horarios según la ecografía seleccionada y obtener las horas correspondientes
-      this.horas = this.diaTurno.horarios
-        .filter((horario: Horario) => horario.enable && horario.hora !== '14:00 a 16:00' 
+      this.horas = diaTurno.horarios
+        .filter((horario: Horario) => horario.enable && horario.hora !== '14:00 a 16:00' &&
+                                       this.monthNumber < this.monthSelectedNumber
                                       )
         .map((horario: Horario) => horario.hora);
       console.log(this.horas)
@@ -176,7 +176,7 @@ export class CalendarioComponent implements OnInit {
       const horaActual = fechaActual.getHours();
       const minutosActual = fechaActual.getMinutes();
       // Filtrar los horarios según la ecografía seleccionada y obtener las horas correspondientes
-      this.horas = this.diaTurno.horarios.filter((horario: Horario) =>{
+      this.horas = diaTurno.horarios.filter((horario: Horario) =>{
             const [hor, minutos] = horario.hora.split(':');
             const minutosTotalesTurno = parseInt(hor) * 60 + parseInt(minutos);
             const minutosTotalesActual = horaActual * 60 + minutosActual;
@@ -193,7 +193,7 @@ export class CalendarioComponent implements OnInit {
               && this.diaSelecter >= this.diaActual
             }
             else if(this.diaSelecter< this.diaActual){
-              return this.diaSelecter > this.diaActual   
+              return this.diaSelecter > this.diaActual
             }
             return false
 
@@ -214,6 +214,7 @@ export class CalendarioComponent implements OnInit {
       this.horas = diaTurno.horarios.filter((horario: Horario) => {
         return horario.enable 
                && horario.hora !== '14:00 a 16:00'
+               && this.monthNumber < this.monthSelectedNumber
       }).map((horario: Horario) => horario.hora);
       console.log(this.horas )
     
@@ -241,8 +242,8 @@ export class CalendarioComponent implements OnInit {
         }
         
         else if(this.diaSelecter< this.diaActual){
-          console.log(this.diaSelecter,this.diaActual)
-          return this.diaSelecter > this.diaActual   
+          console.log(this.monthNumber, this.monthSelectedNumber)
+          return this.diaSelecter > this.diaActual
         }
         return false
       }).map((horario: Horario) => horario.hora);
