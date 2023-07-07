@@ -32,7 +32,7 @@ export class CalendarioComponent implements OnInit {
   mesEnEspanol:  any
   dias: any | undefined;
   monthSelectedNumber: any
-  getDayValues: any
+  getDayValues: any 
   peluqueria: any | undefined
   diaActual: any
   data: Calendario | undefined
@@ -46,7 +46,6 @@ export class CalendarioComponent implements OnInit {
 
   // Método de inicialización
   async ngOnInit() {
-    console.log('fecha',this.fechaSeleccionada)
     const fechaActual = new Date();
     this.diaActual = fechaActual.getDate();
     console.log('dia actual', this.diaActual)
@@ -86,10 +85,6 @@ export class CalendarioComponent implements OnInit {
       this.diaTurno = this.tsveterinarios.dias.filter(
         (dia: Dia) => dia.dia == this.diaSelecter 
       )[0];
-      const dias = this.tsveterinarios.dias.map(
-        (dia: any) => dia.dia
-      );
-      this.getDayValues = dias.join(',')
       if (this.peluqueria == 'Peluquería'){
         this.peluqueriaService(this.diaTurno)
       } else if (this.ecografia == 'Ecografia') {
@@ -101,13 +96,22 @@ export class CalendarioComponent implements OnInit {
       this.diaTurno = ''
       console.log('sin horarios')
     }
-    
-
   }
 
   peluqueriaService(diaTurno: any){
     if(this.monthVet != this.mesActual){
       console.log('peluqueria, primer if')
+
+
+      //Mostrar los dias correctos en el calendario
+      const dias = this.tsveterinarios.dias.filter((dia: Dia) =>
+      dia.horarios.some((horario: Horario) => horario.enable && 
+                                              horario.hora === this.servicio.duracion)
+      );
+      const diasparseado = dias
+      .map((dia: any) => dia.dia)
+      this.getDayValues = diasparseado.join(',')
+
       console.log(this.monthNumber, this.monthSelectedNumber)
       // Filtrar los horarios según el servicio seleccionado y obtener las horas correspondientes
       this.horas = diaTurno.horarios.filter(
@@ -122,6 +126,16 @@ export class CalendarioComponent implements OnInit {
       const horaActual = fechaActual.getHours();
       const minutosActual = fechaActual.getMinutes();
   
+      //Mostrar los dias correctos en el calendario
+      const dias = this.tsveterinarios.dias.filter((dia: Dia) =>
+      dia.horarios.some((horario: Horario) => horario.enable && 
+                                              horario.hora === this.servicio.duracion)
+      );
+      const diasparseado = dias
+      .map((dia: any) => dia.dia >= this.diaActual ? dia.dia : null)
+      .filter((dia: number | null) => dia !== null);
+      this.getDayValues = diasparseado.join(',')
+
       // Filtrar los horarios según el servicio seleccionado y obtener las horas correspondientes
       this.horas = diaTurno.horarios.filter((horario: Horario) =>{
             const horasEnTurno = horario.hora.split('a');
@@ -157,6 +171,15 @@ export class CalendarioComponent implements OnInit {
     if(this.monthVet != this.mesActual){
       console.log('Ecografia primeer if')
       const fechaActual = new Date();
+
+      //Mostrar los dias correctos en el calendario
+      const dias = this.tsveterinarios.dias.filter((dia: Dia) =>
+      dia.horarios.some((horario: Horario) => horario.enable)
+      );
+      const diasparseado = dias
+      .map((dia: any) => dia.dia)
+      this.getDayValues = diasparseado.join(',')
+
       // Filtrar los horarios según la ecografía seleccionada y obtener las horas correspondientes
       this.horas = diaTurno.horarios
         .filter((horario: Horario) => horario.enable && horario.hora !== '14:00 a 16:00' &&
@@ -175,6 +198,17 @@ export class CalendarioComponent implements OnInit {
       const fechaActual = new Date();
       const horaActual = fechaActual.getHours();
       const minutosActual = fechaActual.getMinutes();
+
+
+      //Mostrar los dias correctos en el calendario
+      const dias = this.tsveterinarios.dias.filter((dia: Dia) =>
+      dia.horarios.some((horario: Horario) => horario.enable)
+      );
+      const diasparseado = dias
+      .map((dia: any) => dia.dia >= this.diaActual ? dia.dia : null)
+      .filter((dia: number | null) => dia !== null);
+      this.getDayValues = diasparseado.join(',')
+
       // Filtrar los horarios según la ecografía seleccionada y obtener las horas correspondientes
       this.horas = diaTurno.horarios.filter((horario: Horario) =>{
             const [hor, minutos] = horario.hora.split(':');
@@ -210,6 +244,14 @@ export class CalendarioComponent implements OnInit {
   otherServices(diaTurno: any){
     if(this.monthVet != this.mesActual){
       console.log('other, primer if')
+      //Mostrar los dias correctos en el calendario
+      const dias = this.tsveterinarios.dias.filter((dia: Dia) =>
+      dia.horarios.some((horario: Horario) => horario.enable)
+      );
+      const diasparseado = dias
+      .map((dia: any) => dia.dia)
+      this.getDayValues = diasparseado.join(',')
+
       // Filtrar los horarios y obtener las horas correspondientes
       this.horas = diaTurno.horarios.filter((horario: Horario) => {
         return horario.enable 
@@ -220,6 +262,16 @@ export class CalendarioComponent implements OnInit {
     
     }else{
       console.log('otros')
+
+      //Mostrar los dias correctos en el calendario
+      const dias = this.tsveterinarios.dias.filter((dia: Dia) =>
+      dia.horarios.some((horario: Horario) => horario.enable)
+      );
+      const diasparseado = dias
+      .map((dia: any) => dia.dia >= this.diaActual ? dia.dia : null)
+      .filter((dia: number | null) => dia !== null);
+      this.getDayValues = diasparseado.join(',')
+
       const fechaActual = new Date();
       const horaActual = fechaActual.getHours();
       const minutosActual = fechaActual.getMinutes();
